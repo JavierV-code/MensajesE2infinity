@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.2.3 — 2026-09-27
+
+- Prepara el borrador de 1.7 — Configuración remota, con secuencia Mermaid y estado pendiente de validación.
+- Propone consulta manual HTTPS, comprobación local y aplicación según el acuerdo de 1.6.
+- Distingue propuesta guardada, comprobada y aplicada; documenta alcance, permisos y conciliación pendientes.
+- Enlaza el borrador y aclara el carácter provisional de los tópicos MQTT de configuración, sin modificar APIs ni JSON Schema.
+
 ## 0.2.2 — 2026-09-27
 
 - Registra el acuerdo de 1.6 — Configuración local y su secuencia Mermaid.

@@ -29,6 +29,8 @@ Los recorridos de transporte están descritos en [1.5 — Conexión MQTT](../flu
 
 Las solicitudes e informes locales de configuración se describen en [1.6 — Configuración local](../flujos/1.6-configuracion-local.md). Se realizan inicialmente mediante herramientas de terminal y registros; el canal remoto y la correspondencia definitiva con `CFG-01` y `CFG-02` quedan pendientes de revisión.
 
+El [borrador de 1.7 — Configuración remota](../flujos/1.7-configuracion-remota.md) describe propuesta central, consulta HTTPS y resultados administrativos. Los intercambios todavía no están aprobados como contratos ni fijan endpoints nuevos.
+
 Todo mensaje operativo debería incluir, según corresponda:
 
 - versión del esquema;

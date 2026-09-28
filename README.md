@@ -4,7 +4,7 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.2.2 — 27 de septiembre de 2026.**
+**Documentación 0.2.3 — 27 de septiembre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
@@ -47,6 +47,8 @@ schemas/                 Contratos JSON preliminares
 El orden, las dependencias y los estados se mantienen únicamente en el [plan de trabajo](docs/plan-trabajo-flujos.md). Conversaremos un subpunto por vez, lo documentaremos con la [plantilla común](docs/flujos/plantilla-flujo.md) y registraremos su confirmación antes de marcarlo como validado.
 
 La siguiente conversación comienza en **1.7 — Configuración remota**. La validación documental se distingue de la evidencia de implementación y de los ensayos físicos.
+
+El [borrador de 1.7](docs/flujos/1.7-configuracion-remota.md) ya está preparado para revisión; propone consulta HTTPS iniciada manualmente y aplicación conforme a 1.6.
 
 Los mensajes, tópicos, diagramas y [JSON Schema existentes](schemas/README.md) son propuestas previas que se revisarán durante este proceso.
 

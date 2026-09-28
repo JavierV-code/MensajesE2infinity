@@ -8,6 +8,8 @@ El [acuerdo de 1.5 — Conexión MQTT](../flujos/1.5-conexion-mqtt.md) documenta
 
 El [acuerdo de 1.6 — Configuración local](../flujos/1.6-configuracion-local.md) describe edición manual, comprobación previa y aplicación mediante reinicio controlado del agente. Sus informes locales distinguen aplicación y conectividad.
 
+El [borrador de 1.7 — Configuración remota](../flujos/1.7-configuracion-remota.md) propone consultar por HTTPS una configuración central y aplicar los cambios mediante el procedimiento local. Queda pendiente de validación.
+
 ```mermaid
 flowchart LR
     U[Usuario / Frontend]

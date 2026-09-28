@@ -1,6 +1,6 @@
 # Plan tentativo de documentación de flujos — E2 Infinity
 
-Versión documental 0.2.2 — 27 de septiembre de 2026.
+Versión documental 0.2.3 — 27 de septiembre de 2026.
 
 ## Propósito y alcance
 
@@ -35,7 +35,7 @@ Todos los subpuntos comienzan pendientes de revisión individual. En «Documento
 | 1.4 | Vinculación con E2 Infinity: reconocer y autorizar al nodo incorporado manualmente | Pendiente | 1.2 | ¿Cómo se comprueba la asociación y autorización central? | — | — |
 | 1.5 | Conexión MQTT: verificar agente–Mosquitto, Mosquitto–EMQX y brokers vecinos | Validado | 1.2, 1.3, 1.4 | Tópicos, permisos detallados y confirmaciones de aplicación por definir en sus flujos | [Conexión MQTT](flujos/1.5-conexion-mqtt.md) | 2026-09-27: confirmación «lo valido», registrada en el documento |
 | 1.6 | Configuración local: describir carga, validación y resultado | Validado | 1.1, 1.2, 1.3–1.5 | Detalles de archivos, comprobación y aplicación ante operaciones en curso por definir | [Configuración local](flujos/1.6-configuracion-local.md) | 2026-09-27: confirmación «me parece bien», registrada en el documento |
-| 1.7 | Configuración remota: definir solicitudes de cambio y sus respuestas | Pendiente | 1.4, 1.6 | ¿Qué cambios se permiten y cómo conviven con las preferencias locales? | — | — |
+| 1.7 | Configuración remota: definir solicitudes de cambio y sus respuestas | Borrador | 1.4, 1.5, 1.6 | Validar consulta manual HTTPS, alcance y reporte; precisar precedencia local/remota | [Configuración remota](flujos/1.7-configuracion-remota.md) | —; propuesta pendiente de confirmación |
 
 ### Bloque 2 — Equipos y supervisión
 
@@ -122,4 +122,4 @@ En cada flujo se revisarán autorización, identificadores, vigencia, duplicados
 
 ## Próxima conversación
 
-**Punto 1.7 — Configuración remota:** definir qué cambios puede solicitar la plataforma y cómo el nodo informa aceptación, rechazo y aplicación. Los acuerdos anteriores de la conversación se incorporarán en sus documentos correspondientes; las validaciones de 1.5 y 1.6 ya cuentan con documentos específicos.
+**Punto 1.7 — Configuración remota:** revisar el borrador de consulta manual HTTPS, alcance de cambios y reporte administrativo. La propuesta queda pendiente de validación; 1.5 y 1.6 ya cuentan con acuerdos documentados. Los acuerdos anteriores de la conversación se incorporarán en sus documentos correspondientes.
