@@ -4,11 +4,11 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.2.1 — 27 de septiembre de 2026.**
+**Documentación 0.2.2 — 27 de septiembre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
-El [plan tentativo de documentación de flujos](docs/plan-trabajo-flujos.md) organiza 34 subpuntos en seis bloques. El [punto 1.5 — Conexión MQTT](docs/flujos/1.5-conexion-mqtt.md) ya tiene un acuerdo documental registrado. La incorporación inicial será manual mediante archivos editados por el equipo técnico.
+El [plan tentativo de documentación de flujos](docs/plan-trabajo-flujos.md) organiza 34 subpuntos en seis bloques. Los puntos [1.5 — Conexión MQTT](docs/flujos/1.5-conexion-mqtt.md) y [1.6 — Configuración local](docs/flujos/1.6-configuracion-local.md) tienen acuerdos documentales registrados. La incorporación inicial será manual mediante archivos editados por el equipo técnico.
 
 ## Objetivos
 
@@ -46,7 +46,7 @@ schemas/                 Contratos JSON preliminares
 
 El orden, las dependencias y los estados se mantienen únicamente en el [plan de trabajo](docs/plan-trabajo-flujos.md). Conversaremos un subpunto por vez, lo documentaremos con la [plantilla común](docs/flujos/plantilla-flujo.md) y registraremos su confirmación antes de marcarlo como validado.
 
-La siguiente conversación comienza en **1.6 — Configuración local**. La validación documental se distingue de la evidencia de implementación y de los ensayos físicos.
+La siguiente conversación comienza en **1.7 — Configuración remota**. La validación documental se distingue de la evidencia de implementación y de los ensayos físicos.
 
 Los mensajes, tópicos, diagramas y [JSON Schema existentes](schemas/README.md) son propuestas previas que se revisarán durante este proceso.
 

@@ -27,6 +27,8 @@ El [plan de trabajo](../plan-trabajo-flujos.md) mantiene el estado de los 34 sub
 
 Los recorridos de transporte están descritos en [1.5 — Conexión MQTT](../flujos/1.5-conexion-mqtt.md). Su aprobación documental no aprueba automáticamente los mensajes y campos de este catálogo.
 
+Las solicitudes e informes locales de configuración se describen en [1.6 — Configuración local](../flujos/1.6-configuracion-local.md). Se realizan inicialmente mediante herramientas de terminal y registros; el canal remoto y la correspondencia definitiva con `CFG-01` y `CFG-02` quedan pendientes de revisión.
+
 Todo mensaje operativo debería incluir, según corresponda:
 
 - versión del esquema;

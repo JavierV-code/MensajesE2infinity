@@ -6,6 +6,8 @@ Esta vista separa infraestructura de transporte, lógica energética y control f
 
 El [acuerdo de 1.5 — Conexión MQTT](../flujos/1.5-conexion-mqtt.md) documenta los recorridos del agente, el bridge selectivo con EMQX y los brokers vecinos. El bridge central forma parte del diseño objetivo y está pendiente de implementación en el código revisado.
 
+El [acuerdo de 1.6 — Configuración local](../flujos/1.6-configuracion-local.md) describe edición manual, comprobación previa y aplicación mediante reinicio controlado del agente. Sus informes locales distinguen aplicación y conectividad.
+
 ```mermaid
 flowchart LR
     U[Usuario / Frontend]

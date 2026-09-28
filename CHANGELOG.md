@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.2.2 — 2026-09-27
+
+- Registra el acuerdo de 1.6 — Configuración local y su secuencia Mermaid.
+- Documenta edición manual, comprobación previa y activación mediante reinicio controlado del E2 Agent.
+- Distingue configuración propuesta, configuración aplicada y conexiones pendientes; conserva la última configuración válida ante rechazo.
+- Enlaza el flujo desde los índices y establece configuración remota como siguiente conversación, sin modificar contratos JSON.
+
 ## 0.2.1 — 2026-09-27
 
 - Registra la aprobación explícita de 1.5 — Conexión MQTT y enlaza su secuencia Mermaid desde los índices.
