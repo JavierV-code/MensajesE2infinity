@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/e2/schemas/heartbeat.schema.json",
+  "title": "STA-01 Heartbeat",
+  "allOf": [
+    { "$ref": "common-envelope.schema.json" },
+    {
+      "type": "object",
+      "required": ["message_type", "agent_status", "uptime_s"],
+      "properties": {
+        "message_type": { "const": "STA-01" },
+        "agent_status": {
+          "type": "string",
+          "enum": ["starting", "available", "degraded", "unavailable", "stopping"]
+        },
+        "uptime_s": { "type": "integer", "minimum": 0 },
+        "config_revision": { "type": "string", "maxLength": 128 },
+        "active_operation_id": { "type": ["string", "null"], "maxLength": 128 }
+      }
+    }
+  ]
+}
+

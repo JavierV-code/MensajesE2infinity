@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/e2/schemas/configuration.schema.json",
+  "title": "CFG-01 Effective Node Configuration",
+  "type": "object",
+  "required": ["schema_version", "config_id", "revision", "node_id", "valid_from_utc", "participation"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "config_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "node_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "valid_from_utc": { "type": "string", "format": "date-time" },
+    "valid_until_utc": { "type": ["string", "null"], "format": "date-time" },
+    "participation": {
+      "type": "object",
+      "required": ["consensus_enabled"],
+      "properties": {
+        "consensus_enabled": { "type": "boolean" },
+        "max_import_w": { "type": "number", "minimum": 0 },
+        "max_export_w": { "type": "number", "minimum": 0 },
+        "reserved_power_w": { "type": "number", "minimum": 0 },
+        "validity_s": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "neighbors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "weight"],
+        "properties": {
+          "node_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "weight": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
