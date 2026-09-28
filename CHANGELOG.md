@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## 0.2.5 — 2026-09-27
+
+- Amplía el borrador de 1.7 para configurar desde E2 Infinity parámetros persistentes del nodo, con validación y aplicación a cargo del agente.
+- Separa preferencias energéticas, propuestas técnicas autorizadas, cambios sensibles de infraestructura y administración del sistema operativo.
+- Conserva consulta y aplicación manuales como propuesta inicial; distingue adquisición automática de aplicación automática como evoluciones por acordar.
+- Añade destinatario, permisos, revisión de partida, conflictos local/remoto y ejemplos, sin fijar contratos ni modificar APIs o JSON Schema.
+- Mantiene 1.7 pendiente de validación explícita y separa configuración persistente de consignas operativas.
+
 ## 0.2.4 — 2026-09-27
 
 - Añade un Draw.io editable del primer corte con tres pestañas: incorporación e identidad, conexiones MQTT y configuración local/remota.
