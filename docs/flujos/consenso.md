@@ -1,5 +1,7 @@
 # Flujo de consenso — borrador conceptual
 
+**Antecedente pendiente de revisión individual** conforme al [plan de trabajo](../plan-trabajo-flujos.md). La secuencia por eventos ilustrada aquí no fija la activación ni el funcionamiento definitivo: deberán contrastarse con la formulación matemática validada, junto con las variables y la convergencia.
+
 Este flujo no fija todavía la ecuación de actualización ni las ganancias. Su propósito es identificar dependencias y mensajes que deberán conciliarse con la validación matemática offline.
 
 ```mermaid
@@ -50,4 +52,3 @@ sequenceDiagram
 - Confirmación global o criterio puramente distribuido.
 - Reacción ante pérdida de vecino.
 - Redistribución del residuo después de ejecutar.
-

@@ -1,5 +1,7 @@
 # Tópicos MQTT — borrador
 
+**Propuesta previa, no contrato aprobado.** Rutas, QoS, retain y el uso de MQTT para configuración se revisarán dentro del [plan de trabajo](../plan-trabajo-flujos.md). La primera etapa parte de configuración manual mediante archivos.
+
 Convención propuesta:
 
 ```text
@@ -30,4 +32,3 @@ e2/v1/{ámbito}/{identificador}/{familia}/{recurso}
 - El bridge Mosquitto–EMQX debe replicar solamente tópicos autorizados.
 - No deben viajar secretos dentro del payload.
 - QoS, expiración y frecuencia del consenso deben validarse experimentalmente.
-

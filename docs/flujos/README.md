@@ -1,5 +1,7 @@
 # Flujos de extremo a extremo
 
+El [plan de trabajo](../plan-trabajo-flujos.md) es el índice único de los 34 subpuntos, sus dependencias y estados. La incorporación inicial será manual mediante archivos. Para desarrollar cada punto se utilizará la [plantilla común](plantilla-flujo.md).
+
 ## Dependencia general
 
 ```mermaid
@@ -15,21 +17,11 @@ flowchart TD
     I --> J[Corrección o cierre]
 ```
 
-## Flujos que se documentarán
+## Material disponible
 
-1. Aprovisionamiento del nodo.
-2. Configuración local.
-3. Configuración remota.
-4. Registro y descubrimiento de equipos.
-5. Heartbeat y disponibilidad.
-6. Publicación de telemetría.
-7. Inicio de coordinación energética.
-8. Oferta de flexibilidad.
-9. Iteraciones del consenso.
-10. Detección de convergencia.
-11. Validación y ejecución local.
-12. Resultado y corrección del residuo.
-13. Pérdida de un vecino.
-14. Pérdida de plataforma.
-15. Recuperación y resincronización.
+- [Flujo conceptual del consenso](consenso.md): antecedente pendiente de revisión contra la formulación matemática.
+- [Catálogo de mensajes](../mensajes/catalogo-mensajes.md): propuestas previas.
 
+El diagrama general anterior es conceptual; no obliga a ejecutar siempre una secuencia por eventos ni representa el transporte de cada paso. Los diagramas por subpunto distinguirán acciones manuales, interacciones internas y mensajes entre servicios.
+
+Los documentos específicos se crearán a medida que conversemos cada punto y se enlazarán desde el plan, el mapa general y el catálogo. La próxima revisión es **1.1 — Actores y responsabilidades**.

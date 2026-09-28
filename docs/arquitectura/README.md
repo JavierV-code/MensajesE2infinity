@@ -2,6 +2,8 @@
 
 Esta vista separa infraestructura de transporte, lógica energética y control físico.
 
+**Propuesta previa pendiente de revisión.** El [plan de trabajo](../plan-trabajo-flujos.md) organiza la revisión individual; sus filas enlazan los documentos disponibles. Los [flujos detallados](../flujos/README.md) se incorporarán progresivamente. Las conexiones del mapa son conceptuales y se revisarán en sus secuencias; la configuración inicial será manual mediante archivos.
+
 ```mermaid
 flowchart LR
     U[Usuario / Frontend]
@@ -56,4 +58,3 @@ flowchart LR
 | Tailscale/Headscale | Transporte privado y descubrimiento entre nodos autorizados |
 | OCPP | Integración con cargadores |
 | Modbus | Medidores, inversores y otros equipos de campo |
-

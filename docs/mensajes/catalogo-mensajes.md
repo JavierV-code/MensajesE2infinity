@@ -1,6 +1,8 @@
 # Catálogo preliminar de mensajes
 
-Los identificadores son estables; los nombres, campos y rutas pueden cambiar durante la revisión.
+**Propuestas previas, no contratos aprobados.** Los identificadores se conservan como referencias del borrador; los nombres, campos, rutas y aplicabilidad pueden cambiar durante la revisión.
+
+El [plan de trabajo](../plan-trabajo-flujos.md) mantiene el estado de los 34 subpuntos y enlaza sus documentos. Al revisar un mensaje, se añadirá aquí la referencia a su flujo detallado en el [índice de flujos](../flujos/README.md), evitando duplicar su definición. La incorporación inicial será manual; los mensajes de registro y las referencias al panel son antecedentes por revisar, no requisitos ya aprobados para esa etapa.
 
 | ID | Mensaje | Emisor | Receptor | Canal | Dependencia | Estado |
 |---|---|---|---|---|---|---|
@@ -35,4 +37,3 @@ Todo mensaje operativo debería incluir, según corresponda:
 - calidad y unidad de medida;
 - estado y motivo de rechazo;
 - información de trazabilidad sin secretos.
-

@@ -4,9 +4,11 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Borrador inicial 0.1 — 27 de septiembre de 2026.**
+**Documentación 0.2.0 — 27 de septiembre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
+
+El [plan tentativo de documentación de flujos](docs/plan-trabajo-flujos.md) organiza 34 subpuntos en seis bloques. Todos están pendientes de revisión individual. La incorporación inicial será manual mediante archivos editados por el equipo técnico.
 
 ## Objetivos
 
@@ -40,16 +42,13 @@ docs/
 schemas/                 Contratos JSON preliminares
 ```
 
-## Orden de trabajo propuesto
+## Cómo trabajaremos
 
-1. Aprovisionamiento e identidad.
-2. Configuración local y remota.
-3. Heartbeat, disponibilidad y telemetría.
-4. Inicio de una coordinación energética.
-5. Oferta de flexibilidad.
-6. Iteraciones y convergencia del consenso.
-7. Validación y ejecución local.
-8. Resultado, residuo y recuperación ante fallos.
+El orden, las dependencias y los estados se mantienen únicamente en el [plan de trabajo](docs/plan-trabajo-flujos.md). Conversaremos un subpunto por vez, lo documentaremos con la [plantilla común](docs/flujos/plantilla-flujo.md) y registraremos su confirmación antes de marcarlo como validado.
+
+La siguiente conversación comienza en **1.1 — Actores y responsabilidades**. La validación documental se distingue de la evidencia de implementación y de los ensayos físicos.
+
+Los mensajes, tópicos, diagramas y [JSON Schema existentes](schemas/README.md) son propuestas previas que se revisarán durante este proceso.
 
 ## Decisiones abiertas principales
 
@@ -67,4 +66,3 @@ Este repositorio es público. No deben subirse credenciales, claves de Headscale
 ## Licencia
 
 No se ha definido una licencia de reutilización. Esta decisión debe ser acordada por el proyecto antes de publicar una licencia.
-
