@@ -1,6 +1,6 @@
 # Plan tentativo de documentación de flujos — E2 Infinity
 
-Versión documental 0.2.0 — 27 de septiembre de 2026.
+Versión documental 0.2.1 — 27 de septiembre de 2026.
 
 ## Propósito y alcance
 
@@ -33,7 +33,7 @@ Todos los subpuntos comienzan pendientes de revisión individual. En «Documento
 | 1.2 | Identificación: relacionar nodo, instalación, equipos y grupo eléctrico | Pendiente | 1.1 | ¿Qué identificadores se conservan y quién los asigna? | — | — |
 | 1.3 | Registro de red privada: describir registro y comprobación de conectividad | Pendiente | 1.1, 1.2 | ¿Qué intercambios confirman la conexión a la red privada? | — | — |
 | 1.4 | Vinculación con E2 Infinity: reconocer y autorizar al nodo incorporado manualmente | Pendiente | 1.2 | ¿Cómo se comprueba la asociación y autorización central? | — | — |
-| 1.5 | Conexión MQTT: verificar agente–Mosquitto y Mosquitto–EMQX | Pendiente | 1.2, 1.4 | ¿Cómo se comprueba el envío y la recepción por cada tramo? | — | — |
+| 1.5 | Conexión MQTT: verificar agente–Mosquitto, Mosquitto–EMQX y brokers vecinos | Validado | 1.2, 1.3, 1.4 | Tópicos, permisos detallados y confirmaciones de aplicación por definir en sus flujos | [Conexión MQTT](flujos/1.5-conexion-mqtt.md) | 2026-09-27: confirmación «lo valido», registrada en el documento |
 | 1.6 | Configuración local: describir carga, validación y resultado | Pendiente | 1.1, 1.2 | ¿Cómo se informa la aceptación o el rechazo de la configuración manual? | — | — |
 | 1.7 | Configuración remota: definir solicitudes de cambio y sus respuestas | Pendiente | 1.4, 1.6 | ¿Qué cambios se permiten y cómo conviven con las preferencias locales? | — | — |
 
@@ -122,4 +122,4 @@ En cada flujo se revisarán autorización, identificadores, vigencia, duplicados
 
 ## Próxima conversación
 
-**Punto 1.1 — Actores y responsabilidades:** revisar qué recibe, procesa y envía cada componente. El punto permanece pendiente hasta iniciar esa revisión.
+**Punto 1.6 — Configuración local:** describir cómo el agente lee, valida y comunica el resultado de los parámetros ingresados manualmente. Los acuerdos anteriores de la conversación se incorporarán en sus documentos correspondientes; esta actualización registra específicamente la validación de 1.5.

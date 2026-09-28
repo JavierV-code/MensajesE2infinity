@@ -25,6 +25,8 @@ El [plan de trabajo](../plan-trabajo-flujos.md) mantiene el estado de los 34 sub
 
 ## Campos transversales
 
+Los recorridos de transporte están descritos en [1.5 — Conexión MQTT](../flujos/1.5-conexion-mqtt.md). Su aprobación documental no aprueba automáticamente los mensajes y campos de este catálogo.
+
 Todo mensaje operativo debería incluir, según corresponda:
 
 - versión del esquema;

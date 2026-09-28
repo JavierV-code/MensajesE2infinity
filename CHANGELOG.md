@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.2.1 — 2026-09-27
+
+- Registra la aprobación explícita de 1.5 — Conexión MQTT y enlaza su secuencia Mermaid desde los índices.
+- Documenta los tres recorridos principales, el bridge selectivo con EMQX y las credenciales MQTT centrales propias por nodo.
+- Distingue conexión, entrega y procesamiento; mantiene tópicos y contratos pendientes de revisión.
+- Identifica el bridge central como pendiente de implementación y establece configuración local como siguiente conversación.
+
 ## 0.2.0 — 2026-09-27
 
 - Incorpora el plan documental de seis bloques y 34 subpuntos pendientes de revisión individual.

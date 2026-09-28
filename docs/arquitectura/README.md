@@ -4,6 +4,8 @@ Esta vista separa infraestructura de transporte, lógica energética y control f
 
 **Propuesta previa pendiente de revisión.** El [plan de trabajo](../plan-trabajo-flujos.md) organiza la revisión individual; sus filas enlazan los documentos disponibles. Los [flujos detallados](../flujos/README.md) se incorporarán progresivamente. Las conexiones del mapa son conceptuales y se revisarán en sus secuencias; la configuración inicial será manual mediante archivos.
 
+El [acuerdo de 1.5 — Conexión MQTT](../flujos/1.5-conexion-mqtt.md) documenta los recorridos del agente, el bridge selectivo con EMQX y los brokers vecinos. El bridge central forma parte del diseño objetivo y está pendiente de implementación en el código revisado.
+
 ```mermaid
 flowchart LR
     U[Usuario / Frontend]
