@@ -1,58 +1,71 @@
-# Plantilla de documentación de un subpunto
+# Plantilla de documentación de una subfase
 
-Copiar esta plantilla al comenzar un subpunto del [plan de trabajo](../plan-trabajo-flujos.md). Los campos entre corchetes se completan durante la conversación; lo no resuelto queda explícitamente pendiente.
+Utilizar esta plantilla al desarrollar una subfase del [plan de trabajo](../plan-trabajo-flujos.md). Completar los campos durante la conversación y registrar explícitamente lo pendiente.
 
-- Identificador y nombre: [ID — nombre]
+- Identificador y nombre: [ID actual — nombre]
+- Referencia anterior, si existe: [ID histórico y equivalencia]
 - Estado documental: [pendiente / en conversación / borrador / validado / por revisar]
-- Dependencias: [otros subpuntos o evidencia necesaria]
-- Fecha y referencia del acuerdo: [solo si existe confirmación explícita]
+- Dependencias: [otras subfases o evidencia necesaria]
+- Fecha y referencia del acuerdo: [confirmación explícita, cuando exista]
 - Evidencia de implementación o ensayo: [enlace o no realizada]
 
-## 1. Propósito y escenario concreto
+## 1. Propósito, disparador y escenario
 
-[Qué situación inicia el flujo y qué se busca resolver.]
+[Qué situación inicia el flujo, qué función cumple y qué resultado se espera. Indicar si el nodo actúa localmente, con plataforma o con vecinos.]
 
 ## 2. Participantes y responsabilidades
 
-| Participante | Recibe | Procesa o decide | Envía |
+| Participante | Información que recibe | Qué procesa o decide | Información que envía |
 |---|---|---|---|
-| [Actor] | [Información] | [Responsabilidad] | [Información] |
+| [Usuario, técnico, servicio o componente] | [Entrada] | [Responsabilidad] | [Salida] |
 
-Indicar el recorrido aplicable: plataforma–nodo, nodo–vecinos, agente–equipos o infraestructura de red.
+Indicar los recorridos aplicables: usuario/técnico–plataforma, técnico–nodo, interno del nodo, agente–equipos, plataforma–nodo, nodo–vecinos o infraestructura de red. En un intercambio con E2 Infinity describir ambos extremos y el resultado que puede consultar el usuario.
 
 ## 3. Condiciones previas y resultado esperado
 
-- Condiciones previas: [identificación, configuración, disponibilidad u otras]
-- Resultado esperado: [qué debe poder comprobarse al finalizar]
+- Condiciones previas: [identificación, permisos, configuración, recursos y datos necesarios]
+- Dependencias de conectividad: [qué requiere el flujo y qué puede continuar sin cada conexión]
+- Resultado esperado: [qué debe poder comprobarse]
+- Información visible al usuario/técnico: [qué verá y cómo distinguirá solicitud, aplicación y resultado]
 
-## 4. Secuencia de intercambios
+Las dependencias documentales no implican que toda operación local requiera plataforma o consenso.
 
-| Paso | Tipo de interacción | Origen | Destino | Acción o mensaje | Resultado esperado |
+## 4. Secuencia e interfaces
+
+| Paso | Tipo de interacción | Origen | Destino | Acción o mensaje | Canal o medio | Resultado o respuesta esperada |
+|---|---|---|---|---|---|---|
+| [N] | [Manual / interna / entre servicios] | [Actor] | [Actor] | [Acción o ID] | [Archivo, llamada interna, HTTPS, MQTT, protocolo de equipo o pendiente] | [Resultado] |
+
+Describir por separado los mensajes en cada dirección. Cada mensaje tiene emisor y receptor; un flujo bidireccional no obliga a que cada publicación tenga una respuesta. Editar archivos es una acción manual, no un mensaje de red.
+
+Utilizar Draw.io para las interfaces y Mermaid para la secuencia detallada. Etiquetar las acciones manuales e internas; los mensajes de aplicación enlazan al catálogo. La doble flecha de un mapa de interfaces se descompone en los intercambios concretos de la secuencia.
+
+## 5. Mensajes y contenido mínimo
+
+| ID del catálogo | Propósito y disparador | Emisor → receptor | Canal | Información mínima | Respuesta o confirmación necesaria |
 |---|---|---|---|---|---|
-| [N] | [Manual / interna / entre servicios] | [Actor] | [Actor] | [Acción o ID] | [Resultado] |
+| [Existente o propuesto] | [Por qué y cuándo se genera] | [Sentido individual] | [Canal o pendiente] | [Contenido mínimo] | [Respuesta, publicación posterior, ninguna o pendiente] |
 
-Añadir un diagrama de secuencia Mermaid basado en esta tabla cuando corresponda. Etiquetar las acciones manuales y las interacciones internas; la edición de archivos no es un mensaje de red. Las flechas de mensajes llevarán el ID del catálogo y una descripción breve.
-
-## 5. Mensajes necesarios y contenido mínimo
-
-| ID del catálogo | Propósito | Emisor | Receptor | Canal | Información mínima |
-|---|---|---|---|---|---|
-| [Existente o propuesto] | [Motivo] | [Actor] | [Actor] | [Canal o pendiente] | [Contenido sin fijar JSON prematuramente] |
-
-Enlazar el [catálogo común](../mensajes/catalogo-mensajes.md) y registrar allí los mensajes para evitar definiciones divergentes. Los campos del consenso requieren respaldo de la formulación matemática.
+Enlazar el [catálogo común](../mensajes/catalogo-mensajes.md), que conserva una definición por mensaje. Registrar frecuencia, vigencia y correlación cuando se acuerden; evitar fijar JSON o endpoints prematuramente. Los campos del consenso requieren respaldo de la formulación matemática.
 
 ## 6. Confirmaciones, errores y recuperación
 
-[Qué respuesta se espera, cómo se comunica un rechazo y qué sucede ante ausencia, retraso, duplicado o pérdida de conexión. Indicar lo que no aplica o continúa pendiente.]
+| Etapa, si corresponde | Qué demuestra | Evidencia y cómo se informa |
+|---|---|---|
+| Transporte | Recepción en el extremo de transporte correspondiente | [Confirmación o mecanismo acordado] |
+| Procesamiento | Aceptación, rechazo o tratamiento por la aplicación | [Respuesta, motivo y referencia] |
+| Ejecución | Actuación y resultado físico comprobable | [Estado del equipo y medición] |
 
-Revisar permisos, identidad, vigencia, orden de mensajes y registro de evidencias según el flujo. Distinguir recepción, aceptación y ejecución cuando sean relevantes.
+[Tratar ausencia de respuesta, retraso, duplicados, pérdida de conexión y recuperación; indicar lo que no aplica o continúa pendiente.]
 
-## 7. Acuerdos, pendientes y ejemplos de validación
+Revisar permisos, identidad, vigencia, orden y trazabilidad. Distinguir dato recibido, propuesta guardada, configuración aplicada y efecto medido. Indicar qué conserva el nodo y qué muestra la plataforma cuando falta una confirmación.
+
+## 7. Acuerdos, pendientes y escenarios de validación
 
 - Acuerdos confirmados: [definición, fecha y referencia]
-- Preguntas abiertas: [pregunta y dependencia para resolverla]
-- Ejemplo de operación normal: [condición y resultado esperado]
-- Ejemplo de error o recuperación: [condición y resultado esperado]
-- Evidencia técnica requerida: [simulación, prueba de software o ensayo físico, si aplica]
+- Preguntas abiertas: [pregunta y dependencia]
+- Escenario normal: [condición, recorrido y resultado]
+- Escenario de error o recuperación: [condición, recorrido y resultado]
+- Evidencia técnica requerida: [simulación, software o ensayo físico, cuando corresponda]
 
-La aprobación documental requiere confirmación explícita del usuario. No implica que la implementación o las pruebas hayan sido realizadas. Actualizar el estado y el enlace en el plan al integrar el documento.
+La validación documental requiere confirmación explícita. La implementación y los ensayos tienen evidencia separada. Actualizar la fila del plan y sus enlaces al integrar el documento; conservar el alcance de acuerdos anteriores y registrar las ampliaciones pendientes.

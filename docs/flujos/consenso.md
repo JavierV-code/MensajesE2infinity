@@ -34,6 +34,8 @@ sequenceDiagram
     A-->>B: RES-02 Residuo, si corresponde
 ```
 
+Este antecedente se revisará en el corte 7. La gestión local se documenta en el corte 4 y puede operar sin ejecutar esta secuencia; la entrega y realimentación del consenso hacia ese control se detallarán en 7.6.
+
 ## Precondiciones
 
 - Nodo incorporado y autorizado.

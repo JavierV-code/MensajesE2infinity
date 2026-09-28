@@ -1,5 +1,16 @@
 # Historial de cambios
 
+## 0.3.0 — 2026-09-28
+
+- Reorganiza el plan en ocho cortes y 46 subfases, con equivalencia individual para los 34 puntos anteriores.
+- Incorpora arranque, gestión energética local sin consenso, prioridades y registro de decisiones.
+- Explicita funciones de plataforma, información visible, envíos, recepciones e históricos.
+- Amplía la plantilla con sentidos, disparadores y confirmaciones de transporte, procesamiento y ejecución.
+- Renumera MQTT y configuración como 2.3, 2.4 y 2.5; conserva acuerdos, fechas y borrador, con enlaces desde las rutas anteriores.
+- Conserva los diagramas v01 y añade su equivalencia histórica.
+- Corrige el mapa general de flujos y la dependencia preliminar de CTL-01 para admitir decisiones locales.
+- Amplía los escenarios de revisión y establece 1.1 — Actores y responsabilidades como siguiente conversación; APIs y JSON Schema sin cambios.
+
 ## 0.2.5 — 2026-09-27
 
 - Amplía el borrador de 1.7 para configurar desde E2 Infinity parámetros persistentes del nodo, con validación y aplicación a cargo del agente.
