@@ -19,6 +19,7 @@ flowchart TD
 
 ## Material disponible
 
+- [Diagramas del primer corte en Draw.io](../diagramas/README.md): tres vistas editables y sus PNG; distinguen acuerdos y borradores.
 - [1.5 — Conexión MQTT](1.5-conexion-mqtt.md): recorridos y responsabilidades validados documentalmente; bridge central pendiente de implementación.
 - [1.6 — Configuración local](1.6-configuracion-local.md): comprobación previa, reinicio controlado y registro del resultado validados documentalmente.
 - [1.7 — Configuración remota](1.7-configuracion-remota.md): borrador para conversar; consulta manual HTTPS y aplicación local propuestas.

@@ -10,6 +10,8 @@ El [acuerdo de 1.6 — Configuración local](../flujos/1.6-configuracion-local.m
 
 El [borrador de 1.7 — Configuración remota](../flujos/1.7-configuracion-remota.md) propone consultar por HTTPS una configuración central y aplicar los cambios mediante el procedimiento local. Queda pendiente de validación.
 
+La [vista editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Complementa este mapa conceptual sin sustituir los flujos detallados ni aprobar sus pendientes.
+
 ```mermaid
 flowchart LR
     U[Usuario / Frontend]

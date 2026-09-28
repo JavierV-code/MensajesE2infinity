@@ -4,11 +4,13 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.2.3 — 27 de septiembre de 2026.**
+**Documentación 0.2.4 — 27 de septiembre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
 El [plan tentativo de documentación de flujos](docs/plan-trabajo-flujos.md) organiza 34 subpuntos en seis bloques. Los puntos [1.5 — Conexión MQTT](docs/flujos/1.5-conexion-mqtt.md) y [1.6 — Configuración local](docs/flujos/1.6-configuracion-local.md) tienen acuerdos documentales registrados. La incorporación inicial será manual mediante archivos editados por el equipo técnico.
+
+Los [diagramas editables del primer corte](docs/diagramas/README.md) reúnen incorporación e identidad, conexiones MQTT y configuración local/remota en tres pestañas de Draw.io, con vistas PNG para revisión. No aprueban nuevos contratos ni cambian los estados documentales del plan.
 
 ## Objetivos
 
@@ -36,6 +38,7 @@ El [plan tentativo de documentación de flujos](docs/plan-trabajo-flujos.md) org
 docs/
 ├── arquitectura/       Mapa general y responsabilidades
 ├── decisiones/         Registros de decisiones de arquitectura (ADR)
+├── diagramas/          Draw.io editable y vistas de revisión
 ├── flujos/             Secuencias de extremo a extremo
 ├── mensajes/           Catálogo y tópicos MQTT
 └── validacion/          Escenarios y criterios de prueba

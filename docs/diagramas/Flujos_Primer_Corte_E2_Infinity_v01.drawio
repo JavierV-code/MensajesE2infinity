@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" version="26.0.0">
+  <diagram id="corte1-0" name="01 · Incorporación e identidad">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1780" pageHeight="1230" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;E2 Infinity&lt;/b&gt; · Primer corte · Incorporación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=31;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="60" y="35" width="1660" height="55" />
+        </mxCell>
+        <mxCell id="subtitle" value="1.1–1.4 · Responsabilidades, identidad, red privada y vinculación con plataforma" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="60" y="100" width="1350" height="44" />
+        </mxCell>
+        <mxCell id="version" value="v01 · 27 septiembre 2026" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=right;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1420" y="100" width="300" height="35" />
+        </mxCell>
+        <mxCell id="network" value="" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#F7F8F8;strokeColor=#D4DCDD;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="40" y="180" width="1700" height="340" />
+        </mxCell>
+        <mxCell id="network-title" value="&lt;b&gt;1.3 · Registro de red privada&lt;/b&gt; · acuerdo en conversación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="200" width="1600" height="35" />
+        </mxCell>
+        <mxCell id="manual-network" value="&lt;b&gt;Técnico&lt;/b&gt;&lt;br&gt;&lt;br&gt;Configura nombre, dirección&lt;br&gt;de Headscale y clave compartida&lt;br&gt;reutilizable" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="70" y="270" width="350" height="180" />
+        </mxCell>
+        <mxCell id="tailscale" value="&lt;b&gt;Raspberry · cliente Tailscale&lt;/b&gt;&lt;br&gt;&lt;br&gt;Solicita registro&lt;br&gt;Conserva su identidad de red&lt;br&gt;Establece conectividad privada" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#EDF4F5;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="650" y="270" width="390" height="180" />
+        </mxCell>
+        <mxCell id="headscale" value="&lt;b&gt;Headscale&lt;/b&gt;&lt;br&gt;&lt;br&gt;Autoriza el registro&lt;br&gt;Entrega información de red&lt;br&gt;Administración independiente" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="1310" y="270" width="390" height="180" />
+        </mxCell>
+        <mxCell id="manual-ts" edge="1" parent="1" source="manual-network" target="tailscale" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="manual-ts-label" value="Configuración manual" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="435" y="295" width="200" height="40" />
+        </mxCell>
+        <mxCell id="ts-hs" edge="1" parent="1" source="tailscale" target="headscale" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="ts-hs-label" value="Registro / respuesta" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1070" y="295" width="210" height="40" />
+        </mxCell>
+        <mxCell id="network-check" value="Comprobación: registro aceptado + dirección privada + comunicación con otro equipo autorizado." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="475" width="1580" height="30" />
+        </mxCell>
+        <mxCell id="platform" value="" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#F7F8F8;strokeColor=#D4DCDD;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="40" y="550" width="1700" height="480" />
+        </mxCell>
+        <mxCell id="platform-title" value="&lt;b&gt;1.4 · Vinculación con E2 Infinity&lt;/b&gt; · cuenta por nodo acordada; recorrido por confirmar" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=21;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="570" width="1600" height="40" />
+        </mxCell>
+        <mxCell id="manual-platform" value="&lt;b&gt;Técnico&lt;/b&gt;&lt;br&gt;&lt;br&gt;Crea o selecciona instalación&lt;br&gt;Prepara cuenta técnica por nodo&lt;br&gt;Configura asociación local" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="70" y="750" width="350" height="180" />
+        </mxCell>
+        <mxCell id="agent" value="&lt;b&gt;Raspberry · E2 Agent&lt;/b&gt;&lt;br&gt;&lt;br&gt;Solicita autenticación&lt;br&gt;Consulta instalación autorizada&lt;br&gt;Comprueba correspondencia" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#EDF4F5;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;dashed=1;">
+          <mxGeometry as="geometry" x="650" y="750" width="390" height="180" />
+        </mxCell>
+        <mxCell id="api" value="&lt;b&gt;API E2 Infinity&lt;/b&gt;&lt;br&gt;&lt;br&gt;Instalaciones y propietarios&lt;br&gt;Cuentas y asociaciones&lt;br&gt;Comprueba acceso" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="1310" y="750" width="390" height="180" />
+        </mxCell>
+        <mxCell id="manual-agent" edge="1" parent="1" source="manual-platform" target="agent" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="manual-agent-label" value="Parámetros locales" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="435" y="780" width="200" height="40" />
+        </mxCell>
+        <mxCell id="agent-api" edge="1" parent="1" source="agent" target="api" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="agent-api-label" value="HTTPS · acceso / consulta" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1060" y="780" width="230" height="45" />
+        </mxCell>
+        <mxCell id="manual-api" edge="1" parent="1" source="manual-platform" target="api" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=0.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="245" y="670" />
+              <mxPoint x="1505" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="manual-api-label" value="Alta administrativa manual · cuenta técnica e instalación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="700" y="620" width="650" height="35" />
+        </mxCell>
+        <mxCell id="platform-check" value="Resultado propuesto: autenticación, autorización y asociación comprobadas. MQTT se verifica en la vista 02." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="960" width="1590" height="35" />
+        </mxCell>
+        <mxCell id="identity" value="&lt;b&gt;1.2 · Identificación acordada&lt;/b&gt;&lt;br&gt;Nodo lógico → instalación → equipos; pertenencia al grupo eléctrico. Reemplazar la Raspberry conserva la identidad del nodo." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="65" y="1060" width="1650" height="70" />
+        </mxCell>
+        <mxCell id="scope" value="&lt;b&gt;1.1 · Responsabilidades acordadas&lt;/b&gt; · técnico configura; servicios transportan; agente procesa y valida localmente.&lt;br&gt;Acuerdos de conversación: 1.1–1.3. Línea discontinua: recorrido pendiente de confirmación. Esquema documental, sin ejecución de servicios." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="65" y="1145" width="1650" height="60" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="corte1-1" name="02 · Conexiones MQTT">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1900" pageHeight="1690" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;E2 Infinity&lt;/b&gt; · Primer corte · Conexiones MQTT" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=31;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="60" y="35" width="1780" height="55" />
+        </mxCell>
+        <mxCell id="subtitle" value="1.5 · Recorridos validados documentalmente · bridge central pendiente de implementación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="60" y="100" width="1470" height="44" />
+        </mxCell>
+        <mxCell id="version" value="v01 · 27 septiembre 2026" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=right;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1540" y="100" width="300" height="35" />
+        </mxCell>
+        <mxCell id="backend" value="&lt;b&gt;Backend E2 Infinity&lt;/b&gt;&lt;br&gt;&lt;br&gt;Procesa información de plataforma&lt;br&gt;Publica mensajes autorizados" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="800" y="190" width="400" height="140" />
+        </mxCell>
+        <mxCell id="central" value="&lt;b&gt;EMQX central&lt;/b&gt;&lt;br&gt;&lt;br&gt;Distribuye publicaciones&lt;br&gt;según suscripciones y permisos" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="800" y="440" width="400" height="140" />
+        </mxCell>
+        <mxCell id="backend-central" edge="1" parent="1" source="backend" target="central" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="backend-central-label" value="MQTT" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1030" y="365" width="160" height="35" />
+        </mxCell>
+        <mxCell id="pi" value="" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#F7F8F8;strokeColor=#D4DCDD;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="50" y="720" width="1220" height="660" />
+        </mxCell>
+        <mxCell id="pi-title" value="&lt;b&gt;Raspberry A · servicios locales&lt;/b&gt;" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="80" y="745" width="630" height="40" />
+        </mxCell>
+        <mxCell id="agent" value="&lt;b&gt;E2 Agent&lt;/b&gt;&lt;br&gt;&lt;br&gt;Publica y recibe&lt;br&gt;Procesa información del nodo" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#EDF4F5;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="100" y="840" width="380" height="140" />
+        </mxCell>
+        <mxCell id="local" value="&lt;b&gt;Mosquitto local&lt;/b&gt;&lt;br&gt;&lt;br&gt;Broker del nodo&lt;br&gt;Bridges selectivos&lt;br&gt;Plataforma, vecinos y equipos" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#EDF4F5;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="800" y="820" width="400" height="180" />
+        </mxCell>
+        <mxCell id="agent-local" edge="1" parent="1" source="agent" target="local" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="agent-local-label" value="Mensajes del agente" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="495" y="850" width="290" height="40" />
+        </mxCell>
+        <mxCell id="local-central" edge="1" parent="1" source="local" target="central" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=0.0;entryX=0.5;entryY=1.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="local-central-label" value="Bridge MQTT selectivo&lt;br&gt;&lt;b&gt;Pendiente de implementación&lt;/b&gt;" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1030" y="635" width="580" height="65" />
+        </mxCell>
+        <mxCell id="neighbor-b" value="&lt;b&gt;Raspberry B · Mosquitto&lt;/b&gt;&lt;br&gt;&lt;br&gt;Agente vecino autorizado&lt;br&gt;Transporte por red privada" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="1440" y="760" width="350" height="140" />
+        </mxCell>
+        <mxCell id="neighbor-c" value="&lt;b&gt;Raspberry C · Mosquitto&lt;/b&gt;&lt;br&gt;&lt;br&gt;Agente vecino autorizado&lt;br&gt;Transporte por red privada" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="1440" y="1060" width="350" height="140" />
+        </mxCell>
+        <mxCell id="local-b" edge="1" parent="1" source="local" target="neighbor-b" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.2222222222222222;entryX=0.0;entryY=0.7142857142857143;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="local-b-label" value="Disponibilidad&lt;br&gt;y coordinación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1215" y="785" width="210" height="50" />
+        </mxCell>
+        <mxCell id="local-c" edge="1" parent="1" source="local" target="neighbor-c" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.7777777777777778;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1320" y="960" />
+              <mxPoint x="1320" y="1130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="local-c-label" value="Disponibilidad y coordinación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1350" y="970" width="490" height="40" />
+        </mxCell>
+        <mxCell id="devices" value="&lt;b&gt;Equipos MQTT locales&lt;/b&gt;&lt;br&gt;Lecturas y respuestas&lt;br&gt;Detalle en el bloque 2" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="800" y="1170" width="400" height="120" />
+        </mxCell>
+        <mxCell id="local-devices" edge="1" parent="1" source="local" target="devices" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="local-devices-label" value="MQTT local" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1020" y="1060" width="270" height="40" />
+        </mxCell>
+        <mxCell id="local-note" value="La selección de vecinos se define en 3.5. Headscale coordina la red; los clientes Tailscale transportan los datos." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="80" y="1320" width="1140" height="40" />
+        </mxCell>
+        <mxCell id="auth" value="&lt;b&gt;Accesos acordados&lt;/b&gt;&lt;br&gt;Credenciales propias por nodo en EMQX, independientes del acceso API. Identificador propio para cada cliente o bridge." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="1420" width="1740" height="70" />
+        </mxCell>
+        <mxCell id="verification" value="&lt;b&gt;Comprobaciones distintas&lt;/b&gt; · conexión admitida → entrega al destinatario → procesamiento de aplicación.&lt;br&gt;Las flechas dobles muestran intercambio; no exigen dos conexiones duplicadas por par." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="1515" width="1740" height="60" />
+        </mxCell>
+        <mxCell id="prototype" value="&lt;b&gt;Prototipo actual:&lt;/b&gt; el simulador publica directamente a EMQX y también a Mosquitto local; existen bridges entre brokers de Raspberry.&lt;br&gt;Este esquema representa el diseño objetivo. No fija tópicos, payloads ni variables definitivas del consenso." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="1600" width="1740" height="60" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="corte1-2" name="03 · Configuración local y remota">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2080" pageHeight="1780" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;E2 Infinity&lt;/b&gt; · Primer corte · Configuración" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=31;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="60" y="35" width="1960" height="55" />
+        </mxCell>
+        <mxCell id="subtitle" value="1.6 validado · 1.7 en borrador · acciones manuales e intercambios diferenciados" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="60" y="100" width="1650" height="44" />
+        </mxCell>
+        <mxCell id="version" value="v01 · 27 septiembre 2026" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=right;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1720" y="100" width="300" height="35" />
+        </mxCell>
+        <mxCell id="local" value="" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#F7F8F8;strokeColor=#D4DCDD;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="40" y="180" width="1990" height="660" />
+        </mxCell>
+        <mxCell id="local-title" value="&lt;b&gt;1.6 · Configuración local&lt;/b&gt; · validada documentalmente" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=23;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="200" width="1860" height="40" />
+        </mxCell>
+        <mxCell id="edit" value="&lt;b&gt;Técnico&lt;/b&gt;&lt;br&gt;&lt;br&gt;Edita archivos propuestos&lt;br&gt;Solicita comprobación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="70" y="270" width="300" height="130" />
+        </mxCell>
+        <mxCell id="validate" value="&lt;b&gt;E2 Agent · comprobar&lt;/b&gt;&lt;br&gt;&lt;br&gt;Estructura e identidades&lt;br&gt;Límites y coherencia" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#EDF4F5;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="500" y="270" width="350" height="130" />
+        </mxCell>
+        <mxCell id="apply" value="&lt;b&gt;Técnico + E2 Agent&lt;/b&gt;&lt;br&gt;&lt;br&gt;Reinicio controlado&lt;br&gt;Aplicar propuesta comprobada" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#EDF4F5;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="990" y="270" width="360" height="130" />
+        </mxCell>
+        <mxCell id="report" value="&lt;b&gt;E2 Agent · verificar e informar&lt;/b&gt;&lt;br&gt;&lt;br&gt;Configuración activa&lt;br&gt;Conexiones disponibles o pendientes" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="1510" y="270" width="430" height="130" />
+        </mxCell>
+        <mxCell id="edit-validate" edge="1" parent="1" source="edit" target="validate" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edit-validate-label" value="Local" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="385" y="285" width="100" height="30" />
+        </mxCell>
+        <mxCell id="validate-apply" edge="1" parent="1" source="validate" target="apply" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="validate-apply-label" value="Válida" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="860" y="285" width="120" height="30" />
+        </mxCell>
+        <mxCell id="apply-report" edge="1" parent="1" source="apply" target="report" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="apply-report-label" value="Resultado" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1360" y="285" width="130" height="30" />
+        </mxCell>
+        <mxCell id="reject" value="&lt;b&gt;Propuesta rechazada&lt;/b&gt;&lt;br&gt;&lt;br&gt;Campo y motivo del error&lt;br&gt;Corregir antes de aplicar" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="500" y="610" width="350" height="130" />
+        </mxCell>
+        <mxCell id="previous" value="&lt;b&gt;Conservar configuración&lt;/b&gt;&lt;br&gt;&lt;br&gt;Última válida aplicada&lt;br&gt;Sin sustituirla por la propuesta" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="70" y="610" width="300" height="130" />
+        </mxCell>
+        <mxCell id="active" value="&lt;b&gt;Registro local&lt;/b&gt;&lt;br&gt;&lt;br&gt;Identifica y conserva&lt;br&gt;la configuración aplicada" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="990" y="610" width="360" height="130" />
+        </mxCell>
+        <mxCell id="validate-reject" edge="1" parent="1" source="validate" target="reject" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="validate-reject-label" value="Errores de configuración" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="700" y="465" width="280" height="55" />
+        </mxCell>
+        <mxCell id="reject-previous" edge="1" parent="1" source="reject" target="previous" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="reject-previous-label" value="Conservar" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="380" y="625" width="110" height="30" />
+        </mxCell>
+        <mxCell id="apply-active" edge="1" parent="1" source="apply" target="active" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=0;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="apply-active-label" value="Configuración efectiva" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1200" y="465" width="290" height="55" />
+        </mxCell>
+        <mxCell id="local-note" value="Una configuración válida puede tener conexiones pendientes. Primer arranque sin configuración válida: diagnóstico disponible, actuación energética sin habilitar." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="770" width="1870" height="45" />
+        </mxCell>
+        <mxCell id="remote" value="" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#F7F8F8;strokeColor=#D4DCDD;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;">
+          <mxGeometry as="geometry" x="40" y="890" width="1990" height="750" />
+        </mxCell>
+        <mxCell id="remote-title" value="&lt;b&gt;1.7 · Configuración remota&lt;/b&gt;&lt;br&gt;Borrador pendiente de validación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="915" width="760" height="65" />
+        </mxCell>
+        <mxCell id="request" value="&lt;b&gt;Usuario o técnico autorizado&lt;/b&gt;&lt;br&gt;&lt;br&gt;Solicita un cambio&lt;br&gt;para su instalación" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;dashed=1;">
+          <mxGeometry as="geometry" x="70" y="1060" width="300" height="160" />
+        </mxCell>
+        <mxCell id="api" value="&lt;b&gt;API E2 Infinity&lt;/b&gt;&lt;br&gt;&lt;br&gt;Comprueba permisos&lt;br&gt;Guarda la propuesta&lt;br&gt;Entrega por HTTPS" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;dashed=1;">
+          <mxGeometry as="geometry" x="500" y="1060" width="350" height="160" />
+        </mxCell>
+        <mxCell id="fetch" value="&lt;b&gt;E2 Agent&lt;/b&gt;&lt;br&gt;&lt;br&gt;Consulta iniciada manualmente&lt;br&gt;Comprueba propuesta remota&lt;br&gt;Respeta condiciones locales" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#EDF4F5;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;dashed=1;">
+          <mxGeometry as="geometry" x="990" y="1060" width="360" height="160" />
+        </mxCell>
+        <mxCell id="remote-apply" value="&lt;b&gt;Técnico + E2 Agent&lt;/b&gt;&lt;br&gt;&lt;br&gt;Aplicación manual según 1.6&lt;br&gt;Resultado y conexiones&lt;br&gt;Configuración activa identificada" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;dashed=1;">
+          <mxGeometry as="geometry" x="1510" y="1060" width="430" height="160" />
+        </mxCell>
+        <mxCell id="request-api" edge="1" parent="1" source="request" target="api" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="request-api-label" value="HTTPS" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="385" y="1085" width="100" height="30" />
+        </mxCell>
+        <mxCell id="fetch-api" edge="1" parent="1" source="fetch" target="api" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=block;endArrow=block;startFill=1;endFill=1;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="fetch-api-label" value="HTTPS" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="865" y="1085" width="110" height="30" />
+        </mxCell>
+        <mxCell id="fetch-apply" edge="1" parent="1" source="fetch" target="remote-apply" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="fetch-apply-label" value="Válida" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1365" y="1085" width="125" height="30" />
+        </mxCell>
+        <mxCell id="result-api" edge="1" parent="1" source="remote-apply" target="api" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=0.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1725" y="1000" />
+              <mxPoint x="675" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="result-api-label" value="Resultado efectivo hacia la plataforma · interfaz objetivo" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="900" y="940" width="670" height="35" />
+        </mxCell>
+        <mxCell id="remote-reject" value="&lt;b&gt;Rechazo local&lt;/b&gt;&lt;br&gt;Informa motivo&lt;br&gt;Conserva configuración válida" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#29383D;fillColor=#FFFFFF;strokeColor=#A7B5B8;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=12;dashed=1;">
+          <mxGeometry as="geometry" x="990" y="1440" width="360" height="110" />
+        </mxCell>
+        <mxCell id="fetch-reject" edge="1" parent="1" source="fetch" target="remote-reject" style="edgeStyle=none;noEdgeStyle=1;rounded=0;curved=0;html=1;strokeColor=#336976;strokeWidth=2;startArrow=none;endArrow=block;startFill=1;endFill=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="fetch-reject-label" value="Identidad, parámetros&lt;br&gt;o condiciones incompatibles" vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#336976;fillColor=none;strokeColor=none;strokeWidth=1.5;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="1200" y="1280" width="430" height="70" />
+        </mxCell>
+        <mxCell id="remote-note" value="Propuesta guardada ≠ comprobada ≠ aplicada. El formato y los permisos detallados se revisarán después; los contratos JSON siguen en borrador." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="70" y="1580" width="1870" height="40" />
+        </mxCell>
+        <mxCell id="scope" value="Línea continua: recorrido validado. Discontinua: propuesta por validar. Las interacciones locales no implican mensajes de red.&lt;br&gt;La configuración administrativa y las consignas operativas tienen flujos diferentes; aquí se documenta la configuración." vertex="1" parent="1" style="rounded=1;arcSize=7;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#29383D;fillColor=none;strokeColor=none;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry as="geometry" x="65" y="1680" width="1910" height="65" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

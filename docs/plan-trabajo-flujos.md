@@ -1,6 +1,6 @@
 # Plan tentativo de documentación de flujos — E2 Infinity
 
-Versión documental 0.2.3 — 27 de septiembre de 2026.
+Versión documental 0.2.4 — 27 de septiembre de 2026.
 
 ## Propósito y alcance
 
@@ -20,6 +20,8 @@ El orden es secuencial como referencia, sin fechas ni duraciones comprometidas. 
 | Infraestructura de red | Registro y coordinación entre cliente Tailscale y Headscale; administración independiente de la lógica energética |
 
 En cada secuencia se distinguirán **acción manual**, **interacción interna** y **mensaje entre servicios**. Editar un archivo es una acción manual; leerlo y validarlo es una interacción interna. Ninguna de ellas implica por sí sola un mensaje de red.
+
+Los [diagramas del primer corte](diagramas/README.md) permiten revisar estos recorridos en Draw.io y PNG. Son una síntesis visual, no una aprobación adicional: las filas de seguimiento conservan sus estados hasta registrar los acuerdos correspondientes.
 
 ## Seguimiento
 

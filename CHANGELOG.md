@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.2.4 — 2026-09-27
+
+- Añade un Draw.io editable del primer corte con tres pestañas: incorporación e identidad, conexiones MQTT y configuración local/remota.
+- Exporta las tres vistas como PNG y SVG y las enlaza desde los índices documentales.
+- Mantiene 1.4 como recorrido parcialmente acordado y 1.7 como borrador; no modifica los estados del plan, APIs, tópicos ni JSON Schema.
+- Incorpora un generador reproducible con comprobación de recorridos ortogonales, entradas perpendiculares, límites y ausencia de cruces o superposiciones.
+
 ## 0.2.3 — 2026-09-27
 
 - Prepara el borrador de 1.7 — Configuración remota, con secuencia Mermaid y estado pendiente de validación.
