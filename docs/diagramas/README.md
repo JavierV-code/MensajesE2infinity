@@ -14,7 +14,7 @@ Esta entrega representa los recorridos de incorporación y configuración del bl
 | 02 · Conexiones MQTT | Agente–Mosquitto, bridge selectivo con EMQX y brokers vecinos; credenciales y comprobaciones separadas | [MQTT](Flujos_Primer_Corte_E2_Infinity_v01_vista_02.png) | [SVG 02](Flujos_Primer_Corte_E2_Infinity_v01_vista_02.svg) |
 | 03 · Configuración local y remota | Edición manual, comprobación, aplicación, rechazo y conservación de configuración válida; consulta remota propuesta | [Configuración](Flujos_Primer_Corte_E2_Infinity_v01_vista_03.png) | [SVG 03](Flujos_Primer_Corte_E2_Infinity_v01_vista_03.svg) |
 
-## Equivalencia con el plan 0.3.0
+## Equivalencia con el plan 0.3.1
 
 Las pestañas Draw.io, PNG y SVG v01 conservan sus títulos, numeración y fecha originales. El «primer corte» de esos archivos corresponde al bloque histórico, no al corte 1 de arquitectura del plan actual.
 
@@ -34,8 +34,8 @@ La equivalencia completa de los 34 puntos anteriores está en el [plan](../plan-
 
 - **1.1–1.3:** la vista recoge acuerdos de la conversación. Falta formalizarlos en documentos individuales y registrar su referencia en el plan; esta entrega no altera esas filas.
 - **1.4:** se acordó una cuenta técnica por nodo; el recorrido completo de vinculación sigue pendiente de validación.
-- **1.5 y 1.6:** cuentan con acuerdos documentales registrados en [Conexión MQTT](../flujos/2.3-conexion-mqtt.md) y [Configuración local](../flujos/2.4-configuracion-local.md).
-- **1.7:** se representa la propuesta de [Configuración remota](../flujos/2.5-configuracion-remota.md), todavía en borrador. Guardar una propuesta en la plataforma no significa aplicarla en la Raspberry.
+- **1.5 y 1.6:** cuentan con acuerdos documentales registrados en [Conexión MQTT](../definiciones-flujos.md#flow-2-3) y [Configuración local](../definiciones-flujos.md#flow-2-4).
+- **1.7:** se representa la propuesta de [Configuración remota](../definiciones-flujos.md#flow-2-5), todavía en borrador. Guardar una propuesta en la plataforma no significa aplicarla en la Raspberry.
 
 Las líneas discontinuas señalan recorridos aún en borrador. Una línea continua no acredita una implementación: por ejemplo, el bridge Mosquitto–EMQX está acordado como diseño objetivo, pero pendiente de implementación. Los bloques manuales representan acciones del técnico, no mensajes de red.
 

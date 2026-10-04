@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## 0.3.1 — 2026-10-03
+
+- Crea `docs/definiciones-flujos.md` como fuente principal con secciones y anclas para las 46 subfases.
+- Integra los detalles de MQTT y configuración, conservando la aprobación y fecha de 2.3 y 2.4 y el borrador de 2.5.
+- Registra 1.1 como propuesta en conversación, preservando las decisiones explícitas y los asuntos pendientes sin marcarlo como validado.
+- Actualiza el plan como índice único de estados y dependencias, más los índices, catálogo, guía y enlaces históricos.
+- Mantiene Draw.io, JSON Schema y catálogo de mensajes como artefactos separados; no aprueba contratos, tópicos, endpoints ni campos nuevos.
+
 ## 0.3.0 — 2026-09-28
 
 - Reorganiza el plan en ocho cortes y 46 subfases, con equivalencia individual para los 34 puntos anteriores.

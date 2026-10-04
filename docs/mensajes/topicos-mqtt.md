@@ -2,7 +2,7 @@
 
 **Propuesta previa, no contrato aprobado.** Rutas, QoS, retain y el uso de MQTT para configuración se revisarán dentro del [plan de trabajo](../plan-trabajo-flujos.md). La primera etapa parte de configuración manual mediante archivos.
 
-El [borrador de 2.5](../flujos/2.5-configuracion-remota.md) propone HTTPS para consulta y reporte administrativo. Las filas MQTT de configuración siguientes son alternativas previas pendientes de conciliación; no implican dos fuentes de configuración simultáneamente activas.
+El [borrador de 2.5](../definiciones-flujos.md#flow-2-5) propone HTTPS para consulta y reporte administrativo. Las filas MQTT de configuración siguientes son alternativas previas pendientes de conciliación; no implican dos fuentes de configuración simultáneamente activas.
 
 Convención propuesta:
 

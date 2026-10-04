@@ -2,7 +2,7 @@
 
 **Propuestas previas, no contratos aprobados.** Los identificadores se conservan como referencias del borrador; los nombres, campos, rutas y aplicabilidad pueden cambiar durante la revisión.
 
-El [plan de trabajo](../plan-trabajo-flujos.md) mantiene el estado de las 46 subfases de los ocho cortes y enlaza sus documentos. Al revisar un mensaje, se añadirá aquí la referencia a su flujo detallado en el [índice de flujos](../flujos/README.md), evitando duplicar su definición. La incorporación inicial será manual; los mensajes de registro y las referencias al panel son antecedentes por revisar, no requisitos ya aprobados para esa etapa.
+El [plan de trabajo](../plan-trabajo-flujos.md) mantiene el estado de las 46 subfases de los ocho cortes y enlaza sus documentos. Al revisar un mensaje, se añadirá aquí la referencia a su flujo detallado en el [documento maestro de definiciones](../definiciones-flujos.md), evitando duplicar su definición. La incorporación inicial será manual; los mensajes de registro y las referencias al panel son antecedentes por revisar, no requisitos ya aprobados para esa etapa.
 
 | ID | Mensaje | Emisor | Receptor | Canal | Dependencia | Estado |
 |---|---|---|---|---|---|---|
@@ -33,11 +33,11 @@ La revisión distinguirá confirmación de transporte, procesamiento de aplicaci
 
 ## Campos transversales
 
-Los recorridos de transporte están descritos en [2.3 — Conexiones MQTT](../flujos/2.3-conexion-mqtt.md). Su aprobación documental no aprueba automáticamente los mensajes y campos de este catálogo.
+Los recorridos de transporte están descritos en [2.3 — Conexiones MQTT](../definiciones-flujos.md#flow-2-3). Su aprobación documental no aprueba automáticamente los mensajes y campos de este catálogo.
 
-Las solicitudes e informes locales de configuración se describen en [2.4 — Configuración local](../flujos/2.4-configuracion-local.md). Se realizan inicialmente mediante herramientas de terminal y registros; el canal remoto y la correspondencia definitiva con `CFG-01` y `CFG-02` quedan pendientes de revisión.
+Las solicitudes e informes locales de configuración se describen en [2.4 — Configuración local](../definiciones-flujos.md#flow-2-4). Se realizan inicialmente mediante herramientas de terminal y registros; el canal remoto y la correspondencia definitiva con `CFG-01` y `CFG-02` quedan pendientes de revisión.
 
-El [borrador de 2.5 — Configuración remota](../flujos/2.5-configuracion-remota.md) describe propuesta central, consulta HTTPS y resultados administrativos. Los intercambios todavía no están aprobados como contratos ni fijan endpoints nuevos.
+El [borrador de 2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5) describe propuesta central, consulta HTTPS y resultados administrativos. Los intercambios todavía no están aprobados como contratos ni fijan endpoints nuevos.
 
 Todo mensaje operativo debería incluir, según corresponda:
 

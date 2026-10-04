@@ -1,14 +1,14 @@
 # Mapa general de comunicaciones
 
-Esta vista describe plataforma, funcionamiento local y coordinación distribuida. Se revisará en el corte 1 del plan 0.3.0.
+Esta vista describe plataforma, funcionamiento local y coordinación distribuida. Se revisará en el corte 1 del plan 0.3.1.
 
-**Propuesta previa pendiente de revisión.** El [plan de trabajo](../plan-trabajo-flujos.md) organiza la revisión individual; sus filas enlazan los documentos disponibles. Los [flujos detallados](../flujos/README.md) se incorporarán progresivamente. Las conexiones del mapa son conceptuales y se revisarán en sus secuencias; la configuración inicial será manual mediante archivos.
+**Propuesta previa pendiente de revisión.** El [plan de trabajo](../plan-trabajo-flujos.md) organiza la revisión individual; sus filas enlazan los documentos disponibles. Las [definiciones detalladas](../definiciones-flujos.md) se incorporan progresivamente. Las conexiones del mapa son conceptuales y se revisarán en sus secuencias; la configuración inicial será manual mediante archivos.
 
-El [acuerdo de 2.3 — Conexiones MQTT](../flujos/2.3-conexion-mqtt.md) documenta los recorridos del agente, el bridge selectivo con EMQX y los brokers vecinos. El bridge central forma parte del diseño objetivo y está pendiente de implementación en el código revisado.
+El [acuerdo de 2.3 — Conexiones MQTT](../definiciones-flujos.md#flow-2-3) documenta los recorridos del agente, el bridge selectivo con EMQX y los brokers vecinos. El bridge central forma parte del diseño objetivo y está pendiente de implementación en el código revisado.
 
-El [acuerdo de 2.4 — Configuración local](../flujos/2.4-configuracion-local.md) describe edición manual, comprobación previa y aplicación mediante reinicio controlado del agente. Sus informes locales distinguen aplicación y conectividad.
+El [acuerdo de 2.4 — Configuración local](../definiciones-flujos.md#flow-2-4) describe edición manual, comprobación previa y aplicación mediante reinicio controlado del agente. Sus informes locales distinguen aplicación y conectividad.
 
-El [borrador de 2.5 — Configuración remota](../flujos/2.5-configuracion-remota.md) propone consultar por HTTPS una configuración central y aplicar los cambios mediante el procedimiento local. Queda pendiente de validación.
+El [borrador de 2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5) propone consultar por HTTPS una configuración central y aplicar los cambios mediante el procedimiento local. Queda pendiente de validación.
 
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
@@ -49,7 +49,7 @@ flowchart LR
     ADP <-->|OCPP / Modbus| EQUIP
 ```
 
-El funcionamiento interno y el recorrido hasta el usuario se amplían en el [mapa de flujos](../flujos/README.md). La gestión local dispone de su propia secuencia de decisión, validación, ejecución y medición; el consenso entrega propuestas a esa misma validación cuando corresponde. El panel local representa una evolución; la configuración inicial utiliza archivos y herramientas locales.
+El funcionamiento interno y el recorrido hasta el usuario se amplían en el [mapa de flujos](../definiciones-flujos.md). La gestión local dispone de su propia secuencia de decisión, validación, ejecución y medición; el consenso entrega propuestas a esa misma validación cuando corresponde. El panel local representa una evolución; la configuración inicial utiliza archivos y herramientas locales.
 
 ## Responsabilidades
 

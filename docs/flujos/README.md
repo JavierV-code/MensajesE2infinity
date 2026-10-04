@@ -1,6 +1,6 @@
 # Flujos de extremo a extremo
 
-El [plan de trabajo](../plan-trabajo-flujos.md) es el índice único de las **46 subfases en ocho cortes**, sus dependencias y estados. La configuración inicial es manual. Cada documento seguirá la [plantilla común](plantilla-flujo.md).
+El [plan de trabajo](../plan-trabajo-flujos.md) es el índice único de las **46 subfases en ocho cortes**, sus dependencias y estados. La configuración inicial es manual. Las definiciones residen en el [documento maestro](../definiciones-flujos.md); su [plantilla común](../definiciones-flujos.md#plantilla-comun) se aplica a cada subfase.
 
 ## Recorridos de operación
 
@@ -40,12 +40,14 @@ El diagrama indica dependencias funcionales. Cada intercambio de red se detallar
 
 ## Material disponible
 
-- [2.3 — Conexiones MQTT](2.3-conexion-mqtt.md): acuerdo conservado del antiguo 1.5; bridge central pendiente de implementación.
-- [2.4 — Configuración local](2.4-configuracion-local.md): acuerdo conservado del antiguo 1.6; comprobación y aplicación manual.
-- [2.5 — Configuración remota](2.5-configuracion-remota.md): borrador conservado del antiguo 1.7, pendiente de validación.
+Las definiciones canónicas están en [docs/definiciones-flujos.md](../definiciones-flujos.md).
+
+- [2.3 — Conexiones MQTT](../definiciones-flujos.md#flow-2-3): acuerdo conservado del antiguo 1.5; bridge central pendiente de implementación.
+- [2.4 — Configuración local](../definiciones-flujos.md#flow-2-4): acuerdo conservado del antiguo 1.6; comprobación y aplicación manual.
+- [2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5): borrador conservado del antiguo 1.7, pendiente de validación.
 - [Diagramas Draw.io v01](../diagramas/README.md): vistas históricas y equivalencia de su numeración.
-- [Consenso conceptual](consenso.md): antecedente para el corte 7, sujeto a formulación matemática.
+- [Consenso conceptual en 7.1](../definiciones-flujos.md#flow-7-1): antecedente para el corte 7, sujeto a formulación matemática.
 - [Catálogo común de mensajes](../mensajes/catalogo-mensajes.md): propuestas que se enlazan a sus flujos.
 - [Escenarios de revisión](../validacion/escenarios.md): cobertura de gestión local, plataforma, consenso y recuperación.
 
-Las rutas antiguas de documentos individuales conservan un enlace al documento actual. La próxima conversación es **1.1 — Actores y responsabilidades**, con el alcance ampliado de plataforma y funcionamiento local.
+Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. La próxima conversación es **1.1 — Actores y responsabilidades**, con el alcance ampliado de plataforma y funcionamiento local.
