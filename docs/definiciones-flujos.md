@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.3 — 3 de octubre de 2026**.
+Versión documental **0.3.4 — 3 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -142,7 +142,41 @@ La pertenencia a un grupo eléctrico no significa que todos sus nodos sean vecin
 
 **Alcance:** **Interfaces y sentidos de comunicación:** Emisor, receptor, canal y recorridos unidireccionales o bidireccionales.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Matriz general de interfaces acordada explícitamente el **2026-10-03**, tras revisión del mapa. La validación es documental y no acredita que cada enlace esté implementado u operativo.
+
+#### Matriz acordada de interfaces
+
+| Interfaz o recorrido | Origen → destino y sentido resumido | Canal o tipo de interacción | Estado documental y límite |
+|---|---|---|---|
+| Usuario ↔ plataforma E2 Infinity | Usuario → plataforma: consultas, preferencias y solicitudes autorizadas. Plataforma → usuario: información y resultados disponibles. | Interacción de usuario con la plataforma; transporte web sujeto al diseño de E2 Infinity. | **Por verificar** en la implementación de plataforma; permisos detallados en 5.1. No se fija aquí una interfaz frontend/API concreta. |
+| Técnico → configuración local del nodo | Técnico → nodo: edición y comprobación de archivos/configuración. | Acción manual; no es un mensaje de red. | **Acordado documentalmente** como modalidad inicial; el procedimiento se desarrolla en 2.4. |
+| Backend E2 Infinity ↔ E2 Agent | Plataforma → agente: incorporación y configuración administrativa. Agente → plataforma: solicitudes, estado o resultado administrativo cuando corresponda. | HTTPS administrativo. | **Propuesta/acordado documentalmente** como interfaz objetivo; flujo de alta y configuración en 2.2 y 2.5. Endpoints y campos no definidos. |
+| Backend E2 Infinity ↔ EMQX central | Backend publica o recibe información operativa autorizada a través del broker. | MQTT de aplicación. | **Acordado documentalmente** como arquitectura; detalles de telemetría y resultados en 5.2/5.5. |
+| EMQX central ↔ Mosquitto local | Mensajes MQTT seleccionados entre plataforma y nodo, en los sentidos habilitados por las reglas del bridge. | Bridge MQTT sobre transporte de red. | **Pendiente de implementación** según la revisión del código registrada en 2.3; no se afirma operación actual. |
+| E2 Agent ↔ Mosquitto local | Agente publica y consume mensajes locales según su rol y sus suscripciones. | MQTT local; mensajes de aplicación sobre TCP/IP local. | **Acordado documentalmente** en 2.3; tópicos y payloads conservan su condición documental actual. |
+| Mosquitto local ↔ brokers/agentes vecinos | Publicaciones autorizadas para disponibilidad y coordinación entre agentes participantes. | MQTT entre brokers, transportado por la red privada Tailscale. | **Acordado documentalmente** como recorrido objetivo; topología y conjunto de vecinos se resuelven en 6.5; operación física **por verificar**. |
+| Cliente Tailscale ↔ Headscale | Cliente solicita registro/coordinación de la red privada; Headscale entrega/controla la información de coordinación correspondiente. | Plano de control de la red privada. | **Acordado documentalmente** como separación de responsabilidades; alta concreta en 2.1 y estado operativo **por verificar**. Headscale no transporta consignas energéticas ni decide el consenso. |
+| Cliente Tailscale ↔ cliente Tailscale | Los clientes transportan tráfico IP privado entre nodos autorizados; MQTT de vecinos puede circular por esta red. | Plano de datos de la red privada. | **Acordado documentalmente** como diseño; conectividad efectiva **por verificar**. Headscale coordina, pero no es el broker MQTT ni necesariamente el camino de los datos. |
+| E2 Agent → cliente Tailscale | El agente puede gestionar localmente la configuración/servicio del cliente en el nodo. | Interacción interna/local de administración; no es un mensaje energético entre nodos. | **Propuesta**; procedimiento y alcance de aprovisionamiento en 2.1. |
+| Navegador local ↔ panel local ↔ E2 Agent | Técnico/usuario local accede al panel; el panel consulta o solicita operaciones administrativas al agente. | HTTPS / API local prevista. | **Propuesta** de evolución; el panel no se considera implementado y la configuración inicial es manual. Detalles en 2.4 y permisos en 5.1. |
+| E2 Agent ↔ adaptadores | El agente entrega solicitudes y recibe datos/estados mediante módulos locales. | Llamadas o interfaz interna del software; mecanismo concreto no fijado. | **Propuesta / por verificar**; delimitar en 3.2 y 4.5. No confundir una llamada interna con tráfico MQTT. |
+| Adaptador EVCC ↔ cargador | Adaptador y cargador intercambian datos y operaciones compatibles. | OCPP. | **Propuesta de interfaz objetivo; por verificar** para el equipo e integración concretos. Detalles en 3.2. |
+| Mosquitto local ↔ ESP32 | Mensajes de lectura/estado y solicitudes compatibles en la interfaz acordada para la pasarela. | MQTT local entre Raspberry y ESP32. | **Acordado documentalmente** como diseño; implementación y mensajes concretos **por verificar** en 3.2. |
+| ESP32 ↔ medidor/inversor | Lecturas y operaciones que admita cada dispositivo conectado. | Modbus RTU sobre RS-485/TTL-RS485. | **Acordado documentalmente** como interfaz objetivo; registros, equipos y ensayo **por verificar** en 3.2. |
+| Adaptadores ↔ otros equipos | Lecturas, consignas y estados compatibles con los dispositivos correspondientes. | OCPP, Modbus u otra interfaz según inventario. | **Por verificar** por equipo en 3.2; no se presume que todo equipo use todos los protocolos. |
+
+#### Cómo leer los sentidos y las capas
+
+- **Acción manual:** una persona edita archivos, ingresa parámetros o ejecuta una comprobación. No se dibuja como mensaje de red.
+- **Interacción interna:** llamada entre módulos dentro del agente o gestión local de un servicio; no implica un protocolo externo.
+- **Mensaje de aplicación:** información dirigida de un emisor identificado a uno o más receptores a través de MQTT, HTTPS/OCPP u otra interfaz acordada.
+- **Transporte:** TCP/IP local, red privada Tailscale o medio físico RS-485; transporta la interacción, pero no define su significado energético.
+
+Una flecha bidireccional en el mapa resume que la interfaz admite intercambios en ambos sentidos. No significa que cada mensaje publicado requiera respuesta, ni reemplaza la definición individual de emisor, destinatario, disparador y respuesta necesaria.
+
+**Pendientes asignados:** el alta e intercambio administrativo se concreta en 2.2/2.5; interfaces y capacidades reales de equipos en 3.2; topología y vecinos en 6.5; mensajes de supervisión, telemetría y operación en sus subfases respectivas. El bridge Mosquitto–EMQX sigue pendiente de implementación según 2.3. No se fijan endpoints, tópicos, campos ni esquemas nuevos en esta matriz.
+
+**Referencia de validación:** confirmación explícita del usuario «Sí, validar 1.3» en conversación del **2026-10-03**.
 
 <a id="flow-1-4"></a>
 

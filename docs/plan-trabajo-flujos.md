@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.3 — 3 de octubre de 2026**.
+Versión documental **0.3.4 — 3 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -42,7 +42,7 @@ Establecer quién participa y cómo se relacionan los componentes.
 |---|---|---|---|---|---|---|
 | 1.1 | **Actores y responsabilidades:** Usuario, técnico, administrador de infraestructura, plataforma, agente, servicios de comunicación y equipos. | Validado | Ninguna | Permisos detallados en 5.1; referencia global en 6.3/7.1; interfaces de equipos en 3.2/4.5. | [Definición](definiciones-flujos.md#flow-1-1) | 2026-10-03: confirmación explícita «Sí, validar 1.1». |
 | 1.2 | **Identificación y pertenencia:** Nodo, instalación, organización, equipos y grupo eléctrico. | Validado | 1.1 | Formato de identificadores y flujo de alta se detallan en 2.2; vecinos en 6.5; permisos en 5.1. | [Definición](definiciones-flujos.md#flow-1-2) | 2026-10-03: confirmación explícita «Sí, validar 1.2». |
-| 1.3 | **Interfaces y sentidos de comunicación:** Emisor, receptor, canal y recorridos unidireccionales o bidireccionales. | Pendiente | 1.1, 1.2 | ¿Qué mensajes circulan en cada sentido y cuáles requieren respuesta? | [Definición](definiciones-flujos.md#flow-1-3) | — |
+| 1.3 | **Interfaces y sentidos de comunicación:** Emisor, receptor, canal y recorridos unidireccionales o bidireccionales. | Validado | 1.1, 1.2 | Detallar mensajes individuales en sus subfases; distinguir diseño acordado de implementación comprobada. | [Definición](definiciones-flujos.md#flow-1-3) | 2026-10-03: confirmación explícita «Sí, validar 1.3»; matriz documental, sin validar implementación. |
 | 1.4 | **Recorridos generales:** Configuración, supervisión, gestión local, coordinación y resultados hasta el usuario. | Pendiente | 1.1, 1.2, 1.3 | ¿Cómo se conectan los recorridos de punta a punta? | [Definición](definiciones-flujos.md#flow-1-4) | — |
 
 ### Corte 2 — Incorporación, configuración y arranque
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**1.3 — Interfaces y sentidos de comunicación:** definir emisores, receptores, canales y direcciones de intercambio. 1.1 y 1.2 quedaron validadas documentalmente el 2026-10-03; 2.2 conserva pendiente el flujo concreto de alta.
+**1.4 — Recorridos generales:** conectar configuración, supervisión, gestión local, coordinación y resultados hasta el usuario. 1.1, 1.2 y 1.3 quedaron validadas documentalmente el 2026-10-03; los detalles de alta, equipos y vecinos permanecen en 2.2, 3.2 y 6.5.

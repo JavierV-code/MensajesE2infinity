@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.3.4 — 2026-10-03
+
+- Valida documentalmente 1.3 — Interfaces y sentidos de comunicación mediante confirmación explícita.
+- Incorpora la matriz de interfaces, separando acciones manuales, llamadas internas, mensajes de aplicación y transporte.
+- Distingue diseño acordado, propuesta, implementación pendiente y aspectos por verificar; mantiene el bridge Mosquitto–EMQX como pendiente.
+- Actualiza el mapa Mermaid general y deja 1.4 — Recorridos generales como siguiente subfase; conserva el Draw.io histórico y no modifica APIs, tópicos ni esquemas.
+
 ## 0.3.3 — 2026-10-03
 
 - Valida documentalmente 1.2 — Identificación y pertenencia mediante confirmación explícita.

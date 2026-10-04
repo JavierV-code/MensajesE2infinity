@@ -1,8 +1,8 @@
 # Mapa general de comunicaciones
 
-Esta vista describe plataforma, funcionamiento local y coordinación distribuida. Se revisará en el corte 1 del plan 0.3.1.
+Esta vista resume las interfaces y sentidos de comunicación acordados documentalmente en 1.3 (versión 0.3.4). Separa aplicación, interacciones internas y transporte; no constituye evidencia de implementación.
 
-**Propuesta previa pendiente de revisión.** El [plan de trabajo](../plan-trabajo-flujos.md) organiza la revisión individual; sus filas enlazan los documentos disponibles. Las [definiciones detalladas](../definiciones-flujos.md) se incorporan progresivamente. Las conexiones del mapa son conceptuales y se revisarán en sus secuencias; la configuración inicial será manual mediante archivos.
+**Estado del mapa:** diseño documental validado en sus responsabilidades y direcciones generales. Las etiquetas «propuesta», «pendiente de implementación» y «por verificar» indican que no se afirma implementación donde no existe evidencia. El [plan de trabajo](../plan-trabajo-flujos.md) mantiene los estados y las [definiciones detalladas](../definiciones-flujos.md) las decisiones por subfase. La configuración inicial será manual mediante archivos.
 
 El [acuerdo de 2.3 — Conexiones MQTT](../definiciones-flujos.md#flow-2-3) documenta los recorridos del agente, el bridge selectivo con EMQX y los brokers vecinos. El bridge central forma parte del diseño objetivo y está pendiente de implementación en el código revisado.
 
@@ -14,40 +14,52 @@ La [vista histórica editable del primer corte en Draw.io](../diagramas/README.m
 
 ```mermaid
 flowchart LR
-    U[Usuario / Frontend]
+    U[Usuario / navegador]
     CORE[Backend E2 Infinity]
-    EMQX[EMQX central]
-    HS[Headscale\nAdministración independiente]
+    EMQX[EMQX central\nBroker MQTT]
+    HS[Headscale\nPlano de control de red]
 
     subgraph NODE[Raspberry / nodo E2]
-        PANEL[Panel local: evolución posterior]
-        AGENT[E2 Agent\nConfiguración, gestión local, control y consenso opcional]
-        MOSQ[Mosquitto local]
-        TS[Cliente Tailscale]
-        ADP[Adaptadores\nOCPP / Modbus / MQTT]
+        PANEL[Panel local\nPropuesta]
+        AGENT[E2 Agent\nGestión y control local\nConsenso cuando corresponda]
+        MOSQ[Mosquitto local\nBroker MQTT]
+        TS[Cliente Tailscale\nPlano de datos privado]
+        ADP[Adaptadores\nEVCC / OCPP y otros]
+        ESP[ESP32\nPasarela de campo]
     end
 
     NB[Broker Mosquitto vecino]
     NEIGHBOR[Agente vecino]
-    ESP[ESP32 + TTL-RS485]
-    EQUIP[Cargador, inversor, medidor y cargas]
+    EQUIP[Cargador / otros equipos]
+    FIELD[Medidor e inversor\nsegún inventario]
 
-    U <-->|HTTPS| CORE
-    PANEL <-->|HTTPS / API local| AGENT
-    CORE <-->|HTTPS: incorporación y configuración| AGENT
-    CORE <-->|Mensajería operativa| EMQX
-    EMQX <-->|Bridge MQTT selectivo| MOSQ
-    MOSQ <-->|Mensajes locales| AGENT
-    MOSQ <-->|Heartbeat y consenso| NB
-    NB <-->|Mensajes locales| NEIGHBOR
-    TS <-->|Registro y coordinación de red| HS
-    AGENT -->|Gestión local del cliente| TS
-    AGENT <-->|Comandos y estados| ADP
-    ADP <-->|Mensajería MQTT del adaptador| MOSQ
-    MOSQ <-->|MQTT| ESP
-    ESP <-->|Modbus RTU| EQUIP
-    ADP <-->|OCPP / Modbus| EQUIP
+    U <-->|Interacción web; interfaz por verificar| CORE
+    PANEL <-->|HTTPS / API local propuesta| AGENT
+    CORE <-->|HTTPS administrativo\npropuesto; ver 2.2 y 2.5| AGENT
+    CORE <-->|MQTT operativo| EMQX
+    EMQX <-->|Bridge selectivo\npendiente de implementación| MOSQ
+    MOSQ <-->|MQTT local acordado| AGENT
+    MOSQ <-->|MQTT entre brokers\nvecinos por definir en 6.5| NB
+    NB <-->|Entrega MQTT local| NEIGHBOR
+    AGENT -->|Gestión local propuesta| TS
+    TS -.->|Registro / coordinación\nplano de control| HS
+    TS <-->|Transporte IP privado\nHeadscale no va en la ruta de datos| NB
+    AGENT <-->|Interfaz interna\nmecanismo por verificar| ADP
+    ADP <-->|OCPP propuesto\npor verificar por equipo| EQUIP
+    MOSQ <-->|MQTT acordado como diseño\nimplementación por verificar| ESP
+    ESP <-->|Modbus RTU / RS-485\ndiseño acordado; verificar equipos| FIELD
+
+    linkStyle 4 stroke:#a94c45,stroke-width:2px
+
+    classDef agreed fill:#e7f2ed,stroke:#39745b,color:#183b2d;
+    classDef proposed fill:#fff4d6,stroke:#b18422,color:#49380d;
+    classDef pending fill:#f9e6e4,stroke:#a94c45,color:#542521;
+    class CORE,EMQX,AGENT,MOSQ,TS,HS,ESP agreed;
+    class PANEL,ADP proposed;
+    class U,NB,NEIGHBOR,EQUIP,FIELD proposed;
 ```
+
+**Leyenda:** verde = responsabilidad/interfaz acordada documentalmente como diseño; amarillo = propuesta o detalle pendiente de verificación; rojo se reserva para una conexión explícitamente pendiente de implementación (el bridge Mosquitto–EMQX). Los estilos de nodos son orientativos; el estado preciso de cada conexión está escrito en su etiqueta y en la matriz de [1.3](../definiciones-flujos.md#flow-1-3). La conexión Tailscale–Headscale representa control/registro, no el tránsito de los mensajes MQTT entre vecinos.
 
 El funcionamiento interno y el recorrido hasta el usuario se amplían en el [mapa de flujos](../definiciones-flujos.md). La gestión local dispone de su propia secuencia de decisión, validación, ejecución y medición; el consenso entrega propuestas a esa misma validación cuando corresponde. El panel local representa una evolución; la configuración inicial utiliza archivos y herramientas locales.
 
