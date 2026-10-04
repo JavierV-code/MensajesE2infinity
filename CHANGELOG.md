@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.3.3 — 2026-10-03
+
+- Valida documentalmente 1.2 — Identificación y pertenencia mediante confirmación explícita.
+- Define la relación entre organización, instalación, nodo lógico, equipos y grupo eléctrico; mantiene al grupo eléctrico separado de la topología de vecinos.
+- Registra la asignación conceptual de `node_id` por E2 Infinity y `device_id` único dentro del nodo, sin fijar campos ni formatos.
+- Actualiza la siguiente subfase a 1.3; conserva pendientes el flujo de alta de 2.2 y la topología de 6.5, sin modificar contratos ni esquemas.
+
 ## 0.3.2 — 2026-10-03
 
 - Valida documentalmente 1.1 — Actores y responsabilidades mediante confirmación explícita.

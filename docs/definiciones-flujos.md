@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.2 — 3 de octubre de 2026**.
+Versión documental **0.3.3 — 3 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -116,9 +116,25 @@ En esta subfase se distinguen los roles humanos y las responsabilidades de los c
 
 ### 1.2 — Identificación y pertenencia
 
-**Alcance:** **Identificación y pertenencia:** Nodo, instalación, organización, equipos y grupo eléctrico.
+**Estado documental: Validado.** Modelo de identidad y pertenencia acordado explícitamente el **2026-10-03**. Esta validación documental no acredita la asociación física ni la implementación.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+#### Entidades y asociaciones
+
+| Entidad | Identidad y fuente oficial | Asociación acordada |
+|---|---|---|
+| Organización | Registro administrado en E2 Infinity. | Contiene las instalaciones que se le asocian. Los permisos para crear y administrar organizaciones se precisan en 5.1. |
+| Instalación | Registro precreado en E2 Infinity. | Pertenece a una organización. El técnico selecciona la instalación existente al incorporar el nodo. |
+| Grupo eléctrico | Registro precreado en E2 Infinity, definido según información eléctrica del proyecto. | Puede reunir nodos de varias instalaciones conectadas al mismo transformador o punto de conexión común. Cada nodo mantiene un grupo activo. |
+| Nodo | E2 Infinity asigna un `node_id` estable para el nodo lógico. | Cada nodo se asocia a una instalación y a un grupo eléctrico activo. Si se reemplaza la Raspberry, el `node_id` puede conservarse tras autorizar el nuevo equipo. |
+| Equipo | El E2 Agent mantiene el inventario local y un `device_id` único dentro del nodo. | El par conceptual `node_id` + `device_id` distingue el equipo. Su inventario y capacidades se detallan en 3.1. |
+
+Un usuario autorizado registra previamente organizaciones, instalaciones y grupos en E2 Infinity. Durante la incorporación, el técnico selecciona la instalación y el grupo eléctrico correspondientes; la plataforma valida la asociación contra esos registros. La asignación central de identificadores es conceptual: aquí no se fijan su formato, campos ni mensajes de alta.
+
+La identidad de red Tailscale/Headscale es distinta del `node_id` de E2 Infinity. Estar conectado a la red privada no significa que el nodo esté incorporado o autorizado en la plataforma. Los pasos de alta y validación se desarrollan en 2.2; el registro de la red privada, en 2.1.
+
+La pertenencia a un grupo eléctrico no significa que todos sus nodos sean vecinos directos ni que exista una malla completa. La lista y topología de comunicación entre vecinos se define en 6.5.
+
+**Pendientes fuera de 1.2:** formato y representación técnica de los identificadores, flujo de mensajes y procedimiento de alta en 2.2; permisos de administración de registros en 5.1; definición de vecinos en 6.5. La asociación registrada debe contrastarse con la información eléctrica; esta definición no constituye una verificación física en terreno.
 
 <a id="flow-1-3"></a>
 
