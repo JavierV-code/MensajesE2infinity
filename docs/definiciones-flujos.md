@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.4 — 3 de octubre de 2026**.
+Versión documental **0.3.5 — 3 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -184,7 +184,76 @@ Una flecha bidireccional en el mapa resume que la interfaz admite intercambios e
 
 **Alcance:** **Recorridos generales:** Configuración, supervisión, gestión local, coordinación y resultados hasta el usuario.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Recorrido general acordado explícitamente el **2026-10-03**. Esta definición conecta los flujos de otras subfases; no aprueba sus mensajes detallados ni acredita implementación.
+
+#### Recorridos de punta a punta
+
+| Recorrido | Secuencia general | Detalle asignado |
+|---|---|---|
+| Preparación del nodo | El técnico prepara la configuración y el agente inicia sus servicios; se habilitan las conexiones de red privada, plataforma y mensajería necesarias. | Alta en 2.1–2.3; configuración local/remota en 2.4–2.6; arranque en 2.7. |
+| Gestión local continua | Lecturas y configuración vigente → decisión local respetando preferencias y límites → solicitud al adaptador/equipo → comprobación del efecto con mediciones → registro del resultado. | Medición en 3.3; decisión y validación en 4.3–4.4; actuación y resultado en 4.5–4.7. Puede operar sin nube ni consenso. |
+| Intercambio con la plataforma | Configuración administrativa por HTTPS; meta energética común y resultados por MQTT mediante EMQX. La meta llega a los nodos seleccionados; el estado y resultado medido vuelven a E2 Infinity para consulta del usuario. | Incorporación/configuración en 2.2 y 2.5; bridge en 2.3; permisos y visualización en 5.1–5.6. El bridge Mosquitto–EMQX sigue **pendiente de implementación**. |
+| Coordinación distribuida | La meta común recibida habilita la participación de nodos seleccionados. Sus agentes intercambian variables con vecinos mediante MQTT sobre la red privada; cada agente valida localmente la propuesta antes de ejecutarla. | Participación y recursos en el corte 6; consenso y realimentación en 7.1–7.6. No todos los nodos activos son necesariamente destinatarios ni vecinos directos. |
+| Retorno y seguimiento | Cada nodo envía su resultado medido a E2 Infinity y devuelve al proceso distribuido la realimentación/residuo que requiera la coordinación; la plataforma presenta la información disponible al usuario. | Contenido de telemetría/visualización en 5.2–5.6; retorno al consenso en 7.6. |
+
+La configuración administrativa y la meta operativa son recorridos distintos: HTTPS no transporta la consigna energética de operación. E2 Infinity publica una meta común para los participantes seleccionados; no calcula ni asigna a cada Raspberry una acción individual. La contribución del nodo se coordina con sus vecinos y la ejecución queda sujeta a validación local.
+
+#### Secuencia general
+
+```mermaid
+sequenceDiagram
+    actor T as Técnico
+    actor U as Usuario
+    participant A as E2 Agent / Raspberry
+    participant API as Backend E2 Infinity
+    participant X as EMQX central
+    participant M as Mosquitto local
+    participant V as Vecinos participantes
+    participant D as Adaptador y equipos
+
+    T->>A: Preparar configuración local (acción manual)
+    A->>A: Iniciar servicios y cargar configuración válida
+    Note over A,API: Registro de red privada y alta/configuración de plataforma son recorridos administrativos separados (2.1–2.5)
+    API->>A: Configuración administrativa por HTTPS (diseño objetivo)
+    Note over A,D: El ciclo local es continuo e independiente de nube y consenso
+    par Gestión local, siempre según disponibilidad del nodo
+        loop Operación local
+            D-->>A: Lecturas y estado del equipo
+            A->>A: Decidir con configuración, preferencias y límites
+            A->>D: Solicitar acción local validada
+            D-->>A: Estado/medición para comprobar el efecto
+            A->>A: Registrar decisión y resultado
+        end
+    and Coordinación opcional ante una meta común
+        API->>X: Publicar meta energética para participantes seleccionados
+        X-->>M: Entregar por MQTT mediante bridge (pendiente de implementación)
+        M-->>A: Entregar meta al agente suscrito
+        loop Coordinación entre participantes
+            A->>M: Publicar variable del consenso
+            M->>V: Enviar a vecinos autorizados por MQTT sobre red privada
+            V-->>M: Publicar información de retorno requerida
+            M-->>A: Entregar mensajes de vecinos
+        end
+        A->>A: Validar localmente la propuesta del consenso
+        A->>D: Ejecutar solo si pasa validación local
+        D-->>A: Lectura/resultado medido
+        A->>M: Publicar resultado operativo hacia plataforma
+        M->>X: Replicar por bridge (pendiente de implementación)
+        X->>API: Entregar el resultado a E2 Infinity
+        A->>M: Publicar realimentación/residuo requerido
+        M->>V: Devolver realimentación al proceso distribuido
+    end
+    API-->>U: Mostrar telemetría, estado y resultado disponibles
+    alt Pérdida de plataforma
+        Note over A,D: Continúa la gestión local con la configuración válida; el tratamiento de mensajes pendientes se define en corte 8
+    else Pérdida de vecino
+        Note over A,V: El ciclo local se mantiene; continuidad del consenso se define en 7.5 y 8.2
+    end
+```
+
+**Límites de esta vista:** la secuencia es conceptual. No fija mensajes, campos, tópicos, endpoints, frecuencia, criterios de selección, convergencia ni política de recuperación. La comunicación real de la meta y los resultados entre EMQX y Mosquitto local depende del bridge pendiente. La topología de vecinos se define en 6.5; una pérdida de vecino no implica por sí sola pérdida de operación local.
+
+**Referencia de validación:** confirmación explícita del usuario «siii» en conversación del **2026-10-03**.
 
 
 ## Corte 2 — Incorporación, configuración y arranque

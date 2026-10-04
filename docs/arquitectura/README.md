@@ -2,6 +2,8 @@
 
 Esta vista resume las interfaces y sentidos de comunicación acordados documentalmente en 1.3 (versión 0.3.4). Separa aplicación, interacciones internas y transporte; no constituye evidencia de implementación.
 
+El [recorrido general 1.4](../definiciones-flujos.md#flow-1-4) conecta el ciclo local independiente, la configuración administrativa por HTTPS, la meta energética común por MQTT a participantes seleccionados, la coordinación entre vecinos y los retornos hacia la plataforma y el consenso. El bridge Mosquitto–EMQX permanece pendiente de implementación.
+
 **Estado del mapa:** diseño documental validado en sus responsabilidades y direcciones generales. Las etiquetas «propuesta», «pendiente de implementación» y «por verificar» indican que no se afirma implementación donde no existe evidencia. El [plan de trabajo](../plan-trabajo-flujos.md) mantiene los estados y las [definiciones detalladas](../definiciones-flujos.md) las decisiones por subfase. La configuración inicial será manual mediante archivos.
 
 El [acuerdo de 2.3 — Conexiones MQTT](../definiciones-flujos.md#flow-2-3) documenta los recorridos del agente, el bridge selectivo con EMQX y los brokers vecinos. El bridge central forma parte del diseño objetivo y está pendiente de implementación en el código revisado.

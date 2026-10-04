@@ -4,7 +4,7 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.3.4 — 3 de octubre de 2026.**
+**Documentación 0.3.5 — 3 de octubre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
@@ -68,7 +68,7 @@ La [equivalencia de los 34 puntos anteriores](docs/plan-trabajo-flujos.md#equiva
 
 El orden, las dependencias y los estados se mantienen únicamente en el [plan de trabajo](docs/plan-trabajo-flujos.md). Conversaremos un subpunto por vez, lo documentaremos con la [plantilla común del documento maestro](docs/definiciones-flujos.md#plantilla-comun) y registraremos su confirmación antes de marcarlo como validado.
 
-**1.1 — Actores y responsabilidades**, **1.2 — Identificación y pertenencia** y **1.3 — Interfaces y sentidos de comunicación** quedaron validadas documentalmente el 3 de octubre de 2026. La siguiente subfase es **1.4 — Recorridos generales**. La matriz de interfaces distingue acuerdos de diseño de propuestas, puntos pendientes de implementación y aspectos por verificar; no acredita operación física.
+**1.1 — Actores y responsabilidades**, **1.2 — Identificación y pertenencia**, **1.3 — Interfaces y sentidos de comunicación** y **1.4 — Recorridos generales** quedaron validadas documentalmente el 3 de octubre de 2026. La siguiente subfase es **2.1 — Registro de red privada**. El mapa conecta configuración, ciclo local, meta común para participantes, consenso, actuación y resultados sin implicar que el bridge Mosquitto–EMQX ya esté implementado.
 
 El [borrador de 2.5](docs/definiciones-flujos.md#flow-2-5) está en conversación: contempla proponer desde E2 Infinity cambios energéticos y técnicos autorizados del agente, con consulta HTTPS iniciada manualmente y aplicación conforme a 2.4. Distingue configuración persistente de consignas temporales; la automatización y la administración del sistema operativo quedan fuera de la etapa inicial.
 

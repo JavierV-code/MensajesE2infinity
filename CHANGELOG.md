@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.3.5 — 2026-10-03
+
+- Valida documentalmente 1.4 — Recorridos generales mediante confirmación explícita.
+- Conecta preparación, gestión local independiente, configuración HTTPS, meta común por MQTT, consenso entre vecinos, actuación y dos retornos diferenciados.
+- Resume continuidad local ante pérdidas y remite el tratamiento detallado a sus subfases; mantiene el bridge Mosquitto–EMQX como pendiente de implementación.
+- Actualiza la siguiente subfase a 2.1; no fija contratos, endpoints, tópicos ni criterios matemáticos nuevos.
+
 ## 0.3.4 — 2026-10-03
 
 - Valida documentalmente 1.3 — Interfaces y sentidos de comunicación mediante confirmación explícita.
