@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.12 — 2026-10-04
+
+- Valida documentalmente 3.4 — Heartbeat y salud de servicios: presencia, salud por componente y disponibilidad funcional como conceptos distintos.
+- Define reporte a plataforma y vecinos autorizados según su necesidad; la ausencia de heartbeat indica falta de alcance desde el receptor, no apagado físico. La caída del agente se detecta externamente.
+- Actualiza plan e índices y establece 3.5 como siguiente subfase. Mantiene `STA-01` y los tópicos como borradores, sin modificar APIs ni esquemas.
+
 ## 0.3.11 — 2026-10-04
 
 - Valida documentalmente 3.3 — Lecturas locales: atribución al equipo y circuito, tiempos de medición y recepción, normalización de unidades en el agente y calidad según la función que usa el dato.

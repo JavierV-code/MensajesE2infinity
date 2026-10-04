@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.11 — 4 de octubre de 2026**.
+Versión documental **0.3.12 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1258,7 +1258,58 @@ Las frecuencias de adquisición, rangos verificables y umbrales numéricos de vi
 
 **Alcance:** **Heartbeat y salud de servicios:** Presencia del nodo y disponibilidad de sus componentes.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 3.4». Describe supervisión objetivo; no certifica que exista un heartbeat operativo en el nodo.
+
+#### 1. Propósito y niveles de observación
+
+Se distinguen **presencia del nodo**, **salud de componentes** y **funciones disponibles**. Un heartbeat demuestra que un receptor recibió recientemente información del E2 Agent por una ruta concreta; no prueba por sí solo capacidad energética, precisión de mediciones ni éxito de una actuación. El agente comprueba localmente los servicios y equipos que puede observar y relaciona sus fallos con las dependencias de cada función, conforme a [2.7](#flow-2-7) y [3.3](#flow-3-3). Una avería parcial no convierte automáticamente todo el nodo en indisponible.
+
+| Observador | Qué determina | Límite de su observación |
+|---|---|---|
+| E2 Agent | Estado local de Mosquitto, EVCC/OCPP, ESP32, adaptadores, interfaces de equipos y mediciones necesarias para funciones concretas. | No puede informar de su propia detención una vez que deja de ejecutarse. |
+| E2 Infinity | Recepción o ausencia del heartbeat y diagnóstico detallado que el nodo alcance a comunicar, si está vinculado y existe canal autorizado. | La ausencia indica **no alcanzable desde la plataforma**, no demuestra que la Raspberry esté apagada. |
+| Vecinos autorizados | Recepción o ausencia de información mínima para saber si pueden contar con el nodo en la coordinación. | No necesitan el diagnóstico completo de equipos ni deducen capacidad energética del mero heartbeat. |
+| Supervisor local, cuando exista | Detecta la detención del proceso del agente y puede intentar su recuperación. | El mecanismo y la comprobación de reinicio quedan por verificar en [8.4](#flow-8-4). |
+
+La disponibilidad energética y la flexibilidad efectiva se definirán en [6.2](#flow-6-2); un nodo presente puede no disponer de potencia ofrecible. Los estados internos de cada función se derivan de sus propias dependencias, no de un único indicador global.
+
+#### 2. Recorrido de salud y heartbeat
+
+1. El agente observa por separado sus dependencias locales: broker Mosquitto, controlador EVCC/OCPP, ESP32, adaptadores, equipos y vigencia de las mediciones indispensables. Registra qué componente falla y qué funciones quedan afectadas o continúan operativas.
+2. Cuando el canal correspondiente está disponible, informa a **E2 Infinity** la presencia del nodo y el diagnóstico requerido para supervisión; entrega a los **vecinos autorizados** solo la información necesaria para su coordinación. Los destinatarios no se confunden con la infraestructura Headscale, que coordina la red privada pero no evalúa salud energética.
+3. Cada receptor interpreta el heartbeat según su propia observación. Si deja de recibirlo, marca al nodo como no alcanzable **desde ese receptor**; no afirma una causa física. Un vecino puede perder contacto mientras la plataforma aún recibe datos, o viceversa.
+4. Si el agente deja de funcionar, no se modela un mensaje de fallo emitido por él. La ausencia de heartbeat permite detección externa; un supervisor local puede intentar recuperarlo si se configura y verifica.
+
+```mermaid
+sequenceDiagram
+    participant S as Servicios y equipos locales
+    participant A as E2 Agent
+    participant P as E2 Infinity
+    participant V as Vecino autorizado
+
+    S-->>A: Estado y lecturas disponibles
+    A->>A: Evaluar salud por componente y función
+    opt Canal central disponible
+        A-->>P: Heartbeat y diagnóstico pertinente
+    end
+    opt Conectividad con vecino disponible
+        A-->>V: Presencia mínima para coordinación
+    end
+    Note over P,V: Sin recepción, cada uno infiere no alcanzable desde su ruta
+```
+
+#### 3. Fallos y límites del acuerdo
+
+| Situación | Interpretación y continuidad |
+|---|---|
+| Falla un equipo, adaptador o medición indispensable | El agente conserva diagnóstico y limita solo las funciones dependientes; las independientes siguen sujetas a sus propias comprobaciones. |
+| Cae Mosquitto local | Se afectan los recorridos MQTT que dependen de él, incluido el heartbeat por esa ruta. La ausencia remota no identifica por sí sola si falló broker, agente o red. |
+| Se pierde solo el enlace central | La plataforma deja de recibir por su ruta; la gestión local verificable y la comunicación con vecinos pueden continuar si sus dependencias permanecen disponibles. |
+| Se detiene E2 Agent | No puede declarar su propia caída. Plataforma y vecinos detectan ausencia desde sus rutas; la recuperación local requiere un supervisor comprobado. |
+
+Las alarmas, su ciclo de vida y destinatarios detallados se definirán en [3.5](#flow-3-5); intervalos y umbrales de ausencia se fijarán al ensayar el banco; los fallos y la recuperación de servicios y equipos se amplían en [8.3](#flow-8-3)–[8.4](#flow-8-4). El antecedente [`STA-01`](mensajes/catalogo-mensajes.md) y los tópicos MQTT siguen como **borradores**, sin aprobar aquí sus campos, estados ni rutas concretas. No se modifican APIs ni esquemas.
+
+**Referencia de validación:** el **2026-10-04** se acordaron destinatarios plataforma y vecinos, salud por componente y detección externa de la caída del agente; el usuario confirmó «Sí, validar 3.4».
 
 <a id="flow-3-5"></a>
 

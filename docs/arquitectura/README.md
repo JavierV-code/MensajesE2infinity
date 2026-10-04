@@ -16,6 +16,8 @@ El [acuerdo de 3.1 — Inventario y capacidades](../definiciones-flujos.md#flow-
 
 El [acuerdo de 3.3 — Lecturas locales](../definiciones-flujos.md#flow-3-3) añade procedencia, tiempos de medición y recepción, normalización de unidades y evaluación de calidad por función antes de usar un dato para control. No fija todavía frecuencias ni umbrales de vigencia.
 
+El [acuerdo de 3.4 — Heartbeat y salud de servicios](../definiciones-flujos.md#flow-3-4) separa presencia del nodo, salud de componentes y funciones disponibles. Plataforma y vecinos pueden observar rutas distintas; perder un heartbeat no demuestra que la Raspberry esté apagada.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid
