@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.1 — 3 de octubre de 2026**.
+Versión documental **0.3.2 — 3 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -40,7 +40,7 @@ Establecer quién participa y cómo se relacionan los componentes.
 
 | ID | Subfase y objetivo | Estado | Dependencias documentales tentativas | Pregunta o pendiente | Documento | Fecha y referencia del acuerdo |
 |---|---|---|---|---|---|---|
-| 1.1 | **Actores y responsabilidades:** Usuario, técnico, plataforma, agente, servicios de comunicación y equipos. | Pendiente | Ninguna | ¿Qué recibe, procesa y emite cada componente? | [Definición](definiciones-flujos.md#flow-1-1) | Acuerdos conversados; consolidar alcance ampliado y referencia. |
+| 1.1 | **Actores y responsabilidades:** Usuario, técnico, administrador de infraestructura, plataforma, agente, servicios de comunicación y equipos. | Validado | Ninguna | Permisos detallados en 5.1; referencia global en 6.3/7.1; interfaces de equipos en 3.2/4.5. | [Definición](definiciones-flujos.md#flow-1-1) | 2026-10-03: confirmación explícita «Sí, validar 1.1». |
 | 1.2 | **Identificación y pertenencia:** Nodo, instalación, organización, equipos y grupo eléctrico. | Pendiente | 1.1 | ¿Qué identifica cada entidad y quién establece su asociación? | [Definición](definiciones-flujos.md#flow-1-2) | Acuerdos conversados; formalización y referencia pendientes. |
 | 1.3 | **Interfaces y sentidos de comunicación:** Emisor, receptor, canal y recorridos unidireccionales o bidireccionales. | Pendiente | 1.1, 1.2 | ¿Qué mensajes circulan en cada sentido y cuáles requieren respuesta? | [Definición](definiciones-flujos.md#flow-1-3) | — |
 | 1.4 | **Recorridos generales:** Configuración, supervisión, gestión local, coordinación y resultados hasta el usuario. | Pendiente | 1.1, 1.2, 1.3 | ¿Cómo se conectan los recorridos de punta a punta? | [Definición](definiciones-flujos.md#flow-1-4) | — |
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**1.1 — Actores y responsabilidades:** consolidar los acuerdos conversados con el alcance ampliado de plataforma y funcionamiento local. Configuración remota continúa como borrador en 2.5; los acuerdos de 2.3 y 2.4 se conservan.
+**1.2 — Identificación y pertenencia:** definir cómo se identifican y asocian el nodo, la instalación, la organización, los equipos y el grupo eléctrico. 1.1 quedó validada el 2026-10-03; 2.5 continúa como borrador.

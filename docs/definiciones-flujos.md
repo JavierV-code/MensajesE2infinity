@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.1 — 3 de octubre de 2026**.
+Versión documental **0.3.2 — 3 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -88,9 +88,9 @@ Los tópicos, identificadores y esquemas JSON mantienen sus documentos de catál
 
 ### 1.1 — Actores y responsabilidades
 
-**Alcance:** **Actores y responsabilidades:** Usuario, técnico, plataforma, agente, servicios de comunicación y equipos.
+**Alcance:** Usuario, técnico, plataforma, agente, servicios de comunicación y equipos.
 
-**Propuesta en conversación; no constituye aún la validación completa de 1.1.**
+**Estado documental: Validado.** Matriz acordada en conversación el **2026-10-03**. La validación es documental; no acredita implementación ni ensayo.
 
 En esta subfase se distinguen los roles humanos y las responsabilidades de los componentes. Usuario y técnico son actores distintos. El E2 Agent gestiona las decisiones y actuaciones locales; el consenso es una función adicional. La definición del origen y la distribución de la referencia del consenso queda pendiente para 6.3 y 7.1.
 
@@ -98,18 +98,19 @@ En esta subfase se distinguen los roles humanos y las responsabilidades de los c
 |---|---|---|
 | Usuario de la instalación | Define preferencias energéticas y consulta el funcionamiento del sistema. | Envía preferencias o solicitudes por E2 Infinity; recibe mediciones, estados y resultados. |
 | Técnico instalador | Prepara el hardware, configura inicialmente archivos y diagnostica el nodo. | Envía configuraciones manuales y solicitudes de diagnóstico local; recibe resultados de comprobación y conectividad. |
+| Administrador de infraestructura | Administra centralmente el servicio Headscale y su infraestructura, separado de la lógica energética de E2 Infinity. | Gestiona despliegue, configuración y operación de Headscale. Los procedimientos de acceso y coordinación con instaladores quedan fuera de 1.1. |
 | Interfaz de E2 Infinity | Presenta la información al usuario y permite registrar solicitudes autorizadas. | Recibe acciones del usuario y muestra respuestas y datos procesados por la plataforma. No actúa directamente sobre los equipos. |
-| Backend de E2 Infinity | Gestiona identidades y permisos, guarda configuraciones y procesa información recibida de los nodos. | Recibe solicitudes, telemetría y resultados; envía configuraciones autorizadas e información operativa. Su papel en el origen y distribución de la referencia global queda pendiente. |
-| E2 Agent en la Raspberry | Gestiona la operación local, valida decisiones, ejecuta mediante interfaces de equipos y registra resultados; participa en el consenso cuando corresponde. | Recibe configuración, mediciones y propuestas de coordinación; envía telemetría, estados, resultados y mensajes a vecinos cuando participa. |
+| Backend de E2 Infinity | Gestiona identidades y permisos, guarda configuraciones y procesa información recibida de los nodos. | Recibe solicitudes, telemetría y resultados; envía configuraciones autorizadas e información operativa. Su papel en el origen y distribución de la referencia global queda pendiente para 6.3/7.1. |
+| E2 Agent en la Raspberry | Gestiona decisiones locales, valida propuestas, ejecuta mediante interfaces de equipos y registra resultados; participa en el consenso cuando corresponde. | Recibe configuración, mediciones y propuestas de coordinación; envía telemetría, estados, resultados y mensajes a vecinos cuando participa. |
 | Mosquitto local y EMQX central | Transportan publicaciones MQTT autorizadas; Mosquitto atiende intercambios del nodo y EMQX los centrales. | Reciben y encaminan publicaciones según sus suscripciones y permisos; no toman decisiones energéticas. |
-| Cliente Tailscale y Headscale | Proporcionan y coordinan la conectividad de la red privada. | Mantienen el transporte y registro de red; no administran la lógica energética. El responsable humano de la administración de Headscale queda por asignar. |
+| Cliente Tailscale y Headscale | Proporcionan y coordinan la conectividad de la red privada. | Mantienen el transporte y registro de red; no administran la lógica energética. Headscale es administrado por el administrador de infraestructura. |
 | Agentes de nodos vecinos | Intercambian disponibilidad y variables del consenso cuando participan. | Cada agente procesa su información y mantiene la responsabilidad sobre sus decisiones y acciones locales. |
 | Adaptadores y ESP32 | Conectan el E2 Agent con los protocolos de equipos; la ESP32 puede actuar como pasarela de campo. | Transmiten lecturas, órdenes y respuestas según las interfaces que se definan en 3.2. |
 | Equipos físicos | Miden o actúan según sus capacidades e interfaces. | Entregan mediciones y estados; reciben órdenes compatibles. La confirmación y el efecto medido se comprobarán por separado. |
 
-**Decisiones registradas en conversación (2026-10-03):** el usuario de la instalación y el técnico instalador se representan como actores distintos. El origen y la distribución de la referencia global del consenso se dejan pendientes para 6.3 y 7.1.
+**Acuerdos registrados en conversación (2026-10-03):** usuario y técnico son actores distintos; un administrador de infraestructura administra Headscale centralmente; el backend gestiona identidades, permisos, configuración y datos mientras el E2 Agent mantiene las decisiones y la ejecución local; Headscale/Tailscale proveen conectividad y Mosquitto/EMQX transportan MQTT, sin tomar decisiones energéticas; adaptadores y ESP32 intermedian con los equipos, que miden o actúan.
 
-**Pendientes de 1.1:** confirmar la matriz completa de responsabilidades y definir qué rol humano administra Headscale. Los permisos específicos de la plataforma se abordarán en 5.1.
+**Fuera de 1.1:** los permisos detallados de usuario se definirán en 5.1; el origen y distribución de la referencia global del consenso se definirán en 6.3/7.1; los detalles de interfaces y actuación se desarrollarán en 3.2/4.5.
 
 <a id="flow-1-2"></a>
 

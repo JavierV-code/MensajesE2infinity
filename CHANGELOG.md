@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.3.2 — 2026-10-03
+
+- Valida documentalmente 1.1 — Actores y responsabilidades mediante confirmación explícita.
+- Distingue usuario, técnico y administrador de infraestructura; asigna a este último la administración central de Headscale.
+- Confirma las fronteras entre backend, E2 Agent, comunicaciones, adaptadores y equipos; deja permisos, referencia de consenso e interfaces detalladas en sus subfases correspondientes.
+- Actualiza el siguiente punto de conversación a 1.2; no modifica contratos, mensajes, APIs ni esquemas.
+
 ## 0.3.1 — 2026-10-03
 
 - Crea `docs/definiciones-flujos.md` como fuente principal con secciones y anclas para las 46 subfases.
