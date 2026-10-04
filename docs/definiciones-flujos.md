@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.18 — 4 de octubre de 2026**.
+Versión documental **0.3.19 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1678,7 +1678,54 @@ La resolución de la actuación pendiente alimenta la reevaluación acordada en 
 
 **Alcance:** **Resultado medido y corrección local:** Comprobación del efecto y tratamiento de diferencias.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 4.6». Define la comprobación prevista; no acredita precisión de medidores ni resultados físicos en el banco.
+
+#### 1. Propósito y evidencia
+
+El E2 Agent compara la **acción efectivamente autorizada** en [4.4](#flow-4-4) y su seguimiento de orden y estado en [4.5](#flow-4-5) con lecturas aptas de [3.3](#flow-3-3). El estado compatible reportado por un equipo es una evidencia distinta del cambio energético medido: no se presenta como efecto comprobado por sí solo.
+
+| Fuente | Uso en la comprobación |
+|---|---|
+| Medidor del circuito o equipo afectado | Referencia principal para observar el cambio asociado a la actuación, siempre que su lectura sea atribuible, tenga unidad y tiempos verificables y sea apta para esta función. |
+| Estado reportado por el equipo | Permite contrastar si la interfaz informa una actuación compatible; no sustituye la medición energética. |
+| Medición agregada del nodo o punto de conexión común, si está disponible | Evalúa el resultado global del nodo y ayuda a detectar efectos no previstos; no reemplaza la evidencia del circuito para atribuir una actuación concreta. |
+
+La comparación requiere una referencia anterior y lecturas posteriores del **mismo circuito o equipo**, con la procedencia y los tiempos conservados según 3.3. El agente considera que el equipo puede tardar en responder y evita comparar muestras tomadas antes de que la actuación pudiera reflejarse. Las ventanas, tolerancias y magnitudes concretas se determinarán al ensayar cada dispositivo y medidor; esta sección no presume valores numéricos.
+
+#### 2. Recorrido y clasificación
+
+1. Una orden enviada por 4.5, o una actuación reportada por el equipo, activa la comprobación del resultado; la referencia es la parte **autorizada** de una propuesta limitada, no la solicitud original íntegra.
+2. El agente reúne las lecturas anteriores y posteriores aptas, comprueba que pertenecen al circuito o equipo pertinente y observa el estado reportado. Distingue una lectura ausente de un valor cero.
+3. Compara el cambio medido con la dirección y magnitud esperadas según la acción autorizada y la tolerancia que se valide en el banco. Contrasta además la medición agregada disponible para identificar un resultado global diferente o un efecto no previsto.
+4. Clasifica el resultado como **efecto comprobado**, **discrepancia** o **no concluyente**, conservando el motivo y las evidencias disponibles para [4.7](#flow-4-7).
+5. El resultado que corresponda podrá presentarse en E2 Infinity conforme al corte 5 y, si hubo coordinación distribuida, realimentará el proceso de [7.6](#flow-7-6). No se declara una contribución física completa a partir de una mera aceptación del equipo.
+
+```mermaid
+flowchart LR
+    O[4.5: orden y estado reportado] --> L[Evaluar lecturas antes y después]
+    L --> Q{Evidencia atribuible y suficiente}
+    Q -->|No| N[No concluyente y motivo]
+    Q -->|Sí| C{Efecto compatible con acción autorizada}
+    C -->|Sí| V[Efecto comprobado]
+    C -->|No| D[Discrepancia]
+    D --> R[Revisar medición y estado]
+    R --> P[Si procede, nueva propuesta por 4.3 y 4.4]
+```
+
+#### 3. Diferencias, incertidumbre y corrección
+
+| Situación | Tratamiento documental |
+|---|---|
+| Cambio medido compatible con la acción autorizada | Informar **efecto comprobado** con las lecturas que lo respaldan; el estado del equipo se conserva como evidencia adicional, no como sustituto. |
+| Estado del equipo compatible, pero efecto medido distinto del esperado | Informar **discrepancia**; comprobar primero calidad de lectura, atribución y estado del equipo. No repetir ciegamente la orden. |
+| Lectura anterior o posterior ausente, vencida, inválida o sin unidad utilizable | Informar **no concluyente**; no afirmar éxito ni fallo físico. Repetir la verificación cuando existan lecturas aptas. |
+| Cambios simultáneos impiden atribuir el efecto al circuito intervenido | Informar **no concluyente** con la causa; usar la medición agregada solo como contexto y volver a verificar si se puede aislar el efecto. |
+| Discrepancia confirmada y todavía hay una alternativa válida | Solicitar una **nueva evaluación** por [4.3](#flow-4-3) y validación por [4.4](#flow-4-4) antes de cualquier ajuste. La corrección no elude límites, prioridades ni restricciones locales. |
+| El resultado agregado muestra un efecto no previsto | Registrar la diferencia y reevaluar las funciones afectadas; no atribuirla automáticamente al equipo intervenido sin evidencia del circuito. |
+
+El tratamiento de alarmas por fallos persistentes corresponde a [3.5](#flow-3-5), el registro y trazabilidad completos a 4.7 y la recuperación de equipos a 8.3–8.4. No se fijan aquí ventanas temporales, tolerancias, comandos, campos de mensajes, tópicos, APIs ni JSON Schema.
+
+**Referencia de validación:** el **2026-10-04** se acordó utilizar el circuito afectado como referencia principal y el punto común como contexto global; ante discrepancia, reevaluar antes de corregir; y clasificar como «no concluyente» la evidencia inválida o no atribuible. El usuario confirmó «Sí, validar 4.6».
 
 <a id="flow-4-7"></a>
 

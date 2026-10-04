@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.19 — 2026-10-04
+
+- Valida documentalmente 4.6 — Resultado medido y corrección local: comparación con lecturas aptas del circuito intervenido, usando la medición agregada como contexto.
+- Distingue efecto comprobado, discrepancia y resultado no concluyente; ante diferencias, revisa evidencia y exige nueva evaluación y validación antes de corregir.
+- Actualiza plan e índices y establece 4.7 como siguiente subfase. Deja ventanas y tolerancias para ensayos físicos; no modifica código, APIs ni esquemas.
+
 ## 0.3.18 — 2026-10-04
 
 - Valida documentalmente 4.5 — Orden y confirmación del equipo: recorrido agente–adaptador–equipo y distinción entre recepción, aceptación y estado compatible reportado.

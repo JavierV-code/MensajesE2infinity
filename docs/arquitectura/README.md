@@ -30,6 +30,8 @@ El [acuerdo de 4.4 — Prioridades y validación](../definiciones-flujos.md#flow
 
 El [acuerdo de 4.5 — Orden y confirmación del equipo](../definiciones-flujos.md#flow-4-5) distingue recepción local, aceptación del dispositivo y estado compatible reportado. El agente sigue la orden por el adaptador correspondiente y no confunde ninguna de esas señales con el efecto energético que se verificará en 4.6.
 
+El [acuerdo de 4.6 — Resultado medido y corrección local](../definiciones-flujos.md#flow-4-6) compara el efecto con el medidor del circuito intervenido y usa la medición agregada como contexto. El agente informa una discrepancia o resultado no concluyente sin atribuir éxito, y pasa cualquier corrección por una nueva evaluación y validación local.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.18 — 4 de octubre de 2026**.
+Versión documental **0.3.19 — 4 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -82,7 +82,7 @@ Documentar cómo opera la Raspberry sin necesitar consenso.
 | 4.3 | **Ciclo de decisión local:** Mediciones y configuración que alimentan las decisiones energéticas. | Validado | 3.3, 4.1, 4.2 | Frecuencia y umbrales de eventos sujetos a ensayo; validación en 4.4, ejecución en 4.5–4.6 y registro en 4.7. | [Definición](definiciones-flujos.md#flow-4-3) | 2026-10-04: «Sí, validar 4.3»; ciclo periódico y por eventos, instantánea coherente y salida de propuesta o «sin acción». |
 | 4.4 | **Prioridades y validación:** Solicitudes concurrentes, aceptación, limitación o rechazo y relación con la máquina de estados. | Validado | 2.4, 4.3 | Permisos y transporte de solicitudes directas en corte 5; estados concretos de control por definir; órdenes y resultados en 4.5–4.7. | [Definición](definiciones-flujos.md#flow-4-4) | 2026-10-04: «Sí, validar 4.4»; precedencia de protección, usuario, utilidad local y consenso; espera y reevaluación, limitación informada. |
 | 4.5 | **Orden y confirmación del equipo:** Adaptadores y distinción entre recepción, aceptación y actuación. | Validado | 3.2, 4.4 | Comandos, tiempos y niveles de confirmación por equipo sujetos a ensayo; efecto medido en 4.6 y registro en 4.7. | [Definición](definiciones-flujos.md#flow-4-5) | 2026-10-04: «Sí, validar 4.5»; tres evidencias separadas, resultado incierto y consulta de estado antes de un nuevo intento. |
-| 4.6 | **Resultado medido y corrección local:** Comprobación del efecto y tratamiento de diferencias. | Pendiente | 3.3, 4.5 | ¿Cómo se compara lo solicitado con lo medido y se corrige localmente? | [Definición](definiciones-flujos.md#flow-4-6) | — |
+| 4.6 | **Resultado medido y corrección local:** Comprobación del efecto y tratamiento de diferencias. | Validado | 3.3, 4.5 | Ventanas, tolerancias y precisión por comprobar en banco; registro en 4.7, resultados visibles en corte 5 y realimentación en 7.6. | [Definición](definiciones-flujos.md#flow-4-6) | 2026-10-04: «Sí, validar 4.6»; medición del circuito como referencia, resultado no concluyente cuando no se puede atribuir y corrección por nueva evaluación. |
 | 4.7 | **Registro de decisiones:** Motivos, configuración utilizada y resultados. | Pendiente | 4.4, 4.6 | ¿Cómo se relacionan decisión, orden y resultado para su consulta? | [Definición](definiciones-flujos.md#flow-4-7) | — |
 
 ### Corte 5 — Plataforma, información visible e intercambios con el nodo
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**4.6 — Resultado medido y corrección local:** definir cómo el agente compara la acción autorizada y el estado reportado con mediciones aptas, y qué hace ante diferencias.
+**4.7 — Registro de decisiones:** definir cómo se relacionan propuesta, validación, orden, confirmaciones, efecto medido y correcciones para su consulta y auditoría.
