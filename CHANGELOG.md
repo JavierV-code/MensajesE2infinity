@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.16 — 2026-10-04
+
+- Valida documentalmente 4.3 — Ciclo de decisión local: evaluación periódica y por eventos relevantes sobre una instantánea coherente de datos activos y aptos.
+- Define salida como propuesta verificable para 4.4 o «sin acción» motivada; la falta de un dato indispensable limita solo la función dependiente y no genera órdenes directas.
+- Actualiza plan e índices y establece 4.4 como siguiente subfase. No fija frecuencia, fórmula, máquina de estados ni contratos; no modifica código, APIs ni esquemas.
+
 ## 0.3.15 — 2026-10-04
 
 - Valida documentalmente 4.2 — Tarifas y datos económicos: perfil inicial manual, actualización remota comprobada y valoración de alternativas calculada en cada Raspberry.

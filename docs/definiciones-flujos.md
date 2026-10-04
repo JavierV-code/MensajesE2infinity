@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.15 — 4 de octubre de 2026**.
+Versión documental **0.3.16 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1493,7 +1493,58 @@ Las fuentes tarifarias concretas, moneda, unidades, periodicidad, rangos, supues
 
 **Alcance:** **Ciclo de decisión local:** Mediciones y configuración que alimentan las decisiones energéticas.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 4.3». Describe el flujo de evaluación del E2 Agent, no un algoritmo matemático implementado ni una orden física.
+
+#### 1. Propósito y disparadores
+
+La Raspberry evalúa sus opciones energéticas **localmente**, sin esperar una meta central ni participar necesariamente en consenso. El E2 Agent inicia evaluaciones periódicas y también ante **eventos relevantes**: cambio significativo de una medición o del estado de un equipo, activación de una preferencia, inicio o fin de una ventana horaria y cambio de tramo tarifario. Un evento recibido no implica enviar una orden por cada lectura. La frecuencia, el criterio cuantitativo de relevancia y el tratamiento de eventos próximos entre sí se fijarán al ensayar el banco.
+
+#### 2. Instantánea de evaluación
+
+En cada ciclo, el agente toma una **instantánea coherente** de las entradas que necesita cada función:
+
+| Entrada | Condición de uso |
+|---|---|
+| Configuración activa | Identidad del nodo, límites técnicos, preferencias y horarios efectivamente aplicados según [2.7](#flow-2-7) y [4.1](#flow-4-1), no propuestas remotas aún pendientes. |
+| Mediciones locales | Lecturas atribuidas al equipo y aptas por calidad y vigencia para esa función, conforme a [3.3](#flow-3-3). No se completan valores faltantes por suposición. |
+| Estado y capacidades de equipos | Capacidades comprobadas e interfaces disponibles del corte 3; una capacidad histórica no demuestra disponibilidad instantánea. |
+| Datos económicos, si la función los requiere | Perfil tarifario y otros supuestos vigentes según [4.2](#flow-4-2). Sin precio válido se suspenden solo las decisiones motivadas por precio. |
+| Operaciones aún pendientes | Resultado conocido de solicitudes anteriores para que la etapa de [4.4](#flow-4-4) pueda resolver concurrencia; esta sección no fija estados de la máquina de control. |
+
+La instantánea identifica el momento y las versiones de sus fuentes para explicar la propuesta. El agente no mezcla una lectura vencida con datos actuales ni toma una propuesta guardada en plataforma como configuración ya activa.
+
+#### 3. Recorrido y salida
+
+1. Un ciclo periódico o evento relevante solicita una nueva evaluación.
+2. El agente reúne la instantánea y determina qué funciones tienen datos y equipos suficientes. Si falta una medición indispensable, excluye **solo la función dependiente**; las independientes pueden continuar conforme a [2.7](#flow-2-7).
+3. Para las funciones habilitadas, considera objetivos y alternativas locales compatibles con la información disponible. Este paso aún no establece la ley matemática, ponderaciones ni prioridades entre solicitudes simultáneas.
+4. El resultado es una **propuesta local verificable** con acción planteada, motivo y datos utilizados, que pasa a [4.4](#flow-4-4) para aceptación, limitación o rechazo. El ciclo **no envía directamente órdenes a adaptadores**; su ejecución y medición pertenecen a [4.5](#flow-4-5)–[4.6](#flow-4-6).
+5. Si los objetivos ya están satisfechos, no existe alternativa válida o faltan datos para todas las funciones pertinentes, el ciclo termina **sin acción** y conserva el motivo. El registro detallado de propuestas y resultados se definirá en [4.7](#flow-4-7).
+
+```mermaid
+flowchart LR
+    T[Temporizador o evento relevante] --> S[Instantánea coherente]
+    S --> D{Datos y funciones aptos}
+    D -->|Sí| E[Evaluar alternativas locales]
+    E --> R{Hay acción útil}
+    R -->|Sí| P[Propuesta hacia validación 4.4]
+    R -->|No| N[Sin acción y motivo]
+    D -->|No| N
+```
+
+#### 4. Casos y límites
+
+| Caso | Tratamiento acordado |
+|---|---|
+| Cambia un tramo tarifario | Evaluar de nuevo solo con la versión y el tramo vigentes; la activación del perfil sigue 4.2. |
+| Se activa una nueva preferencia | Considerarla desde su punto seguro de aplicación, no desde su simple recepción o almacenamiento central. |
+| Lectura vencida o equipo no disponible | No generar propuesta para las funciones que dependen de ese recurso; conservar diagnóstico y evaluar las demás. |
+| Existe una actuación previa pendiente | Incluir ese hecho en la instantánea; la compatibilidad de solicitudes y el estado de control se resuelven en 4.4, no mediante una orden directa adicional. |
+| Objetivos satisfechos o alternativa sin beneficio válido | No actuar y dejar motivo trazable, sin reemitir automáticamente la consigna vigente. |
+
+La periodicidad, los umbrales de cambio, la función objetivo y los detalles de la máquina de estados siguen pendientes de definición y ensayo. No se introducen campos, endpoints, tópicos, APIs ni esquemas nuevos.
+
+**Referencia de validación:** el **2026-10-04** se acordaron activación periódica y por eventos, instantánea coherente, propuesta antes de la validación, exclusión de funciones sin datos indispensables y salida «sin acción» con motivo; el usuario confirmó «Sí, validar 4.3».
 
 <a id="flow-4-4"></a>
 

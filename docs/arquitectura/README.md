@@ -24,6 +24,8 @@ El [acuerdo de 4.1 — Objetivos y preferencias locales](../definiciones-flujos.
 
 El [acuerdo de 4.2 — Tarifas y datos económicos](../definiciones-flujos.md#flow-4-2) ubica la valoración de opciones locales en cada Raspberry: E2 Infinity propone datos económicos autorizados, pero no decide el consumo del nodo. Si el precio pierde vigencia, las decisiones basadas en él se suspenden sin detener las funciones locales independientes.
 
+El [acuerdo de 4.3 — Ciclo de decisión local](../definiciones-flujos.md#flow-4-3) hace que el E2 Agent evalúe periódicamente y ante eventos relevantes con datos coherentes. Su salida es una propuesta hacia la validación de 4.4 o «sin acción» con motivo; no acciona equipos directamente.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid
