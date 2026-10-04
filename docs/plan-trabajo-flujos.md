@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.12 — 4 de octubre de 2026**.
+Versión documental **0.3.13 — 4 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -69,7 +69,7 @@ Describir cómo el agente conoce sus recursos y su estado.
 | 3.2 | **Interfaces con los equipos:** EVCC/OCPP, adaptadores, ESP32 y pasarelas. | Validado | 1.3, 3.1 | Verificación física por equipo pendiente; lecturas en 3.3, respuestas de actuación en 4.5–4.6 y fallos en 8.3. | [Definición](definiciones-flujos.md#flow-3-2) | 2026-10-04: rutas OCPP local, ESP32 bidireccional, BESS vía Solis y actuador genérico acordadas; cierre documental solicitado. |
 | 3.3 | **Lecturas locales:** Adquisición, unidades, fecha y calidad de las mediciones. | Validado | 3.1, 3.2 | Frecuencias, rangos y umbrales numéricos sujetos a comprobación de equipos y funciones; salud en 3.4. | [Definición](definiciones-flujos.md#flow-3-3) | 2026-10-04: «Sí, validar 3.3»; dos tiempos, calidad y vigencia por función, normalización local y exclusión de lecturas no aptas. |
 | 3.4 | **Heartbeat y salud de servicios:** Presencia del nodo y disponibilidad de sus componentes. | Validado | 1.3, 2.7 | Intervalos y umbrales se fijarán en banco; alarmas en 3.5, flexibilidad energética en 6.2 y recuperación en 8.3–8.4. | [Definición](definiciones-flujos.md#flow-3-4) | 2026-10-04: «Sí, validar 3.4»; salud por componente, heartbeat a plataforma y vecinos y caída del agente detectada externamente. |
-| 3.5 | **Alarmas locales:** Detección, registro y comunicación de fallos y recuperación. | Pendiente | 3.3, 3.4 | ¿Cómo se identifica, comunica y cierra una alarma? | [Definición](definiciones-flujos.md#flow-3-5) | — |
+| 3.5 | **Alarmas locales:** Detección, registro y comunicación de fallos y recuperación. | Validado | 3.3, 3.4 | Umbrales a verificar en banco; presentación en 5.5, recuperación en 8.3–8.4 y sincronización pendiente en 8.5. | [Definición](definiciones-flujos.md#flow-3-5) | 2026-10-04: «Sí, validar 3.5»; apertura por impacto o persistencia, registro local, aviso a plataforma y cierre por recuperación comprobada. |
 
 ### Corte 4 — Gestión energética y ejecución local
 
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**3.5 — Alarmas locales:** definir detección, registro, comunicación y cierre de fallos y recuperación, diferenciando una condición transitoria de una alarma que requiere atención.
+**4.1 — Objetivos y preferencias locales:** acordar qué prioridades, reservas, horarios y límites energéticos define el usuario y cómo condicionan las decisiones autónomas del nodo.

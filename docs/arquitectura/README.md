@@ -18,6 +18,8 @@ El [acuerdo de 3.3 — Lecturas locales](../definiciones-flujos.md#flow-3-3) añ
 
 El [acuerdo de 3.4 — Heartbeat y salud de servicios](../definiciones-flujos.md#flow-3-4) separa presencia del nodo, salud de componentes y funciones disponibles. Plataforma y vecinos pueden observar rutas distintas; perder un heartbeat no demuestra que la Raspberry esté apagada.
 
+El [acuerdo de 3.5 — Alarmas locales](../definiciones-flujos.md#flow-3-5) completa el corte de supervisión: el agente conserva diagnóstico y alarmas localmente, informa a la plataforma cuando puede y cierra cada condición tras comprobar la recuperación. Los vecinos solo reciben cambios de participación relevantes.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.13 — 2026-10-04
+
+- Valida documentalmente 3.5 — Alarmas locales y completa el corte 3: evento de diagnóstico frente a alarma por impacto o persistencia, episodio local sin duplicaciones y cierre por recuperación comprobada.
+- Define aviso a plataforma cuando exista canal, sincronización pendiente si no lo hay y solo cambios de participación para vecinos. La caída del agente se observa externamente mediante ausencia de heartbeat.
+- Actualiza plan e índices y establece 4.1 como siguiente subfase. Mantiene `ALM-01` y los tópicos como borradores, sin modificar código, APIs ni esquemas.
+
 ## 0.3.12 — 2026-10-04
 
 - Valida documentalmente 3.4 — Heartbeat y salud de servicios: presencia, salud por componente y disponibilidad funcional como conceptos distintos.

@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.12 — 4 de octubre de 2026**.
+Versión documental **0.3.13 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1317,7 +1317,61 @@ Las alarmas, su ciclo de vida y destinatarios detallados se definirán en [3.5](
 
 **Alcance:** **Alarmas locales:** Detección, registro y comunicación de fallos y recuperación.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 3.5». Define el comportamiento esperado; no certifica que la detección o notificación funcionen en el banco.
+
+#### 1. Propósito y criterio de apertura
+
+El E2 Agent distingue un **evento de diagnóstico** de una **alarma activa**. Una variación breve sin efecto operativo queda registrada para análisis. Una condición que afecta seguridad o impide una función indispensable abre una alarma de inmediato; un fallo menor abre alarma si persiste o se repite. Los tiempos y cantidades que determinan persistencia o repetición se fijarán al probar el banco, sin introducir aquí umbrales arbitrarios.
+
+La causa observada se relaciona con el componente de [3.4](#flow-3-4), la lectura de [3.3](#flow-3-3) y las funciones afectadas de [2.7](#flow-2-7). Abrir una alarma no bloquea por defecto todas las funciones del nodo: se limitan las dependientes y las independientes conservan sus propias comprobaciones.
+
+#### 2. Recorrido y responsabilidades
+
+| Paso | Responsable y resultado |
+|---|---|
+| Detectar | El E2 Agent observa la condición y distingue evento transitorio, fallo con impacto inmediato o fallo menor persistente/repetido. |
+| Abrir y registrar | El agente conserva localmente la condición, su origen observado, momento de apertura y funciones afectadas. Las observaciones sucesivas de la misma condición activa actualizan el episodio; no abren una alarma nueva por cada lectura o sondeo. |
+| Comunicar | Cuando exista canal autorizado, el agente informa a E2 Infinity para supervisión. Si la plataforma no está disponible, conserva el informe pendiente; su reenvío se define en [8.5](#flow-8-5). Los vecinos reciben solo un cambio de participación que les afecte, conforme a [3.4](#flow-3-4) y [6.2](#flow-6-2), no el detalle de los equipos. |
+| Recuperar y cerrar | El agente comprueba que terminó la condición y que vuelven a satisfacerse las dependencias necesarias antes de cerrar la alarma activa. Conserva apertura, evolución y cierre para trazabilidad. Marcarla como leída por una persona es distinto del cierre por recuperación. |
+
+```mermaid
+sequenceDiagram
+    participant E as Equipo o servicio
+    participant A as E2 Agent
+    participant L as Registro local
+    participant P as E2 Infinity
+
+    E-->>A: Fallo o lectura no apta
+    A->>A: Evaluar impacto, persistencia o repetición
+    alt Condición que requiere alarma
+        A->>L: Abrir o actualizar episodio y funciones afectadas
+        opt Plataforma alcanzable
+            A-->>P: Informar alarma
+        end
+        E-->>A: Condición recuperada
+        A->>A: Comprobar recuperación
+        A->>L: Cerrar episodio sin borrar historial
+        opt Plataforma alcanzable
+            A-->>P: Informar cierre
+        end
+    else Evento transitorio
+        A->>L: Registrar diagnóstico
+    end
+```
+
+#### 3. Situaciones especiales y límites
+
+| Situación | Tratamiento acordado |
+|---|---|
+| Fallo transitorio sin impacto | Conservar evento de diagnóstico; no abrir alarma por cada variación breve. |
+| Fallo que bloquea una función indispensable | Abrir alarma sin esperar repetición y deshabilitar la función afectada; las independientes pueden continuar si siguen verificables. |
+| Plataforma inaccesible | Mantener alarma, evolución y cierre en el registro local; dejar pendiente la sincronización, sin suponer recepción central. |
+| E2 Agent detenido | No atribuirle una alarma emitida tras su caída. Plataforma y vecinos detectan ausencia de heartbeat desde sus rutas según [3.4](#flow-3-4). |
+| Condición recuperada | Verificar recuperación antes del cierre y conservar el episodio histórico, aunque nadie haya marcado el aviso como leído. |
+
+La presentación al usuario, los permisos y el reconocimiento de lectura se precisarán en [5.1](#flow-5-1) y [5.5](#flow-5-5); la recuperación de servicios y equipos, en [8.3](#flow-8-3)–[8.4](#flow-8-4). El antecedente [`ALM-01`](mensajes/catalogo-mensajes.md) y los tópicos de alarma siguen como **borradores**: esta subfase no aprueba campos, niveles, canales concretos ni esquemas.
+
+**Referencia de validación:** el **2026-10-04** se acordaron apertura por impacto o persistencia, conservación local, aviso a plataforma, información mínima a vecinos y cierre por recuperación comprobada; el usuario confirmó «Sí, validar 3.5».
 
 
 ## Corte 4 — Gestión energética y ejecución local
