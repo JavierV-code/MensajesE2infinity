@@ -32,6 +32,8 @@ El [acuerdo de 4.5 — Orden y confirmación del equipo](../definiciones-flujos.
 
 El [acuerdo de 4.6 — Resultado medido y corrección local](../definiciones-flujos.md#flow-4-6) compara el efecto con el medidor del circuito intervenido y usa la medición agregada como contexto. El agente informa una discrepancia o resultado no concluyente sin atribuir éxito, y pasa cualquier corrección por una nueva evaluación y validación local.
 
+El [acuerdo de 4.7 — Registro de decisiones](../definiciones-flujos.md#flow-4-7) cierra el ciclo local con un historial de eventos vinculados en la Raspberry. Una orden normal requiere registrar antes la decisión autorizada; ese registro local no prueba que la plataforma haya recibido el resultado.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

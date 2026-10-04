@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.20 — 2026-10-04
+
+- Valida documentalmente 4.7 — Registro de decisiones: historial local de eventos vinculados para evaluación, validación, orden, confirmaciones, medición y corrección, con resumen para ciclos «sin acción».
+- Exige registrar la decisión antes de una orden normal y bloquearla si falla ese registro; una acción de protección segura conserva prioridad y el fallo queda señalado para diagnóstico.
+- Completa el corte 4 y establece 5.1 como siguiente subfase. Deja presentación central, retención y sincronización para sus cortes; no modifica código, APIs ni esquemas.
+
 ## 0.3.19 — 2026-10-04
 
 - Valida documentalmente 4.6 — Resultado medido y corrección local: comparación con lecturas aptas del circuito intervenido, usando la medición agregada como contexto.

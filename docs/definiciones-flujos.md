@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.19 — 4 de octubre de 2026**.
+Versión documental **0.3.20 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1733,7 +1733,54 @@ El tratamiento de alarmas por fallos persistentes corresponde a [3.5](#flow-3-5)
 
 **Alcance:** **Registro de decisiones:** Motivos, configuración utilizada y resultados.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 4.7». Cierra documentalmente el corte 4; no acredita una persistencia o auditoría implementada.
+
+#### 1. Propósito y responsabilidad
+
+El E2 Agent conserva **localmente** un historial que permite reconstruir por qué decidió actuar o no hacerlo y qué ocurrió después. Cada etapa se agrega como un evento relacionado con la decisión original; una confirmación, discrepancia o corrección posterior **no sobrescribe** la propuesta o el resultado anterior. El agente es responsable del registro local aun cuando E2 Infinity no esté disponible. Los adaptadores aportan confirmaciones y los medidores aportan lecturas, pero no son la fuente de la decisión energética.
+
+| Etapa del recorrido | Evidencia o motivo que se conserva |
+|---|---|
+| Evaluación [4.3](#flow-4-3) | Disparador, momento, versión de configuración activa, preferencias, fuentes de medición y calidad usadas; propuesta o resumen motivado de «sin acción». |
+| Validación [4.4](#flow-4-4) | Acción autorizada, limitada, rechazada o en espera, motivo y restricciones que determinaron el resultado. |
+| Orden y equipo [4.5](#flow-4-5) | Intención de enviar la parte autorizada, destinatario, recepción por adaptador, aceptación o rechazo del equipo y estado reportado, distinguiendo lo comprobado de lo incierto. |
+| Efecto y corrección [4.6](#flow-4-6) | Lecturas y procedencia pertinentes, efecto comprobado, discrepancia o resultado no concluyente; vínculo con una nueva evaluación y decisión cuando haya corrección. |
+
+El historial conserva referencias a la evidencia pertinente, sus tiempos, unidad, calidad y procedencia cuando corresponda, sin duplicar todas las lecturas en cada ciclo. Los ciclos «sin acción» guardan un resumen y motivo. No se incluyen credenciales, claves ni otros secretos en el registro.
+
+#### 2. Secuencia y requisito previo a actuar
+
+1. El agente agrega al historial los resultados de evaluación y validación. Antes de enviar una **orden normal** al adaptador, debe quedar guardada localmente la decisión autorizada y la intención de actuación, relacionadas con su origen y equipo.
+2. Solo después de ese registro previo continúa el envío de [4.5](#flow-4-5). Recepción, aceptación, estado del equipo y efecto de [4.6](#flow-4-6) se agregan como eventos posteriores. Ninguna etapa pendiente se presenta como éxito final.
+3. Si una discrepancia provoca una nueva evaluación, esta genera otra decisión relacionada con la anterior; se conserva la historia de ambos intentos y sus resultados.
+4. Si el registro local no puede guardar la decisión previa, el agente **no envía la orden normal** e informa la degradación. Una acción de protección segura conserva prioridad si el equipo la permite; la condición del registro se señala para diagnóstico y se documenta en cuanto vuelva a ser posible. No se presupone recuperación de evidencia que nunca pudo persistirse.
+
+```mermaid
+flowchart LR
+    E[Evaluación o sin acción] --> V[Validación y motivo]
+    V -->|Orden normal autorizada| G{Registro local previo disponible}
+    G -->|Sí| O[Enviar por 4.5]
+    G -->|No| B[No enviar orden normal; informar fallo]
+    O --> C[Agregar confirmaciones]
+    C --> M[Agregar efecto medido por 4.6]
+    M -->|Corrección necesaria| N[Nueva evaluación vinculada]
+```
+
+#### 3. Casos y límites
+
+| Caso | Tratamiento documental |
+|---|---|
+| Evaluación sin acción | Conservar motivo y contexto resumido, sin copiar toda la telemetría del ciclo. |
+| Rechazo o limitación | Conservar solicitud original, resultado de 4.4 y causa; no borrar una limitación por una actuación posterior. |
+| Adaptador recibe, pero el equipo no confirma | Mantener ambas evidencias diferenciadas y el resultado incierto; no registrar una ejecución física ficticia. |
+| Efecto no concluyente o discrepante | Añadir evidencia y motivo de 4.6; una verificación o corrección posterior queda vinculada, no sustituye el resultado previo. |
+| Reinicio durante una actuación | Recuperar la intención y los eventos efectivamente guardados para diagnosticar lo pendiente; la comprobación de estado y recuperación se detallará en [8.4](#flow-8-4). |
+| Plataforma desconectada | Mantener el registro local. La selección, envío y confirmación de información diferida se definirán en [8.5](#flow-8-5). |
+| Fallo del registro antes de una orden normal | No enviar esa orden; señalar el fallo conforme a diagnóstico y alarmas de [3.5](#flow-3-5). Las protecciones eléctricas físicas siguen siendo independientes. |
+
+El historial local no equivale a que E2 Infinity haya recibido sus datos. Los resultados visibles, permisos, consultas y plazos de conservación pertenecen a [5.1](#flow-5-1) y [5.5](#flow-5-5)–[5.6](#flow-5-6); la sincronización pendiente, a 8.5. No se define aquí motor de almacenamiento, identificadores o campos de contrato, retención, APIs, tópicos ni JSON Schema. Los mensajes existentes continúan como borradores.
+
+**Referencia de validación:** el **2026-10-04** se acordaron eventos vinculados sin sobrescribir, resumen de ciclos sin acción, registro previo a toda orden normal y bloqueo de esas órdenes si falla la persistencia; la protección segura conserva prioridad. El usuario confirmó «Sí, validar 4.7».
 
 
 ## Corte 5 — Plataforma, información visible e intercambios con el nodo
