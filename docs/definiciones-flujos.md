@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.14 — 4 de octubre de 2026**.
+Versión documental **0.3.15 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -775,7 +775,7 @@ Resultado esperado: saber qué se guardó en plataforma, qué recibió y comprob
 | Tipo de información | Tratamiento propuesto |
 |---|---|
 | Prioridades, horarios, reserva de batería y participación | Preferencias de la persona autorizada; el agente las comprueba y activa sin reinicio en el siguiente punto seguro. Detalles de valores admisibles en 4.1 y 6.1 |
-| Tarifas, perfiles y parámetros de valoración | Origen, vigencia y autoridad por definir en 4.2; esta subfase no habilita todavía su aplicación automática |
+| Tarifas y datos económicos locales | Perfil inicial manual y versiones remotas sujetas a comprobación y activación local automática en un punto seguro, conforme al acuerdo posterior de [4.2](#flow-4-2). Las fórmulas y valores concretos no se fijan aquí. |
 | Perfiles de equipos, parámetros de adaptadores y opciones de supervisión | Pueden proponerse desde E2 Infinity por un técnico autorizado; requieren comprobación y aplicación local según 2.4. El inventario exacto queda pendiente |
 | Límites físicos de instalación y capacidades de equipos | Son restricciones que el cambio debe respetar, no capacidades que la plataforma pueda aumentar por declaración. Su modificación requiere verificación técnica local |
 | Identidad, credenciales, MQTT y red privada | Mantener su cambio bajo revisión técnica manual; una gestión remota posterior necesita un flujo específico de seguridad y recuperación |
@@ -894,7 +894,7 @@ Se informan identificadores y motivos sin exponer credenciales en mensajes ni re
 - Valores admisibles y permisos detallados de los parámetros en 4.1/5.1/6.1.
 - Frecuencia de consulta, campos exactos de versión y mensajes del catálogo.
 - Recuperación de informes pendientes cuando la API no recibe el resultado, en 8.5.
-- Referencias energéticas y económicas operativas, conforme a 4.2, 6.3 y a la formulación del algoritmo.
+- Fuentes y vigencia de tarifas locales acordadas posteriormente en 4.2; referencias de coordinación y valoración de contribuciones pendientes de 6.3/6.4 y de la formulación del algoritmo.
 
 ##### Escenarios propuestos
 
@@ -1386,7 +1386,7 @@ La presentación al usuario, los permisos y el reconocimiento de lectura se prec
 
 #### 1. Propósito y autoridad
 
-El nodo gestiona sus recursos para beneficiar a la instalación aun sin nube ni consenso. La persona autorizada puede orientar la gestión hacia **ahorro económico** o **autoconsumo**, pero el cálculo concreto y los datos tarifarios se definirán en [4.2](#flow-4-2). El técnico fija las capacidades comprobadas y los **límites eléctricos máximos** de la instalación y los equipos, de acuerdo con [2.4](#flow-2-4) y el inventario de [3.1](#flow-3-1). El usuario puede imponer restricciones más conservadoras, nunca ampliar esos máximos.
+El nodo gestiona sus recursos para beneficiar a la instalación aun sin nube ni consenso. La persona autorizada puede orientar la gestión hacia **ahorro económico** o **autoconsumo**; el origen, vigencia y uso de los datos tarifarios se documentan en [4.2](#flow-4-2), sin fijar aún la fórmula de optimización. El técnico fija las capacidades comprobadas y los **límites eléctricos máximos** de la instalación y los equipos, de acuerdo con [2.4](#flow-2-4) y el inventario de [3.1](#flow-3-1). El usuario puede imponer restricciones más conservadoras, nunca ampliar esos máximos.
 
 | Participante | Qué define o comprueba |
 |---|---|
@@ -1432,7 +1432,60 @@ No se fijan fórmulas de optimización, ponderaciones, valores por defecto ni nu
 
 **Alcance:** **Tarifas y datos económicos:** Origen, recepción, vigencia y uso para la valoración local.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 4.2». Define el recorrido y uso de datos económicos; no acredita una fuente tarifaria implementada ni precios reales del banco.
+
+#### 1. Propósito y separación de responsabilidades
+
+Cada Raspberry valora sus **opciones locales** con sus propias mediciones aptas de [3.3](#flow-3-3), capacidades comprobadas, preferencias de [4.1](#flow-4-1) y datos económicos vigentes. E2 Infinity puede entregar versiones autorizadas de esos datos, pero no calcula ni impone la decisión local de consumo. La valoración de una **contribución al consenso**, diferente del costo de operación de la vivienda, se definirá en [6.4](#flow-6-4) contra la formulación matemática.
+
+| Dato previsto | Origen y condición de uso |
+|---|---|
+| Perfil de compra de energía | El técnico carga una versión inicial local. El perfil puede tener un precio fijo o valores por bloques horarios, con origen, versión y período de vigencia identificables. |
+| Compensación por inyección | Solo se incorpora cuando el contrato y las capacidades comprobadas del equipo permiten exportar; no se presume venta o inyección por disponer de inversor. |
+| Costos propios del nodo | Se pueden identificar supuestos y parámetros de equipos, por ejemplo desgaste de batería, con su procedencia y vigencia. No se fijan valores ni fórmula de costo en esta subfase. |
+| Versiones remotas | E2 Infinity propone actualizaciones administrativas; el agente comprueba autorización, versión, vigencia y coherencia antes de usarlas. |
+
+Los límites eléctricos y preferencias protegidas no son precios: permanecen como restricciones de [4.1](#flow-4-1), aunque una opción parezca económicamente atractiva.
+
+#### 2. Incorporación, actualización y uso
+
+1. El técnico incorpora manualmente el perfil inicial conforme a [2.4](#flow-2-4) y conserva su procedencia. Si no hay un perfil válido, el nodo no supone un precio por defecto.
+2. Más adelante, E2 Infinity puede proponer una nueva versión mediante la consulta HTTPS de [2.5](#flow-2-5). El E2 Agent comprueba que provenga de una fuente autorizada, corresponda al nodo y período, tenga una versión coherente y no contradiga restricciones locales. Los conflictos con cambios locales se tratan por parámetro según [2.6](#flow-2-6).
+3. Una propuesta válida se activa **automáticamente en el siguiente punto seguro de decisión**. El agente informa por separado recepción, aceptación y aplicación; hasta activarla conserva la versión vigente. No se confunde la versión guardada en plataforma con la que efectivamente utiliza la Raspberry.
+4. Con datos vigentes, el agente calcula localmente la valoración de alternativas permitidas. El ciclo de decisión y la ejecución se definirán en [4.3](#flow-4-3)–[4.6](#flow-4-6); aquí no se establece una fórmula ni una orden al equipo.
+
+```mermaid
+sequenceDiagram
+    actor T as Técnico
+    participant A as E2 Agent
+    participant L as Perfil económico local
+    participant P as E2 Infinity
+
+    T->>L: Registrar perfil inicial y procedencia (manual)
+    A->>L: Cargar y comprobar vigencia
+    opt Nueva versión remota disponible
+        A->>P: Consultar propuesta por HTTPS
+        P-->>A: Versión y período propuestos
+        A->>A: Comprobar origen, versión, vigencia y coherencia
+        A->>L: Activar en un punto seguro si es válida
+        A-->>P: Informar resultado de aplicación o rechazo
+    end
+    A->>A: Valorar opciones locales con datos vigentes
+```
+
+#### 3. Datos faltantes, vencimiento y límites
+
+| Situación | Tratamiento acordado |
+|---|---|
+| Tarifa fija o por bloques vigente | El agente usa el valor correspondiente al período aplicable y conserva la versión empleada para explicar su decisión. |
+| Versión remota antigua, no autorizada o incoherente | No reemplazar la versión activa; informar rechazo o conflicto según 2.5/2.6. |
+| Perfil ausente, vencido o imposible de verificar | Mantener límites y funciones locales seguras, pero **suspender decisiones motivadas por precio**; no inventar tarifa ni seguir desplazando consumos con un precio desactualizado. Las funciones independientes de precios pueden continuar si sus propias condiciones están verificadas. |
+| Exportación no habilitada | No incluir compensación por inyección en la valoración ni atribuir ingresos supuestos. |
+| Enlace central perdido con perfil local todavía vigente | Continuar la valoración local hasta el fin de la vigencia comprobada; una pérdida de plataforma no anula por sí sola el perfil activo. |
+
+Las fuentes tarifarias concretas, moneda, unidades, periodicidad, rangos, supuestos económicos y fórmulas requieren comprobación posterior. No se introducen precios, datos de usuarios, endpoints, tópicos, campos de contrato ni esquemas nuevos en este repositorio público.
+
+**Referencia de validación:** el **2026-10-04** se acordaron perfil inicial manual y versiones remotas verificadas, cálculo económico en cada Raspberry, precios fijos o por bloques, exportación condicional, costos propios identificables y suspensión de decisiones por precio ante datos vencidos; el usuario confirmó «Sí, validar 4.2».
 
 <a id="flow-4-3"></a>
 

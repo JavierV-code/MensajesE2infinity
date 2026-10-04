@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.14 — 4 de octubre de 2026**.
+Versión documental **0.3.15 — 4 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -78,7 +78,7 @@ Documentar cómo opera la Raspberry sin necesitar consenso.
 | ID | Subfase y objetivo | Estado | Dependencias documentales tentativas | Pregunta o pendiente | Documento | Fecha y referencia del acuerdo |
 |---|---|---|---|---|---|---|
 | 4.1 | **Objetivos y preferencias locales:** Prioridades, reservas, horarios y límites. | Validado | 2.4, 3.1 | Tarifas y cálculo en 4.2; concurrencia en 4.4, permisos en 5.1 y participación distribuida en 6.1. | [Definición](definiciones-flujos.md#flow-4-1) | 2026-10-04: «Sí, validar 4.1»; objetivos seleccionables, límites técnicos, cargas protegidas, reserva BESS, meta de vehículo y horarios. |
-| 4.2 | **Tarifas y datos económicos:** Origen, recepción, vigencia y uso para la valoración local. | Pendiente | 2.4, 3.3 | ¿Qué datos aporta la plataforma y qué calcula o verifica el nodo? | [Definición](definiciones-flujos.md#flow-4-2) | — |
+| 4.2 | **Tarifas y datos económicos:** Origen, recepción, vigencia y uso para la valoración local. | Validado | 2.4, 3.3 | Fuentes, valores, periodicidad y fórmulas concretas por verificar; valoración de contribuciones en 6.4. | [Definición](definiciones-flujos.md#flow-4-2) | 2026-10-04: «Sí, validar 4.2»; perfil manual inicial, actualización remota comprobada, valoración local y suspensión del uso económico al vencer datos. |
 | 4.3 | **Ciclo de decisión local:** Mediciones y configuración que alimentan las decisiones energéticas. | Pendiente | 3.3, 4.1, 4.2 | ¿Qué inicia una decisión y qué información necesita? | [Definición](definiciones-flujos.md#flow-4-3) | — |
 | 4.4 | **Prioridades y validación:** Solicitudes concurrentes, aceptación, limitación o rechazo y relación con la máquina de estados. | Pendiente | 2.4, 4.3 | ¿Cómo se resuelven prioridades entre propuestas locales, del usuario y del consenso? | [Definición](definiciones-flujos.md#flow-4-4) | — |
 | 4.5 | **Orden y confirmación del equipo:** Adaptadores y distinción entre recepción, aceptación y actuación. | Pendiente | 3.2, 4.4 | ¿Qué orden se entrega y qué confirma realmente el equipo? | [Definición](definiciones-flujos.md#flow-4-5) | — |
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**4.2 — Tarifas y datos económicos:** acordar el origen, vigencia y uso local de tarifas y otros datos para valorar decisiones, sin mezclar esa valoración con los límites técnicos.
+**4.3 — Ciclo de decisión local:** precisar qué inicia cada evaluación energética, qué mediciones y configuraciones consulta el E2 Agent y cómo produce una propuesta antes de validarla y ejecutarla.

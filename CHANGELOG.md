@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.15 — 2026-10-04
+
+- Valida documentalmente 4.2 — Tarifas y datos económicos: perfil inicial manual, actualización remota comprobada y valoración de alternativas calculada en cada Raspberry.
+- Admite precio fijo o por bloques, compensación de exportación solo si corresponde y costos propios identificables; suspende decisiones motivadas por precio cuando el perfil no es válido.
+- Actualiza referencias de 2.5, plan e índices y establece 4.3 como siguiente subfase. No fija valores, fórmulas ni contratos y no modifica código, APIs o esquemas.
+
 ## 0.3.14 — 2026-10-04
 
 - Valida documentalmente 4.1 — Objetivos y preferencias locales: ahorro/autoconsumo seleccionables, límites técnicos no ampliables por el usuario, prioridades y cargas protegidas.

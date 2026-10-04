@@ -22,6 +22,8 @@ El [acuerdo de 3.5 — Alarmas locales](../definiciones-flujos.md#flow-3-5) comp
 
 El [acuerdo de 4.1 — Objetivos y preferencias locales](../definiciones-flujos.md#flow-4-1) inicia la gestión energética autónoma: el técnico fija límites, el usuario selecciona objetivos y preferencias más conservadoras, y el agente solo ofrece a la coordinación la flexibilidad que reste tras proteger esas condiciones.
 
+El [acuerdo de 4.2 — Tarifas y datos económicos](../definiciones-flujos.md#flow-4-2) ubica la valoración de opciones locales en cada Raspberry: E2 Infinity propone datos económicos autorizados, pero no decide el consumo del nodo. Si el precio pierde vigencia, las decisiones basadas en él se suspenden sin detener las funciones locales independientes.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid
