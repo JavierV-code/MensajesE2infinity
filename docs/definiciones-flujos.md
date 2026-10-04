@@ -1168,7 +1168,16 @@ Quedan acordados el inventario local por equipo físico, la distinción entre pa
 
 **Alcance:** **Interfaces con los equipos:** EVCC/OCPP, adaptadores, ESP32 y pasarelas.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: En conversación.** El 2026-10-04 se acordaron dos decisiones de arquitectura; todavía no se valida la subfase completa ni se afirma que estas rutas estén implementadas.
+
+| Equipo o interfaz | Recorrido objetivo acordado | Límite pendiente de precisar |
+|---|---|---|
+| Cargador | El control OCPP reside localmente en la Raspberry del nodo. El E2 Agent se relaciona con el controlador o adaptador EVCC/OCPP local, que intercambia órdenes y estados con el cargador. | Comprobar las funciones y respuestas que ofrece el cargador real y definir el contrato interno agente–adaptador. |
+| Medidor e inversor | La ESP32 es una pasarela **bidireccional** con la Raspberry mediante Mosquitto/MQTT local y con los equipos de campo mediante TTL–RS-485/Modbus RTU, sujeto a la interfaz comprobada de cada equipo. | El medidor aporta lecturas; no se le atribuyen órdenes energéticas. Las órdenes al inversor solo se habilitan si el equipo admite y supera la prueba segura de esa capacidad. |
+
+La ESP32 transporta lecturas, solicitudes y respuestas, pero no decide objetivos energéticos ni sustituye al E2 Agent. Una confirmación de recepción o aceptación de una orden no demuestra por sí sola su efecto físico, conforme a [3.1](#flow-3-1); la secuencia de ejecución y comprobación se desarrolla en [4.5](#flow-4-5) y [4.6](#flow-4-6).
+
+**Pendientes para cerrar 3.2:** precisar la interfaz efectiva de la BESS; definir la ruta del actuador de cargas sin depender de CHINT; distinguir respuestas, errores y pérdida de comunicación por adaptador; confirmar las capacidades del cargador y del inversor en el banco. No se fijan aquí registros Modbus, comandos OCPP, tópicos MQTT ni esquemas.
 
 <a id="flow-3-3"></a>
 
