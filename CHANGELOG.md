@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.3.9 — 2026-10-04
+
+- Valida documentalmente 3.1 — Inventario y capacidades, con identidad local por equipo físico y `device_id` conservado cuando solo se reemplaza la Raspberry.
+- Distingue capacidades declaradas, comprobadas mediante lectura o actuación segura y disponibilidad actual; un equipo físico sustituido recibe un identificador nuevo.
+- Incorpora el ejemplo tentativo A/B/C con medición y cargas controlables por circuito; mantiene CHINT condicionado y la ESP32 como pasarela.
+- Registra la brecha del código inspeccionado: backend limitado a inversor, cargador y batería; repositorio de Raspberry sin E2 Agent de inventario. Actualiza índices y establece 3.2 como siguiente subfase, sin modificar APIs ni esquemas.
+
 ## 0.3.8 — 2026-10-04
 
 - Valida documentalmente 2.5–2.7 y completa el corte 2; la siguiente subfase es 3.1.

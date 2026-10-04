@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.8 — 4 de octubre de 2026**.
+Versión documental **0.3.9 — 4 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -65,7 +65,7 @@ Describir cómo el agente conoce sus recursos y su estado.
 
 | ID | Subfase y objetivo | Estado | Dependencias documentales tentativas | Pregunta o pendiente | Documento | Fecha y referencia del acuerdo |
 |---|---|---|---|---|---|---|
-| 3.1 | **Inventario y capacidades:** Equipos existentes y sus capacidades de medición y control. | Pendiente | 1.2, 2.4 | ¿Cómo se identifican y verifican las capacidades reales? | [Definición](definiciones-flujos.md#flow-3-1) | — |
+| 3.1 | **Inventario y capacidades:** Equipos existentes y sus capacidades de medición y control. | Validado | 1.2, 2.4 | Interfaces en 3.2; lecturas en 3.3; disponibilidad en 3.4/6.2; inventario visible en 5.3. | [Definición](definiciones-flujos.md#flow-3-1) | 2026-10-04: «Sí, validar 3.1»; identidad por equipo físico, prueba por capacidad y ejemplo tentativo A/B/C. |
 | 3.2 | **Interfaces con los equipos:** EVCC/OCPP, adaptadores, ESP32 y pasarelas. | Pendiente | 1.3, 3.1 | ¿Qué intercambios corresponden a cada adaptador y protocolo? | [Definición](definiciones-flujos.md#flow-3-2) | — |
 | 3.3 | **Lecturas locales:** Adquisición, unidades, fecha y calidad de las mediciones. | Pendiente | 3.1, 3.2 | ¿Qué hace utilizable una lectura y cómo llega al agente? | [Definición](definiciones-flujos.md#flow-3-3) | — |
 | 3.4 | **Heartbeat y salud de servicios:** Presencia del nodo y disponibilidad de sus componentes. | Pendiente | 1.3, 2.7 | ¿Quién supervisa cada componente y cómo informa pérdida de contacto? | [Definición](definiciones-flujos.md#flow-3-4) | — |
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**3.1 — Inventario y capacidades:** identificar los equipos de cada nodo, sus funciones reales de medición y control y la evidencia necesaria para considerarlos disponibles. El corte 2 quedó validado documentalmente; los detalles físicos se trabajarán en el corte 3.
+**3.2 — Interfaces con los equipos:** precisar los intercambios de EVCC/OCPP, adaptadores, ESP32 y pasarelas con cada equipo inventariado, sin atribuir capacidades que aún no se hayan comprobado.

@@ -12,6 +12,8 @@ El [acuerdo de 2.4 — Configuración local](../definiciones-flujos.md#flow-2-4)
 
 El [acuerdo de 2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5) establece consulta HTTPS periódica: el agente valida y aplica preferencias energéticas en el siguiente punto seguro, sin reinicio; las propuestas técnicas siguen la aplicación local de 2.4. El recorrido aún no está implementado de extremo a extremo.
 
+El [acuerdo de 3.1 — Inventario y capacidades](../definiciones-flujos.md#flow-3-1) distingue equipos físicos de pasarelas y capacidades declaradas de comprobadas. El ejemplo de banco A/B/C es tentativo; las interfaces concretas se abordarán en 3.2.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

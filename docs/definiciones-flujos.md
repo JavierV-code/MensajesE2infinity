@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.8 — 4 de octubre de 2026**.
+Versión documental **0.3.9 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1072,7 +1072,95 @@ Se acuerda cargar la última configuración válida y habilitar funciones por de
 
 **Alcance:** **Inventario y capacidades:** Equipos existentes y sus capacidades de medición y control.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 3.1». Define el inventario objetivo; no certifica instalación ni pruebas funcionales de los equipos del banco.
+
+#### 1. Propósito y escenario concreto
+
+El E2 Agent mantiene un inventario local de los **equipos físicos** asociados a su nodo. Cada equipo se identifica con un `device_id` único dentro del `node_id`, según [1.2](#flow-1-2). Un equipo puede medir y controlar varias variables; no se crean dispositivos ficticios por cada función. Los circuitos o fases indican ubicación y alcance eléctrico, sin sustituir la identidad de los equipos conectados a ellos.
+
+El inventario distingue equipos energéticos —medidor, cargador, inversor, batería y actuador de cargas— de componentes de comunicación como una ESP32. La pasarela se registra y relaciona con los equipos que alcanza, pero su existencia no demuestra capacidad de medición o actuación de esos equipos ni cuenta como recurso energético. Una carga bajo un actuador de circuito solo se considera controlable al nivel que permita ese actuador; no se presume control individual de cada aparato conectado.
+
+#### 2. Participantes y responsabilidades
+
+| Participante | Responsabilidad |
+|---|---|
+| Técnico autorizado | Registra inicialmente los equipos y relaciones físicas en la configuración local; aporta identificación, ficha o límites nominales y ejecuta pruebas seguras de incorporación. |
+| E2 Agent | Mantiene `device_id`, capacidades declaradas y evidencia de capacidades comprobadas; solo habilita usos compatibles con límites y pruebas válidas. |
+| Adaptador, ESP32 o pasarela | Expone la interfaz necesaria para consultar o actuar sobre un equipo; el detalle de protocolo y direcciones se define en [3.2](#flow-3-2). |
+| Equipo físico y medidor pertinente | Entrega lecturas, acepta o rechaza operaciones compatibles y permite observar el efecto de una actuación. |
+| E2 Infinity | Recibe el inventario para mostrarlo a personas autorizadas, diferenciando capacidades declaradas de comprobadas; no convierte una declaración central en capacidad utilizable del nodo. |
+
+#### 3. Información mínima del inventario
+
+| Grupo de información | Qué debe poder describir |
+|---|---|
+| Identidad | `node_id` y `device_id`, tipo físico, etiqueta local y datos de fabricante/modelo cuando estén confirmados. |
+| Ubicación eléctrica | Instalación, circuito o fase, punto de medición y relación con otros equipos cuando corresponda; por ejemplo, batería conectada mediante inversor. |
+| Ruta de acceso | Adaptador o pasarela que permite la comunicación y protocolo previsto, sin fijar aquí registros, comandos ni credenciales. |
+| Capacidades declaradas | Variables medibles, órdenes posibles, unidades y límites nominales conocidos; distinguir documentación del fabricante de una prueba propia. |
+| Capacidades comprobadas | Lectura u orden ensayada, resultado, momento y evidencia local que respalda su uso; identificar qué quedó sin comprobar. |
+| Ciclo de vida | Alta, sustitución física, relación con el equipo anterior e historial conservado. |
+
+La **capacidad comprobada** describe lo que se verificó durante incorporación o ensayo. La **disponibilidad actual** puede cambiar después por fallos, mantenimiento, desconexión o condiciones energéticas; se desarrolla en [3.4](#flow-3-4) y [6.2](#flow-6-2). Los valores admisibles detallados, la calidad de cada lectura y la semántica de cada orden corresponden a 3.2–3.3 y al corte 4.
+
+#### 4. Incorporación y comprobación de capacidades
+
+1. El técnico registra manualmente cada equipo físico, su circuito y la relación con su adaptador o pasarela en la configuración local de [2.4](#flow-2-4). Marca sus capacidades como **declaradas**, con fuente y límites conocidos, sin tratarlas todavía como comprobadas.
+2. El agente carga el inventario y comprueba que los identificadores sean únicos dentro del nodo y que las relaciones físicas descritas sean coherentes. El técnico contrasta el registro con el montaje real.
+3. Una capacidad de **medición** se considera comprobada tras obtener una lectura atribuible al equipo, con unidad y fecha, y registrar el resultado. La calidad, vigencia y frecuencia de las lecturas se detallarán en [3.3](#flow-3-3).
+4. Una capacidad de **control** se considera comprobada después de una orden de prueba segura, autorizada por el técnico, y de observar su efecto mediante estado o medición pertinente. La aceptación de la orden por una interfaz, por sí sola, no acredita actuación física.
+5. El agente registra por capacidad lo declarado, lo probado y lo que permanece sin prueba. Si el nodo ya está vinculado según [2.2](#flow-2-2), comparte una representación del inventario con E2 Infinity para consulta; el intercambio concreto se definirá en el [corte 5](#flow-5-1).
+
+```mermaid
+sequenceDiagram
+    actor T as Técnico
+    participant A as E2 Agent
+    participant I as Inventario local
+    participant D as Equipo y adaptador
+    participant B as E2 Infinity
+
+    T->>I: Registrar equipo, circuito y capacidades declaradas (manual)
+    A->>I: Cargar y comprobar identidades y relaciones
+    A->>D: Solicitar lectura o prueba segura autorizada
+    D-->>A: Lectura, respuesta y efecto observable
+    A->>I: Registrar evidencia por capacidad
+    opt Nodo vinculado con plataforma disponible
+        A->>B: Reflejar inventario y condición de comprobación
+    end
+```
+
+El diagrama expresa el recorrido objetivo y distingue la edición manual de los mensajes entre componentes. No establece una API, tópico, formato de evidencia ni ensayo ejecutado.
+
+#### 5. Identidad y ejemplo tentativo del banco
+
+Si se reemplaza la Raspberry, el `node_id` y los `device_id` de los equipos físicos que permanecen se conservan. Si se reemplaza un equipo físico, se crea un `device_id` nuevo y se mantiene la referencia histórica al equipo retirado; su sustituto debe comprobar sus capacidades. No se heredan automáticamente las pruebas del equipo anterior.
+
+| Nodo propuesto | Equipos energéticos previstos | Ubicación, medición y control |
+|---|---|---|
+| A | Inversor Solis, BESS y cargador; actuador de cargas por circuito. | Medidor monofásico por circuito y cargas controlables; la batería y el inversor se registran como equipos físicos relacionados. |
+| B | Cargador y actuador de cargas por circuito. | Medidor monofásico por circuito y cargas controlables. |
+| C | Actuador o actuadores de cargas por circuito. | Medidor monofásico por circuito y cargas controlables. |
+
+Este cuadro representa la distribución **tentativa** conversada del banco. No confirma modelos, cantidades finales, montaje, registro en plataforma ni capacidades verificadas. CHINT es una alternativa condicionada para la actuación de cargas; el inventario admite otro actuador compatible si esa integración no se habilita. Una ESP32 se incorpora como pasarela donde corresponda, sin atribuirle el control energético que ejecutan los equipos finales.
+
+#### 6. Resultados, errores y límites
+
+| Situación | Tratamiento acordado |
+|---|---|
+| Capacidad declarada sin prueba | Mantenerla visible como declarada, pero no habilitarla para una decisión que requiere comprobación. |
+| Lectura válida en ensayo | Registrar variable, unidad, fecha y evidencia; la vigencia de futuras lecturas se evalúa en 3.3. |
+| Orden aceptada sin efecto observado | No marcar la capacidad de control como comprobada; conservar diagnóstico para revisión. |
+| Equipo comprobado, temporalmente inaccesible | Conservar la evidencia histórica de capacidad, pero tratar la disponibilidad actual por 3.4/6.2 y las dependencias de arranque por 2.7. |
+| Raspberry sustituida, equipos iguales | Conservar `node_id`, `device_id` e historial de los equipos que permanecen. |
+| Equipo físico sustituido | Emitir nuevo `device_id`, relacionar el historial anterior y repetir la comprobación de capacidades. |
+
+#### 7. Acuerdos, pendientes y estado observado
+
+Quedan acordados el inventario local por equipo físico, la distinción entre pasarela y recurso energético, las capacidades declaradas frente a las comprobadas, la prueba funcional por capacidad y la conservación de identidades al reemplazar solo la Raspberry. Las interfaces específicas quedan en 3.2, las lecturas en 3.3, la disponibilidad en 3.4/6.2 y la representación para el usuario en 5.3. No se fijan campos de contrato, endpoints ni esquemas nuevos.
+
+**Brecha de implementación observada en las copias locales:** el modelo `Device` del backend admite actualmente `inverter`, `charger` y `battery`, sin tipos de medidor o actuador de cargas ni evidencia por capacidad. El repositorio de Raspberry revisado contiene conectividad y simuladores, pero aún no el E2 Agent con inventario real. Estos hechos describen el código inspeccionado y no acreditan integración física del ejemplo A/B/C.
+
+**Referencia de validación:** confirmación explícita «Sí, validar 3.1» el **2026-10-04**, tras acordar equipo físico como unidad de identidad, prueba por capacidad y ejemplo tentativo A/B/C.
 
 <a id="flow-3-2"></a>
 

@@ -4,7 +4,7 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.3.8 — 4 de octubre de 2026.**
+**Documentación 0.3.9 — 4 de octubre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
@@ -68,7 +68,7 @@ La [equivalencia de los 34 puntos anteriores](docs/plan-trabajo-flujos.md#equiva
 
 El orden, las dependencias y los estados se mantienen únicamente en el [plan de trabajo](docs/plan-trabajo-flujos.md). Conversaremos un subpunto por vez, lo documentaremos con la [plantilla común del documento maestro](docs/definiciones-flujos.md#plantilla-comun) y registraremos su confirmación antes de marcarlo como validado.
 
-**1.1–1.4** quedaron validadas documentalmente el 3 de octubre de 2026. El **corte 2 completo (2.1–2.7)** conserva los acuerdos históricos de 2.3 y 2.4 y registra las validaciones del 4 de octubre para 2.1, 2.2 y 2.5–2.7. La siguiente conversación comenzará por **3.1 — Inventario y capacidades**. El bridge Mosquitto–EMQX sigue pendiente de implementación.
+**1.1–1.4** quedaron validadas documentalmente el 3 de octubre de 2026 y el **corte 2 completo (2.1–2.7)** conserva sus acuerdos. **3.1 — Inventario y capacidades** quedó validada el 4 de octubre: [define identidad por equipo físico y prueba por capacidad](docs/definiciones-flujos.md#flow-3-1), con un banco A/B/C tentativo. La siguiente conversación comenzará por **3.2 — Interfaces con los equipos**. El bridge Mosquitto–EMQX sigue pendiente de implementación.
 
 En [2.5](docs/definiciones-flujos.md#flow-2-5), las preferencias energéticas autorizadas se consultan automáticamente por HTTPS y se activan sin reinicio en el siguiente punto seguro de decisión. Las propuestas técnicas permanecen bajo comprobación y aplicación local del técnico según 2.4. Una consigna temporal usa su propio recorrido operativo.
 
