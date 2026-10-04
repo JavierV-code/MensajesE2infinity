@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.17 — 2026-10-04
+
+- Valida documentalmente 4.4 — Prioridades y validación: protección y límites, restricciones locales, solicitud directa válida del usuario, optimización local y flexibilidad restante para consenso.
+- Distingue aceptación, limitación informada, rechazo y espera; evita superponer órdenes normales al mismo equipo y admite protección segura durante una espera.
+- Actualiza plan e índices y establece 4.5 como siguiente subfase. Deja transporte, permisos, estados concretos, actuación y contratos para sus cortes; no modifica código, APIs ni esquemas.
+
 ## 0.3.16 — 2026-10-04
 
 - Valida documentalmente 4.3 — Ciclo de decisión local: evaluación periódica y por eventos relevantes sobre una instantánea coherente de datos activos y aptos.

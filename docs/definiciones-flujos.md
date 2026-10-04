@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.16 — 4 de octubre de 2026**.
+Versión documental **0.3.17 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1552,7 +1552,65 @@ La periodicidad, los umbrales de cambio, la función objetivo y los detalles de 
 
 **Alcance:** **Prioridades y validación:** Solicitudes concurrentes, aceptación, limitación o rechazo y relación con la máquina de estados.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 4.4». Define el filtro local previo a cualquier orden; no implementa una máquina de estados ni acredita control físico.
+
+#### 1. Propósito, entradas y responsables
+
+El E2 Agent reúne las propuestas locales de [4.3](#flow-4-3), las solicitudes directas autorizadas del usuario y, cuando el nodo participe, la propuesta de la coordinación distribuida de [7.6](#flow-7-6). Antes de decidir utiliza la configuración **activa**, mediciones aptas de [3.3](#flow-3-3), capacidades y disponibilidad comprobadas de los equipos, y el estado de actuaciones pendientes. Una solicitud externa no se convierte por sí sola en una orden al equipo. El canal y los permisos concretos de las solicitudes directas del usuario se definirán en el corte 5; el intercambio del consenso depende de su formulación matemática.
+
+| Origen o componente | Papel en 4.4 | Salida conceptual |
+|---|---|---|
+| Usuario autorizado | Solicita una acción directa dentro de sus permisos; no cambia límites técnicos. | Solicitud evaluable y resultado motivado; permisos y transporte en 5.1/5.4–5.5. |
+| Evaluación local 4.3 | Propone una acción para cumplir objetivos y preferencias locales. | Propuesta interna, no orden física. |
+| Coordinación 7.6 | Entrega una contribución propuesta, sujeta a la flexibilidad que resta al nodo. | Resultado autorizado o limitación para realimentación. |
+| E2 Agent y máquina de estados | Comprueban restricciones, datos actuales, concurrencia y posibilidad de pasar a ejecución. | Aceptación, limitación, rechazo o espera con motivo. |
+| Adaptadores y equipos | No reciben nada directamente desde esta etapa. | La orden y sus confirmaciones pertenecen a [4.5](#flow-4-5). |
+
+#### 2. Precedencia y evaluación
+
+1. **Seguridad y límites técnicos:** ninguna propuesta puede superar las capacidades comprobadas ni desplazar protecciones eléctricas independientes. Si faltan datos indispensables para validar una función, no se autoriza su actuación; otras funciones independientes pueden continuar.
+2. **Restricciones de la instalación:** cargas protegidas, reserva mínima de BESS, horarios y demás preferencias locales activas acotan las actuaciones permitidas.
+3. **Solicitudes compatibles dentro de ese espacio:** una solicitud directa válida del usuario prevalece sobre la optimización automática; esta atiende la utilidad local antes de ofrecer la flexibilidad restante al consenso. La prioridad no garantiza una meta físicamente imposible.
+4. **Operaciones en curso:** el agente comprueba si el mismo equipo ya tiene una actuación pendiente. La máquina de estados habilita o impide el paso a [4.5](#flow-4-5), sin que esta definición fije nombres de estados o transiciones.
+
+La solicitud se vuelve a evaluar con información vigente cuando cambian las condiciones relevantes; no se autoriza con una lectura vencida ni con una versión de configuración meramente guardada en plataforma.
+
+#### 3. Resultados y concurrencia
+
+| Resultado | Significado y tratamiento |
+|---|---|
+| Aceptada | La acción solicitada pasa a 4.5 porque es compatible con las restricciones y no hay conflicto pendiente para ese equipo. No significa que el equipo haya actuado. |
+| Limitada | Solo una parte es viable; pasa a 4.5 la parte autorizada y se informa la diferencia y su motivo al origen. No se presenta como cumplimiento íntegro. |
+| Rechazada | No existe una actuación admisible bajo las condiciones actuales; se conserva el motivo y no se emite orden. |
+| En espera | Hay una actuación normal pendiente para el mismo equipo; no se superponen órdenes. Tras su confirmación o resolución, se reevalúa la solicitud con datos actuales antes de autorizarla. |
+
+Las actuaciones sobre equipos independientes pueden evaluarse por separado si sus restricciones compartidas siguen siendo válidas. Si aparece un riesgo eléctrico durante la espera, la protección necesaria puede desplazar la actuación normal **solo cuando la interfaz permita una acción segura**. Se registra qué actuación quedó desplazada y se vuelve a comprobar el estado; las protecciones físicas funcionan independientemente del software. La resolución de una orden pendiente y la confirmación real del equipo se detallarán en 4.5–4.6.
+
+```mermaid
+flowchart LR
+    P[Propuesta local, del usuario o del consenso] --> V[Validar datos activos y restricciones]
+    V -->|Incompatible o dato indispensable ausente| R[Rechazar con motivo]
+    V -->|Viable total o parcialmente| C[Comprobar prioridad y actuación pendiente]
+    C -->|Mismo equipo ocupado| E[En espera y reevaluación posterior]
+    C -->|Paso permitido| A[Aceptar o limitar con motivo]
+    A --> O[4.5: orden y confirmación]
+    E --> V
+```
+
+#### 4. Casos y límites
+
+| Caso | Tratamiento acordado |
+|---|---|
+| Usuario solicita cargar el vehículo mientras la optimización propone reducirlo | Si la solicitud es válida y cabe dentro de límites, recursos y restricciones activas, prevalece la solicitud; la optimización se reevalúa. |
+| Consenso solicita más potencia que la flexibilidad restante | Limitar a la parte admisible o rechazar; comunicar la contribución realmente autorizada para la realimentación de 7.6. |
+| Solicitud parcialmente viable | Informar la limitación y su causa al origen, sin declarar éxito completo ni atribuir actuación hasta medirla en 4.6. |
+| Llega otra solicitud para un equipo con orden pendiente | Esperar su resolución y reevaluar; no apilar órdenes normales ni asumir que la primera se ejecutó. |
+| Riesgo eléctrico durante una espera | Priorizar una acción de protección segura si el equipo la admite; conservar la independencia de las protecciones físicas. |
+| Medición o configuración necesaria vencida | No autorizar la función dependiente; continuar evaluando funciones independientes con sus propias entradas aptas. |
+
+El detalle de permisos y transporte de solicitudes directas corresponde al corte 5; la orden al equipo a 4.5; la comprobación del efecto a 4.6; y el registro íntegro de decisiones y resultados a 4.7. No se fijan estados concretos de la máquina, fórmulas, umbrales, campos de mensajes, APIs, tópicos ni JSON Schema.
+
+**Referencia de validación:** el **2026-10-04** se acordaron prioridad de solicitudes directas válidas del usuario frente a la optimización, espera y reevaluación ante una actuación normal pendiente, excepción de protección segura, aceptación parcial informada y salida motivada; el usuario confirmó «Sí, validar 4.4».
 
 <a id="flow-4-5"></a>
 

@@ -26,6 +26,8 @@ El [acuerdo de 4.2 — Tarifas y datos económicos](../definiciones-flujos.md#fl
 
 El [acuerdo de 4.3 — Ciclo de decisión local](../definiciones-flujos.md#flow-4-3) hace que el E2 Agent evalúe periódicamente y ante eventos relevantes con datos coherentes. Su salida es una propuesta hacia la validación de 4.4 o «sin acción» con motivo; no acciona equipos directamente.
 
+El [acuerdo de 4.4 — Prioridades y validación](../definiciones-flujos.md#flow-4-4) deja la resolución de propuestas dentro del E2 Agent. La máquina de estados habilita o impide el paso hacia 4.5, sin estados concretos definidos; Mosquitto y EMQX transportan mensajes, pero no deciden prioridades.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid
