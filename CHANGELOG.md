@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 0.3.7 — 2026-10-04
+
+- Valida documentalmente 2.2 — Vinculación con E2 Infinity tras la aceptación de las propuestas de alta, acceso de personas y reemplazo.
+- Define precreación del nodo con instalación y grupo, credencial técnica exclusiva vinculada al `node_id` y configuración manual inicial de la Raspberry.
+- Distingue la cuenta titular y otras cuentas autorizadas de la credencial del agente; conserva el nodo lógico e historial al reemplazar la Raspberry y renueva su credencial.
+- Deja los permisos detallados, la telemetría y la recuperación operativa en sus subfases; indica 2.5 como próxima conversación porque 2.3 y 2.4 ya estaban validadas. No fija endpoints, tópicos, esquemas ni valores reales de credenciales.
+
 ## 0.3.6 — 2026-10-04
 
 - Valida documentalmente 2.1 — Registro de red privada mediante confirmación explícita.

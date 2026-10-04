@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.6 — 4 de octubre de 2026**.
+Versión documental **0.3.7 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -344,7 +344,86 @@ Una falla del alta de red no equivale a una asociación fallida en E2 Infinity. 
 
 **Alcance:** **Vinculación con E2 Infinity:** Incorporación, asociación y autorización del nodo.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Flujo acordado el **2026-10-04** mediante la confirmación «me gusta tu propuesta». La validación es documental; no acredita que el alta, los permisos o el reemplazo estén implementados.
+
+#### 1. Propósito y escenario concreto
+
+Vincular una Raspberry con un nodo lógico precreado en E2 Infinity, de forma que la plataforma reconozca su instalación y grupo eléctrico. La persona autorizada podrá consultar el nodo y, cuando lleguen datos, sus dispositivos y mediciones. La identidad del cliente Tailscale registrada en 2.1 es independiente de esta autorización.
+
+#### 2. Participantes y responsabilidades
+
+| Participante | Responsabilidad en 2.2 |
+|---|---|
+| Técnico autorizado | Selecciona en E2 Infinity la instalación y el grupo preexistentes, precrea el nodo lógico, recibe una vez su credencial técnica y la configura manualmente en la Raspberry. |
+| Backend E2 Infinity | Valida la asociación, asigna el `node_id`, vincula y renueva la credencial propia del nodo, autentica al E2 Agent y registra el resultado del alta. |
+| E2 Agent | Usa su `node_id` y credencial técnica para solicitar la vinculación por HTTPS; conserva el resultado localmente y lo informa al técnico. |
+| Persona titular de la instalación | Accede con su cuenta humana a los nodos y datos de su instalación y solicita cambios de preferencias energéticas permitidos. |
+| Otras personas autorizadas | Acceden mediante cuentas humanas propias, dentro de los permisos otorgados sobre la instalación. |
+
+El nodo se asocia a la **instalación**, y las personas acceden por su autorización sobre esa instalación. La credencial técnica identifica al nodo ante la API; no permite iniciar sesión como persona. Los permisos precisos de cada rol se definirán en [5.1](#flow-5-1), las preferencias energéticas en [4.1](#flow-4-1) y su recorrido remoto en [2.5](#flow-2-5).
+
+#### 3. Condiciones previas y resultado esperado
+
+La organización, la instalación y el grupo eléctrico ya existen en E2 Infinity conforme a 1.2. La instalación cuenta con una persona titular; puede autorizarse a otras personas. El técnico tiene permiso para incorporar el nodo y selecciona la instalación y el grupo **antes del alta física** de la Raspberry. La configuración inicial en el equipo es manual, según [2.4](#flow-2-4).
+
+El resultado esperado es un `node_id` estable, asociado por la plataforma a una instalación y un grupo activo, y una Raspberry autenticada con una credencial exclusiva para ese nodo. El nodo puede mostrarse a las personas autorizadas una vez vinculado; las mediciones aparecen cuando se reciban mediante el flujo de telemetría de [5.2](#flow-5-2). La vinculación no demuestra todavía conectividad MQTT ni disponibilidad de equipos.
+
+#### 4. Secuencia de incorporación y reemplazo
+
+| Paso | Tipo | Origen | Destino | Acción o intercambio | Resultado esperado |
+|---|---|---|---|---|---|
+| 1 | Acción humana en plataforma | Técnico autorizado | E2 Infinity | Seleccionar instalación y grupo existentes y precrear el nodo lógico | La plataforma valida la asociación y asigna `node_id` |
+| 2 | Acción en plataforma | E2 Infinity | Técnico autorizado | Generar y entregar una sola vez la credencial vinculada al `node_id` | El técnico recibe la credencial sin incorporarla al repositorio |
+| 3 | Acción manual local | Técnico autorizado | Raspberry | Configurar `node_id` y credencial del nodo para el E2 Agent | Identidad local preparada para solicitar el alta |
+| 4 | Mensaje entre servicios | E2 Agent | API E2 Infinity | Solicitar vinculación autenticada mediante HTTPS | La plataforma comprueba credencial, nodo y asociación vigente |
+| 5 | Respuesta entre servicios | API E2 Infinity | E2 Agent | Confirmar la vinculación o indicar rechazo | El agente y el técnico pueden distinguir éxito de error |
+| 6 | Consulta humana | Persona autorizada | E2 Infinity | Consultar la instalación y el nodo asociado | Nodo visible según permiso; mediciones solo si existen datos recibidos |
+
+En un **reemplazo de Raspberry**, el técnico autorizado conserva el nodo lógico, su `node_id`, la instalación, el grupo y el historial. La plataforma revoca la credencial anterior, emite una nueva para el equipo sustituto y exige comprobar de nuevo la vinculación. El equipo anterior deja de estar autorizado con la credencial revocada. La recuperación operativa completa tras el cambio corresponde a [8.4](#flow-8-4).
+
+```mermaid
+sequenceDiagram
+    actor Tech as Técnico autorizado
+    participant API as E2 Infinity
+    participant Agent as E2 Agent / Raspberry
+    actor User as Persona autorizada
+
+    Tech->>API: Seleccionar instalación y grupo; precrear nodo
+    API-->>Tech: node_id y credencial técnica (entrega única)
+    Tech->>Agent: Configurar node_id y credencial manualmente
+    Agent->>API: Solicitar vinculación autenticada por HTTPS
+    alt Identidad y asociación válidas
+        API-->>Agent: Vinculación aceptada
+        User->>API: Consultar instalación y nodo
+        API-->>User: Nodo visible; datos disponibles si se recibieron
+    else Credencial, nodo o asociación inválidos
+        API-->>Agent: Vinculación rechazada con motivo
+    end
+```
+
+#### 5. Información intercambiada y respuesta
+
+La solicitud de alta debe permitir identificar al nodo lógico y autenticar su credencial técnica; E2 Infinity resuelve la instalación y el grupo desde su registro autorizado. La respuesta distingue aceptación de rechazo y permite registrar el resultado. No se define aquí la representación de campos, la forma de la credencial, un endpoint ni un esquema. La entrega manual de la credencial y la selección hecha por el técnico no son mensajes entre el agente y la API.
+
+La cuenta humana de cada persona autorizada se usa para consultar o solicitar cambios de su instalación. La plataforma comprobará sus permisos sobre esa instalación y sus nodos; la credencial técnica del agente no concede acceso al panel de usuario. La visibilidad concreta de equipos, valores y estados se desarrolla en [5.3](#flow-5-3).
+
+#### 6. Rechazos y recuperación
+
+| Condición | Tratamiento acordado |
+|---|---|
+| `node_id` inexistente, credencial incorrecta o revocada | Rechazar la vinculación e informar el motivo al técnico; revisar la precreación y emitir una credencial nueva cuando corresponda. |
+| Instalación o grupo no válidos para el nodo precreado | No aceptar una asociación declarada solo por la Raspberry; el técnico corrige el registro autorizado en E2 Infinity antes de repetir el alta. |
+| API E2 Infinity inaccesible durante el alta | Dejar la vinculación sin confirmar y reintentar cuando vuelva el servicio; no presentar el nodo como autenticado por ese intento. |
+| Raspberry reemplazada | Revocar la credencial anterior, entregar otra al técnico, configurarla en el sustituto y comprobar de nuevo su vinculación con el mismo `node_id`. |
+| Nodo vinculado sin telemetría | Mostrarlo sin atribuirle mediciones actuales; la recepción y antigüedad de datos se tratan en 5.2/5.3. |
+
+#### 7. Acuerdos, límites y comprobación posterior
+
+Quedan acordados el preaprovisionamiento central antes del alta física, la credencial exclusiva por nodo generada y entregada una vez, la configuración manual inicial, la asociación del nodo con instalación y grupo, el acceso de una cuenta titular y otras autorizadas, y el reemplazo con `node_id` estable y credencial renovada. La identidad de red de 2.1 y la conexión MQTT de 2.3 se comprueban por separado.
+
+Las reglas detalladas para otorgar acceso a otras personas y modificar preferencias quedan en 5.1/4.1/2.5; el almacenamiento y presentación de telemetría en 5.2/5.3/5.6; el procedimiento de recuperación posterior al reemplazo en 8.4. Los formatos, endpoints y credenciales concretas no se fijan en esta subfase. No se guardan valores reales de credenciales en este repositorio.
+
+**Referencia de validación:** el usuario aceptó expresamente las tres propuestas de emisión de credencial, acceso por instalación y reemplazo de Raspberry con «me gusta tu propuesta» el **2026-10-04**.
 
 <a id="flow-2-3"></a>
 

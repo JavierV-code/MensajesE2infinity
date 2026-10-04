@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.6 — 4 de octubre de 2026**.
+Versión documental **0.3.7 — 4 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -52,7 +52,7 @@ Definir cómo se prepara el nodo y cómo aplica su configuración.
 | ID | Subfase y objetivo | Estado | Dependencias documentales tentativas | Pregunta o pendiente | Documento | Fecha y referencia del acuerdo |
 |---|---|---|---|---|---|---|
 | 2.1 | **Registro de red privada:** Cliente Tailscale y Headscale. | Validado | 1.1, 1.2, 1.3 | El reporte continuo del agente queda en 3.4/5.2; topología de pares en 6.5; continuidad ante fallos en VAL-16/corte 8. | [Definición](definiciones-flujos.md#flow-2-1) | 2026-10-04: confirmación explícita «Sí, validar 2.1 con este flujo»; registro y conectividad se verifican por separado. |
-| 2.2 | **Vinculación con E2 Infinity:** Incorporación, asociación y autorización del nodo. | Pendiente | 1.1, 1.2, 1.3 | ¿Cómo valida la plataforma la asociación y autorización? | [Definición](definiciones-flujos.md#flow-2-2) | Cuenta técnica por nodo conversada; recorrido completo por validar. |
+| 2.2 | **Vinculación con E2 Infinity:** Incorporación, asociación y autorización del nodo. | Validado | 1.1, 1.2, 1.3 | Permisos finos de personas en 5.1; visibilidad y telemetría en 5.2/5.3; recuperación tras reemplazo en 8.4. | [Definición](definiciones-flujos.md#flow-2-2) | 2026-10-04: «me gusta tu propuesta»; precreación, credencial por nodo, acceso por instalación y reemplazo acordados documentalmente. |
 | 2.3 | **Conexiones MQTT:** Agente–Mosquitto, bridge con EMQX y brokers vecinos. | Validado | 1.2, 2.1, 2.2 | Tópicos, permisos detallados y confirmaciones por revisar en cada flujo. | [Definición](definiciones-flujos.md#flow-2-3) | 2026-09-27: «lo valido», antes 1.5; se conserva el acuerdo. |
 | 2.4 | **Configuración local:** Edición, comprobación, aplicación y resultado. | Validado | 1.1, 1.2, 1.3 | Archivos, comandos y aplicación ante operaciones en curso por definir. | [Definición](definiciones-flujos.md#flow-2-4) | 2026-09-27: «me parece bien», antes 1.6; se conserva el acuerdo. |
 | 2.5 | **Configuración remota:** Propuesta desde la plataforma, recepción, comprobación y aplicación. | Borrador | 2.2, 2.3, 2.4 | Validar alcance y etapa manual; acordar automatización posterior. | [Definición](definiciones-flujos.md#flow-2-5) | Revisión 2026-09-27, antes 1.7; sin confirmación de validación. |
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**2.2 — Vinculación con E2 Infinity:** definir incorporación, asociación y autorización del nodo en la plataforma, independiente del registro de red privada. 1.1–1.4 se validaron el 2026-10-03 y 2.1 el 2026-10-04.
+**2.5 — Configuración remota:** retomar el borrador existente y precisar el acceso de las personas autorizadas a las preferencias energéticas del nodo. 2.3 y 2.4 conservan sus validaciones anteriores; 2.1 y 2.2 se validaron el 2026-10-04.
