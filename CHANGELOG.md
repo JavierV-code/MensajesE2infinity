@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.10 — 2026-10-04
+
+- Valida documentalmente 3.2 — Interfaces con los equipos: OCPP local en cada Raspberry, ESP32 bidireccional por MQTT y Modbus RTU, BESS inicialmente a través de Solis y actuador genérico por circuito.
+- Distingue lectura, solicitud, respuesta y efecto observado; rechazos o pérdidas de comunicación no acreditan actuación. La referencia CAN del simulador no demuestra una interfaz CAN en el banco físico.
+- Actualiza plan e índices y establece 3.3 como siguiente subfase. No modifica código, APIs, comandos, registros, tópicos ni esquemas.
+
 ## 0.3.9 — 2026-10-04
 
 - Valida documentalmente 3.1 — Inventario y capacidades, con identidad local por equipo físico y `device_id` conservado cuando solo se reemplaza la Raspberry.

@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.9 — 4 de octubre de 2026**.
+Versión documental **0.3.10 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1168,16 +1168,28 @@ Quedan acordados el inventario local por equipo físico, la distinción entre pa
 
 **Alcance:** **Interfaces con los equipos:** EVCC/OCPP, adaptadores, ESP32 y pasarelas.
 
-**Estado documental: En conversación.** El 2026-10-04 se acordaron dos decisiones de arquitectura; todavía no se valida la subfase completa ni se afirma que estas rutas estén implementadas.
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** al solicitar el cierre de 3.2 después de elegir la gestión inicial de BESS a través de Solis y un adaptador genérico para cargas. Es un diseño objetivo: no certifica implementación ni compatibilidad del hardware real.
 
-| Equipo o interfaz | Recorrido objetivo acordado | Límite pendiente de precisar |
+#### 1. Propósito y responsabilidades
+
+Esta subfase identifica la ruta de comunicación de los equipos inventariados en [3.1](#flow-3-1), sin atribuirles capacidades todavía no comprobadas. El E2 Agent conserva la decisión energética y la autorización local de cada solicitud. Los controladores, adaptadores y pasarelas traducen intercambios con los equipos; no calculan consignas ni reemplazan la validación del agente.
+
+| Equipo o interfaz | Recorrido objetivo | Lectura y control previstos |
 |---|---|---|
-| Cargador | El control OCPP reside localmente en la Raspberry del nodo. El E2 Agent se relaciona con el controlador o adaptador EVCC/OCPP local, que intercambia órdenes y estados con el cargador. | Comprobar las funciones y respuestas que ofrece el cargador real y definir el contrato interno agente–adaptador. |
-| Medidor e inversor | La ESP32 es una pasarela **bidireccional** con la Raspberry mediante Mosquitto/MQTT local y con los equipos de campo mediante TTL–RS-485/Modbus RTU, sujeto a la interfaz comprobada de cada equipo. | El medidor aporta lecturas; no se le atribuyen órdenes energéticas. Las órdenes al inversor solo se habilitan si el equipo admite y supera la prueba segura de esa capacidad. |
+| Cargador | E2 Agent ↔ controlador o adaptador EVCC/OCPP **local en la Raspberry del nodo** ↔ cargador por OCPP. | Consultar estados y mediciones disponibles; solicitar operaciones compatibles solo tras comprobarlas con el cargador real. |
+| Medidor e inversor | E2 Agent ↔ Mosquitto local/MQTT ↔ ESP32 ↔ TTL–RS-485/Modbus RTU ↔ equipo de campo. La ESP32 es pasarela bidireccional con la Raspberry. | El medidor aporta lecturas; no se le atribuyen órdenes energéticas. El inversor solo recibe órdenes si su interfaz real las admite y la capacidad supera una prueba segura. |
+| BESS | Equipo físico inventariado por separado, gestionado **inicialmente a través del inversor Solis** y su ruta de comunicación comprobada. | Lecturas y solicitudes de carga/descarga únicamente en la medida que el inversor y la BESS permitan y se verifiquen. Una interfaz BMS directa se añadirá solo si el hardware la requiere y permite. |
+| Cargas controlables | E2 Agent ↔ adaptador genérico de actuación por circuito ↔ actuador físico compatible. | Leer el estado disponible y solicitar conexión/desconexión del circuito. CHINT es una opción condicionada; otra alternativa física validada puede cumplir la misma función. La ruta de campo específica depende del actuador elegido. |
 
-La ESP32 transporta lecturas, solicitudes y respuestas, pero no decide objetivos energéticos ni sustituye al E2 Agent. Una confirmación de recepción o aceptación de una orden no demuestra por sí sola su efecto físico, conforme a [3.1](#flow-3-1); la secuencia de ejecución y comprobación se desarrolla en [4.5](#flow-4-5) y [4.6](#flow-4-6).
+La referencia a **CAN** para la batería en el simulador es un dato del prototipo, no evidencia de una interfaz CAN en la BESS del banco. Tampoco se presume que todos los equipos ofrezcan todas las mediciones u órdenes de la tabla: sus capacidades se comprueban individualmente según [3.1](#flow-3-1).
 
-**Pendientes para cerrar 3.2:** precisar la interfaz efectiva de la BESS; definir la ruta del actuador de cargas sin depender de CHINT; distinguir respuestas, errores y pérdida de comunicación por adaptador; confirmar las capacidades del cargador y del inversor en el banco. No se fijan aquí registros Modbus, comandos OCPP, tópicos MQTT ni esquemas.
+#### 2. Intercambios y resultados
+
+En cada ruta se distingue la **lectura o estado** recibido, la **solicitud de orden** del agente, la **respuesta de recepción o aceptación** de la interfaz y el **efecto físico observado**. La respuesta positiva del adaptador, pasarela o equipo no equivale por sí sola a una actuación lograda. Hasta comprobar una capacidad de control, el agente no la utiliza para actuar; la secuencia detallada de orden, confirmación y medición queda en [4.5](#flow-4-5) y [4.6](#flow-4-6).
+
+Ante un rechazo, falta de respuesta o pérdida de comunicación, el agente registra e informa el fallo y no atribuye una ejecución que no observó. La calidad y vigencia de las lecturas se desarrollarán en [3.3](#flow-3-3); la salud y alarmas en [3.4](#flow-3-4)–[3.5](#flow-3-5); y la recuperación ante fallos internos o de equipos en [8.3](#flow-8-3). No se fijan aquí tiempos de espera, respuestas concretas, registros Modbus, comandos OCPP, tópicos MQTT ni esquemas.
+
+**Referencia de validación:** el **2026-10-04** se confirmaron el control OCPP local y la ESP32 bidireccional; después se eligieron Solis como ruta inicial de la BESS y un adaptador genérico para las cargas, y se solicitó cerrar documentalmente 3.2.
 
 <a id="flow-3-3"></a>
 

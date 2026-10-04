@@ -51,9 +51,10 @@ Las definiciones canónicas están en [docs/definiciones-flujos.md](../definicio
 - [2.6 — Coherencia de configuraciones](../definiciones-flujos.md#flow-2-6): conflictos y resolución por parámetro.
 - [2.7 — Arranque del nodo](../definiciones-flujos.md#flow-2-7): habilitación por funciones disponibles.
 - [3.1 — Inventario y capacidades](../definiciones-flujos.md#flow-3-1): equipos físicos, capacidades declaradas y comprobadas, e identidades conservadas al sustituir la Raspberry.
+- [3.2 — Interfaces con los equipos](../definiciones-flujos.md#flow-3-2): rutas locales de cargador, medidor, inversor, BESS y cargas controlables, sujetas a comprobación física.
 - [Diagramas Draw.io v01](../diagramas/README.md): vistas históricas y equivalencia de su numeración.
 - [Consenso conceptual en 7.1](../definiciones-flujos.md#flow-7-1): antecedente para el corte 7, sujeto a formulación matemática.
 - [Catálogo común de mensajes](../mensajes/catalogo-mensajes.md): propuestas que se enlazan a sus flujos.
 - [Escenarios de revisión](../validacion/escenarios.md): cobertura de gestión local, plataforma, consenso y recuperación.
 
-Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. La próxima conversación es **3.2 — Interfaces con los equipos**.
+Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. La próxima conversación es **3.3 — Lecturas locales**.
