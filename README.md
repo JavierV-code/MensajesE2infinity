@@ -4,11 +4,11 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.3.7 — 4 de octubre de 2026.**
+**Documentación 0.3.8 — 4 de octubre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
-El [plan de trabajo](docs/plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias de 46 subfases en ocho cortes. El [documento maestro de definiciones](docs/definiciones-flujos.md) es la fuente principal; incluye los detalles acordados de [2.3 — MQTT](docs/definiciones-flujos.md#flow-2-3) y [2.4 — configuración local](docs/definiciones-flujos.md#flow-2-4), y el borrador de [2.5 — configuración remota](docs/definiciones-flujos.md#flow-2-5). La incorporación inicial será manual mediante archivos editados por el equipo técnico.
+El [plan de trabajo](docs/plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias de 46 subfases en ocho cortes. El [documento maestro de definiciones](docs/definiciones-flujos.md) es la fuente principal; el corte 2 incluye [conexiones MQTT](docs/definiciones-flujos.md#flow-2-3), [configuración local](docs/definiciones-flujos.md#flow-2-4), [configuración remota](docs/definiciones-flujos.md#flow-2-5), [coherencia](docs/definiciones-flujos.md#flow-2-6) y [arranque](docs/definiciones-flujos.md#flow-2-7). La incorporación inicial de identidad y archivos técnicos será manual; las preferencias autorizadas se consultarán periódicamente por HTTPS y se aplicarán localmente tras validación.
 
 Los [diagramas editables del primer corte histórico](docs/diagramas/README.md) reúnen incorporación e identidad, conexiones MQTT y configuración local/remota en tres pestañas de Draw.io, con vistas PNG para revisión. Conservan la numeración de la versión anterior y disponen de una tabla de equivalencias.
 
@@ -68,9 +68,9 @@ La [equivalencia de los 34 puntos anteriores](docs/plan-trabajo-flujos.md#equiva
 
 El orden, las dependencias y los estados se mantienen únicamente en el [plan de trabajo](docs/plan-trabajo-flujos.md). Conversaremos un subpunto por vez, lo documentaremos con la [plantilla común del documento maestro](docs/definiciones-flujos.md#plantilla-comun) y registraremos su confirmación antes de marcarlo como validado.
 
-**1.1 — Actores y responsabilidades**, **1.2 — Identificación y pertenencia**, **1.3 — Interfaces y sentidos de comunicación** y **1.4 — Recorridos generales** quedaron validadas documentalmente el 3 de octubre de 2026; **2.1 — Registro de red privada** y **2.2 — Vinculación con E2 Infinity**, el 4 de octubre. En 2.2 se acordó precrear el nodo, vincular su credencial técnica al `node_id`, autorizar a las personas por instalación y renovar la credencial al reemplazar la Raspberry. **2.3 — Conexiones MQTT** y **2.4 — Configuración local** ya conservan acuerdos validados; la siguiente conversación retomará el borrador de **2.5 — Configuración remota**. El bridge Mosquitto–EMQX sigue pendiente de implementación.
+**1.1–1.4** quedaron validadas documentalmente el 3 de octubre de 2026. El **corte 2 completo (2.1–2.7)** conserva los acuerdos históricos de 2.3 y 2.4 y registra las validaciones del 4 de octubre para 2.1, 2.2 y 2.5–2.7. La siguiente conversación comenzará por **3.1 — Inventario y capacidades**. El bridge Mosquitto–EMQX sigue pendiente de implementación.
 
-El [borrador de 2.5](docs/definiciones-flujos.md#flow-2-5) está en conversación: contempla proponer desde E2 Infinity cambios energéticos y técnicos autorizados del agente, con consulta HTTPS iniciada manualmente y aplicación conforme a 2.4. Distingue configuración persistente de consignas temporales; la automatización y la administración del sistema operativo quedan fuera de la etapa inicial.
+En [2.5](docs/definiciones-flujos.md#flow-2-5), las preferencias energéticas autorizadas se consultan automáticamente por HTTPS y se activan sin reinicio en el siguiente punto seguro de decisión. Las propuestas técnicas permanecen bajo comprobación y aplicación local del técnico según 2.4. Una consigna temporal usa su propio recorrido operativo.
 
 Los mensajes, tópicos, diagramas y [JSON Schema existentes](schemas/README.md) son propuestas previas que se revisarán durante este proceso.
 

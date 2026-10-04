@@ -24,8 +24,11 @@ flowchart TD
 
     U --> S["Solicitud de configuración autorizada"]
     S --> API["API: comprobar permisos y guardar propuesta"]
-    API --> Q["Consulta del agente y comprobación local"]
-    Q --> C
+    Q["Agente: consulta HTTPS periódica y comprobación local"] -->|consultar| API
+    API -->|propuesta| Q
+    Q --> PA["Preferencia válida: siguiente punto seguro"]
+    PA --> P
+    Q -->|cambio técnico| C
 
     M --> F["Disponibilidad y flexibilidad"]
     P --> F
@@ -34,7 +37,7 @@ flowchart TD
     R --> N
 ```
 
-La ruta de configuración remota sigue como borrador en 2.5: la consulta y aplicación inicial propuestas requieren intervención manual. La ruta hacia la plataforma depende de sus conexiones disponibles; el almacenamiento pendiente y la resincronización se acordarán en 8.5. La realimentación a vecinos aplica cuando el nodo participa en coordinación.
+La ruta de [2.5](../definiciones-flujos.md#flow-2-5) consulta periódicamente por HTTPS: las preferencias válidas se activan sin reinicio en un punto seguro y los cambios técnicos requieren aplicación local conforme a 2.4. La ruta hacia la plataforma depende de sus conexiones disponibles; el almacenamiento pendiente y la resincronización se acordarán en 8.5. La realimentación a vecinos aplica cuando el nodo participa en coordinación.
 
 El diagrama indica dependencias funcionales. Cada intercambio de red se detallará con emisor, receptor, canal y respuesta, distinguiéndolo de llamadas internas y acciones manuales.
 
@@ -44,10 +47,12 @@ Las definiciones canónicas están en [docs/definiciones-flujos.md](../definicio
 
 - [2.3 — Conexiones MQTT](../definiciones-flujos.md#flow-2-3): acuerdo conservado del antiguo 1.5; bridge central pendiente de implementación.
 - [2.4 — Configuración local](../definiciones-flujos.md#flow-2-4): acuerdo conservado del antiguo 1.6; comprobación y aplicación manual.
-- [2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5): borrador conservado del antiguo 1.7, pendiente de validación.
+- [2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5): acuerdo validado; preferencias automáticas y propuestas técnicas de aplicación local.
+- [2.6 — Coherencia de configuraciones](../definiciones-flujos.md#flow-2-6): conflictos y resolución por parámetro.
+- [2.7 — Arranque del nodo](../definiciones-flujos.md#flow-2-7): habilitación por funciones disponibles.
 - [Diagramas Draw.io v01](../diagramas/README.md): vistas históricas y equivalencia de su numeración.
 - [Consenso conceptual en 7.1](../definiciones-flujos.md#flow-7-1): antecedente para el corte 7, sujeto a formulación matemática.
 - [Catálogo común de mensajes](../mensajes/catalogo-mensajes.md): propuestas que se enlazan a sus flujos.
 - [Escenarios de revisión](../validacion/escenarios.md): cobertura de gestión local, plataforma, consenso y recuperación.
 
-Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. La próxima conversación es **1.1 — Actores y responsabilidades**, con el alcance ampliado de plataforma y funcionamiento local.
+Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. La próxima conversación es **3.1 — Inventario y capacidades**.

@@ -10,7 +10,7 @@ El [acuerdo de 2.3 — Conexiones MQTT](../definiciones-flujos.md#flow-2-3) docu
 
 El [acuerdo de 2.4 — Configuración local](../definiciones-flujos.md#flow-2-4) describe edición manual, comprobación previa y aplicación mediante reinicio controlado del agente. Sus informes locales distinguen aplicación y conectividad.
 
-El [borrador de 2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5) propone consultar por HTTPS una configuración central y aplicar los cambios mediante el procedimiento local. Queda pendiente de validación.
+El [acuerdo de 2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5) establece consulta HTTPS periódica: el agente valida y aplica preferencias energéticas en el siguiente punto seguro, sin reinicio; las propuestas técnicas siguen la aplicación local de 2.4. El recorrido aún no está implementado de extremo a extremo.
 
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 

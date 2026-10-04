@@ -20,6 +20,8 @@ Las pestañas Draw.io, PNG y SVG v01 conservan sus títulos, numeración y fecha
 
 **Nota de vigencia para la pestaña 01:** el dibujo histórico representa una clave compartida reutilizable. Esa representación fue sustituida por el acuerdo vigente de [2.1 — Registro de red privada](../definiciones-flujos.md#flow-2-1): clave temporal de un solo uso por Raspberry. El archivo histórico se conserva sin cambios y no debe usarse como instrucción para la política actual de claves.
 
+**Nota de vigencia para las pestañas 01 y 03:** el alta en [2.2](../definiciones-flujos.md#flow-2-2) y la configuración remota en [2.5](../definiciones-flujos.md#flow-2-5) ya están validadas documentalmente. La pestaña 03 conserva el borrador histórico de consulta y aplicación manual; el acuerdo vigente consulta periódicamente por HTTPS y aplica automáticamente solo preferencias energéticas tras validación local. Las propuestas técnicas siguen requiriendo intervención del técnico.
+
 | Referencia visible en v01 | Subfase actual |
 |---|---|
 | 1.1 — Actores y responsabilidades | 1.1 |
@@ -35,9 +37,9 @@ La equivalencia completa de los 34 puntos anteriores está en el [plan](../plan-
 ## Acuerdos y pendientes (numeración histórica)
 
 - **1.1–1.3:** la vista recoge acuerdos de la conversación. Falta formalizarlos en documentos individuales y registrar su referencia en el plan; esta entrega no altera esas filas.
-- **1.4:** se acordó una cuenta técnica por nodo; el recorrido completo de vinculación sigue pendiente de validación.
+- **1.4:** la vista conserva su estado histórico; el recorrido completo de vinculación quedó validado después en [2.2](../definiciones-flujos.md#flow-2-2).
 - **1.5 y 1.6:** cuentan con acuerdos documentales registrados en [Conexión MQTT](../definiciones-flujos.md#flow-2-3) y [Configuración local](../definiciones-flujos.md#flow-2-4).
-- **1.7:** se representa la propuesta de [Configuración remota](../definiciones-flujos.md#flow-2-5), todavía en borrador. Guardar una propuesta en la plataforma no significa aplicarla en la Raspberry.
+- **1.7:** se representa el borrador histórico de [Configuración remota](../definiciones-flujos.md#flow-2-5), sustituido por el acuerdo vigente de 2.5. Guardar una propuesta en la plataforma sigue sin significar que ya esté aplicada en la Raspberry.
 
 Las líneas discontinuas señalan recorridos aún en borrador. Una línea continua no acredita una implementación: por ejemplo, el bridge Mosquitto–EMQX está acordado como diseño objetivo, pero pendiente de implementación. Los bloques manuales representan acciones del técnico, no mensajes de red.
 

@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.7 — 4 de octubre de 2026**.
+Versión documental **0.3.8 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -723,68 +723,60 @@ Referencia: confirmación «me parece bien», 2026-09-27.
 
 Los ejemplos son criterios documentales; no se realizaron ensayos físicos ni pruebas del agente en esta revisión.
 
+Este procedimiento conserva la edición manual y el reinicio controlado para **archivos de configuración técnica**. Las preferencias energéticas recibidas desde E2 Infinity siguen el acuerdo posterior de [2.5](#flow-2-5): comprobación local y activación sin reinicio en el siguiente punto seguro.
+
 <a id="flow-2-5"></a>
 
 ### 2.5 — Configuración remota
 
 **Alcance:** **Configuración remota:** Propuesta desde la plataforma, recepción, comprobación y aplicación.
 
-
-- Numeración anterior: **1.7**; renumerado a **2.5** en la versión documental 0.3.0. Se conservan los antecedentes y el estado de borrador; no existe aún una validación de este punto.
-- Estado documental: **Borrador en conversación**, pendiente de validación explícita.
+- Numeración anterior: **1.7**; renumerado a **2.5** en la versión documental 0.3.0.
+- Estado documental: **Validado** el **2026-10-04**; acuerdo de flujo, sin implementación ni ensayo de extremo a extremo.
 - Dependencias: vinculación con la API (2.2), responsabilidades de transporte (2.3) y aplicación local de configuración (2.4).
-- Fecha de preparación: 2026-09-27.
-- Fecha y referencia del acuerdo: pendiente; la solicitud de preparar este punto no aprueba automáticamente sus decisiones.
-- Evidencia de implementación o ensayo: inspección de las rutas de configuración del backend; no se implementó ni ensayó este flujo de extremo a extremo.
+- Antecedente preparado el 2026-09-27; el acuerdo actual sustituye su propuesta de consulta y aplicación manual para **preferencias energéticas**.
+- Evidencia de implementación o ensayo: inspección documental de las rutas de configuración del backend; el flujo objetivo no se implementó ni ensayó de extremo a extremo.
 
 #### 1. Propósito y escenario concreto
 
 Describir cómo un usuario o técnico autorizado prepara un cambio en E2 Infinity y cómo el nodo lo obtiene, comprueba y aplica. La configuración solicitada en plataforma y la configuración efectivamente aplicada localmente se distinguen durante todo el recorrido.
 
-El alcance incluye modificar desde E2 Infinity la configuración del nodo que funciona en la Raspberry, no solo consultar su información. El backend conserva la propuesta autorizada; el E2 Agent mantiene la responsabilidad de comprobarla y aplicarla localmente. Esto no equivale a administrar todo el sistema operativo ni a ejecutar comandos arbitrarios en la Raspberry.
+El backend conserva las propuestas autorizadas. El E2 Agent las consulta **periódicamente por HTTPS** con la identidad de 2.2, comprueba sus condiciones locales e informa qué quedó realmente activo. La frecuencia concreta se definirá al especificar el intercambio.
 
-Para la primera etapa se propone una consulta HTTPS iniciada manualmente desde la Raspberry mediante una herramienta del agente. La activación queda sujeta a intervención del técnico y al reinicio controlado acordado en [2.4](#flow-2-4). La consulta, comprobación y comunicación del resultado son funciones objetivo del agente; todavía no se consideran implementadas.
+Las preferencias energéticas autorizadas —prioridades, horarios, reserva de batería y participación— pueden aplicarse automáticamente, sin reiniciar el agente, en el **siguiente punto seguro de decisión**. Mientras esperan ese punto, la plataforma las muestra como pendientes. Si el cambio afecta una operación en curso, el agente conserva las restricciones locales y no presenta la solicitud como aplicada antes de activarla.
 
-Las actualizaciones automáticas, los avisos MQTT de cambios y la recarga sin reinicio son posibles evoluciones que requieren otro acuerdo.
+Los cambios técnicos también pueden prepararse en E2 Infinity, pero requieren revisión del técnico y aplicación local conforme a [2.4](#flow-2-4), incluido el reinicio controlado del agente cuando corresponda a los archivos técnicos. La consulta automática de una propuesta técnica no autoriza su aplicación automática.
 
-##### Etapas propuestas
-
-| Etapa | Qué se hace desde E2 Infinity | Qué sucede en el nodo | Condición documental |
-|---|---|---|---|
-| Inicial | Preparar y guardar un cambio autorizado para el nodo | El técnico inicia la consulta HTTPS y la aplicación controlada según 2.4 | Propuesta de este punto; conserva la base manual acordada |
-| Posterior | Preparar cambios autorizados y consultar su resultado efectivo | Obtener propuestas sin intervención y aplicar automáticamente solo los cambios habilitados para ello | Evolución pendiente de acuerdo; no incluida como comportamiento inicial |
-
-Obtener una propuesta automáticamente y aplicarla automáticamente son decisiones distintas. En la etapa inicial, guardar un cambio desde la plataforma no modifica por sí solo la configuración activa de la Raspberry.
+Guardar una solicitud en la plataforma, recibirla en el nodo, aceptarla tras la comprobación local y dejarla activa son resultados distintos. Una consigna temporal pertenece al recorrido operativo, no a esta configuración persistente.
 
 #### 2. Participantes y responsabilidades
 
 | Participante | Recibe | Procesa o decide | Envía |
 |---|---|---|---|
-| Usuario o técnico autorizado | Configuración solicitada y estado aplicado | Propone cambios dentro de su autorización | Solicitud de cambio a E2 Infinity |
-| Backend E2 Infinity | Solicitud de cambio y resultados del nodo | Comprueba autorización sobre instalación, nodo y parámetros; conserva la propuesta y registra su resultado | Propuesta de configuración mediante API |
-| Técnico local | Propuesta e informe de comprobación | Inicia la consulta, revisa el resultado y solicita aplicación manual | Solicitudes locales al agente |
-| E2 Agent | Propuesta remota y configuración local vigente | Comprueba destinatario, autorización, revisión, parámetros y compatibilidad local; prepara y aplica según 2.4 | Resultado de comprobación y aplicación |
-| Registro local | Propuesta, configuración aplicada y resultados | Conserva trazabilidad y última configuración válida | Información consultada por el técnico y agente |
+| Persona autorizada | Preferencias disponibles y estado del cambio | Solicita cambios energéticos dentro de sus permisos sobre la instalación | Solicitud a E2 Infinity |
+| Técnico autorizado | Propuestas técnicas e informe local | Revisa y aplica manualmente cambios técnicos según 2.4 | Solicitud técnica e intervención local |
+| Backend E2 Infinity | Solicitudes y resultados del nodo | Comprueba autorización por instalación, nodo y tipo de parámetro; conserva la propuesta y distingue el estado solicitado del aplicado | Propuestas consultables por HTTPS y resultado visible |
+| E2 Agent | Propuestas remotas y configuración local vigente | Consulta periódicamente, comprueba destinatario, versión y límites; aplica preferencias en un punto seguro o mantiene propuestas técnicas pendientes | Resultado de recepción, comprobación y aplicación |
+| Registro local | Propuestas, configuración activa y resultados | Conserva trazabilidad y última configuración válida | Información al agente y al técnico |
 
 El recorrido de configuración administrativa utiliza HTTPS. EMQX, Mosquitto y Headscale no intervienen como gestores de esta propuesta. La mensajería operativa mantiene su recorrido MQTT acordado en 2.3.
 
 #### 3. Condiciones previas y resultado esperado
 
-- Cuenta y asociación con la instalación configuradas para consultar la API.
-- Configuración local válida y reglas de aplicación de 2.4 disponibles.
+- Nodo vinculado y autenticado ante la API según 2.2 para recibir nuevas propuestas; una pérdida posterior de API no invalida la configuración local activa.
+- Configuración local válida y límites técnicos comprobados; el procedimiento de 2.4 está disponible para cambios técnicos.
 - Solicitante autorizado a modificar los parámetros correspondientes.
 - Propuesta identificable y dirigida a la instalación y nodo correctos.
 
-Resultado esperado: saber qué se solicitó remotamente, qué recibió el agente, si lo aceptó para aplicación y qué configuración quedó activa después de la intervención manual.
+Resultado esperado: saber qué se guardó en plataforma, qué recibió y comprobó el agente, qué permanece pendiente y qué quedó efectivamente activo, tanto para preferencias automáticas como para propuestas técnicas manuales.
 
 ##### Alcance propuesto de cambios
 
 | Tipo de información | Tratamiento propuesto |
 |---|---|
-| Preferencias, reservas, prioridades y ventanas de participación | Cambios solicitados por el usuario autorizado, comprobados localmente; detalle en 4.1 y 6.1 |
-| Tarifas, perfiles y parámetros de valoración | Propuestas de datos para el cálculo local; fuentes, vigencia y autoridad se revisan en 4.2 |
-| Habilitación de participación | Solicitud autorizada compatible con las condiciones locales; no implica una actuación física inmediata |
-| Perfiles de equipos, parámetros de adaptadores y opciones de supervisión | Configuración técnica del agente que puede proponerse desde E2 Infinity; requiere permiso técnico, comprobación de capacidades reales y aplicación manual inicial. El inventario exacto queda pendiente |
+| Prioridades, horarios, reserva de batería y participación | Preferencias de la persona autorizada; el agente las comprueba y activa sin reinicio en el siguiente punto seguro. Detalles de valores admisibles en 4.1 y 6.1 |
+| Tarifas, perfiles y parámetros de valoración | Origen, vigencia y autoridad por definir en 4.2; esta subfase no habilita todavía su aplicación automática |
+| Perfiles de equipos, parámetros de adaptadores y opciones de supervisión | Pueden proponerse desde E2 Infinity por un técnico autorizado; requieren comprobación y aplicación local según 2.4. El inventario exacto queda pendiente |
 | Límites físicos de instalación y capacidades de equipos | Son restricciones que el cambio debe respetar, no capacidades que la plataforma pueda aumentar por declaración. Su modificación requiere verificación técnica local |
 | Identidad, credenciales, MQTT y red privada | Mantener su cambio bajo revisión técnica manual; una gestión remota posterior necesita un flujo específico de seguridad y recuperación |
 | Sistema operativo, actualizaciones y reinicios del equipo completo | Fuera de este flujo de configuración del agente; reiniciar E2 Agent según 2.4 no equivale a reiniciar la Raspberry |
@@ -799,57 +791,63 @@ Ejemplo: cambiar una reserva de batería en el perfil es una propuesta de config
 Antes de aceptar una propuesta, el agente debe comprobar:
 
 1. Que está dirigida a su nodo e instalación y procede de la API autenticada.
-2. Que los cambios están autorizados y pertenecen al alcance admitido para el solicitante; el mecanismo de permisos queda por definir.
-3. Que se identifica la propuesta y la configuración sobre la que se preparó, evitando sustituir silenciosamente una edición local más reciente.
-4. Que los valores y perfiles son compatibles con las capacidades verificadas, límites eléctricos, reservas y condiciones del usuario.
-5. Que existe un procedimiento de aplicación compatible con las operaciones en curso, conforme a los pendientes de 2.4.
+2. Que los cambios están autorizados para el solicitante y su tipo de parámetro; los permisos detallados se definirán en 5.1.
+3. Que la versión de partida permite aplicar cada parámetro sin sustituir silenciosamente un cambio local, según 2.6.
+4. Que los valores son compatibles con las capacidades verificadas, límites eléctricos, reservas y condiciones locales.
+5. Que una preferencia puede activarse en el siguiente punto seguro sin interrumpir una actuación; una propuesta técnica conserva la intervención de 2.4.
 
-Si no se puede resolver la autorización o un conflicto local/remoto, la propuesta no se aplica y se informa para revisión. Los campos, reglas de precedencia y mecanismos de verificación definitivos siguen pendientes de acuerdo; su coherencia común con los cambios locales se abordará en 2.6.
+Si un parámetro presenta conflicto local/remoto, permanece con su valor activo y se informa para revisión conforme a [2.6](#flow-2-6). Los cambios independientes pueden continuar tras su propia comprobación. Los campos y reglas numéricas de cada preferencia siguen pendientes de sus subfases energéticas.
 
 #### 4. Secuencia de intercambios
 
 | Paso | Tipo | Origen | Destino | Acción o mensaje | Resultado esperado |
 |---|---|---|---|---|---|
-| 1 | Manual / entre servicios | Usuario o técnico autorizado | API E2 Infinity | Proponer cambios para su instalación | Solicitud autenticada |
-| 2 | Interna / entre servicios | Backend | Solicitante | Comprobar autorización sobre nodo y parámetros y guardar propuesta | Guardado o rechazo administrativo; aún no implica aplicación en nodo |
-| 3 | Manual | Técnico local | E2 Agent | Solicitar consulta de la propuesta central | Consulta iniciada deliberadamente |
-| 4 | Entre servicios | E2 Agent | API E2 Infinity | Consultar configuración autorizada mediante HTTPS | Propuesta recibida o error informado |
-| 5 | Interna | E2 Agent | Registro local | Preparar propuesta sin sustituir la configuración aplicada | Propuesta disponible para comprobación |
-| 6 | Interna / local | E2 Agent | Técnico | Comprobar destinatario, autorización, revisión, parámetros y compatibilidad local | Aceptada para aplicación o rechazada con motivo; conflicto pendiente sin aplicar |
-| 7 | Manual / interna | Técnico | E2 Agent | Si es válida, aplicar según 2.4 mediante reinicio controlado | Configuración activa identificada |
-| 8 | Local / entre servicios | E2 Agent | Técnico y API E2 Infinity | Informar comprobación y aplicación correspondiente | Diferenciar lo solicitado de lo efectivamente activo |
+| 1 | Interacción humana | Persona o técnico autorizado | E2 Infinity | Solicitar un cambio para su instalación y nodo | Permiso comprobado; propuesta guardada o rechazada |
+| 2 | Mensaje entre servicios | E2 Agent | API E2 Infinity | Consultar periódicamente propuestas por HTTPS | Propuesta nueva recibida o ausencia/error informado |
+| 3 | Interacción interna | E2 Agent | Registro local | Preparar la propuesta y comparar versión de partida por parámetro | Configuración activa conservada durante la comprobación |
+| 4 | Interacción interna | E2 Agent | Control local | Comprobar destinatario, permiso, límites y punto seguro | Preferencia aceptada, rechazada o pendiente; conflictos tratados en 2.6 |
+| 5a | Interacción interna | E2 Agent | Decisión local | Activar preferencia válida en el siguiente punto seguro, sin reinicio | Valor activo identificado y registrado |
+| 5b | Acción manual | Técnico autorizado | E2 Agent | Revisar y aplicar una propuesta técnica según 2.4 | Resultado de comprobación y configuración técnica activa identificados |
+| 6 | Mensaje entre servicios | E2 Agent | API E2 Infinity | Informar recepción, comprobación y resultado efectivo | Plataforma distingue guardado, pendiente, aplicado, rechazo o conflicto |
 
 ```mermaid
 sequenceDiagram
-    actor U as Usuario o técnico autorizado
+    actor U as Persona o técnico autorizado
     participant B as API E2 Infinity
     actor T as Técnico local
     participant A as E2 Agent
     participant L as Configuración y registro local
 
-    Note over U,L: Borrador: consulta y aplicación inicial bajo intervención manual
+    Note over U,L: Diseño objetivo: preferencias automáticas y propuestas técnicas manuales
     U->>B: Solicitar cambio autorizado (HTTPS)
     B->>B: Comprobar permiso sobre nodo y parámetros; conservar propuesta
     B-->>U: Propuesta guardada o rechazo
-    T->>A: Solicitar consulta de configuración (acción manual)
-    A->>B: Consultar propuesta (HTTPS autenticado)
-    B-->>A: Propuesta o error de acceso
-    A->>L: Preparar propuesta sin cambiar configuración activa
-    A->>A: Comprobar destinatario, permiso, revisión y límites
-    alt Propuesta rechazada
-        A-->>T: Resultado de comprobación y motivo
-        A->>L: Registrar rechazo; conservar configuración válida
-        A->>B: Informar rechazo (interfaz objetivo)
-    else Propuesta aceptada para aplicación
-        A-->>T: Propuesta válida, pendiente de aplicación manual
-        T->>A: Aplicar según 2.4 (reinicio controlado)
-        A->>L: Aplicar y registrar configuración activa
-        A-->>T: Resultado de aplicación y conexiones
-        A->>B: Informar resultado efectivo (interfaz objetivo)
+    loop Consulta periódica
+        A->>B: Consultar propuesta (HTTPS autenticado)
+        B-->>A: Propuesta o ausencia/error
+    end
+    opt Propuesta nueva recibida
+        A->>L: Preparar propuesta sin cambiar configuración activa
+        A->>A: Comprobar destinatario, versión por parámetro y límites
+        alt Preferencia válida
+            A->>B: Informar validación y espera de punto seguro
+            A->>A: Esperar siguiente punto seguro de decisión
+            A->>L: Activar preferencia sin reinicio y registrar resultado
+            A->>B: Informar valor aplicado
+        else Propuesta técnica válida
+            A-->>T: Pendiente de revisión y aplicación local
+            A->>B: Informar propuesta técnica pendiente
+            T->>A: Aplicar según 2.4 (reinicio controlado)
+            A->>L: Registrar configuración técnica activa
+            A->>B: Informar resultado efectivo
+        else Rechazo o conflicto del parámetro
+            A->>L: Conservar valor activo y registrar motivo
+            A->>B: Informar rechazo o conflicto
+        end
     end
 ```
 
-El diagrama resume la comprobación previa y aplicación local descritas en 2.4. Los nombres de comandos, recursos de resultado y condiciones exactas de envío quedan pendientes; el borrador no introduce endpoints implementados.
+El diagrama resume dos vías de aplicación para una propuesta recibida: preferencias sin reinicio y cambios técnicos conforme a 2.4. No define comandos, frecuencia de consulta ni endpoints implementados. Si no llega ninguna propuesta, el agente conserva la configuración activa sin ejecutar la secuencia de comprobación.
 
 #### 5. Mensajes necesarios y contenido mínimo
 
@@ -857,66 +855,60 @@ El diagrama resume la comprobación previa y aplicación local descritas en 2.4.
 |---|---|---|---|---|
 | Solicitud de cambio | Usuario o técnico autorizado | API central | HTTPS | Instalación y nodo destinatario, parámetros propuestos e identificación de la solicitud; referencia de configuración de partida |
 | Resultado de guardado | API central | Solicitante | HTTPS | Propuesta guardada o rechazo; no confirmación de aplicación física |
-| Consulta de propuesta | E2 Agent | API central | HTTPS | Nodo e instalación autorizados y referencia de configuración activa conocida |
+| Consulta periódica de propuesta | E2 Agent | API central | HTTPS | Identidad autorizada del nodo y referencia de configuración activa conocida |
 | Entrega de propuesta | API central | E2 Agent | HTTPS | Identificación, revisión, destinatario y parámetros; vigencia si aplica |
-| Resultado de comprobación | E2 Agent | Técnico y plataforma | Local / HTTPS objetivo | Propuesta evaluada, aceptación o rechazo y motivos |
-| Resultado de aplicación | E2 Agent | Técnico y plataforma | Local / HTTPS objetivo | Propuesta relacionada, configuración efectivamente activa, momento del resultado y conexiones pendientes |
+| Resultado de comprobación | E2 Agent | Plataforma y, si corresponde, técnico | HTTPS / informe local | Propuesta evaluada; aceptación, rechazo o conflicto por parámetro y motivos |
+| Resultado de aplicación | E2 Agent | Plataforma y, si corresponde, técnico | HTTPS / informe local | Parámetros efectivamente activos, momento del resultado y conexiones pendientes |
 
 Los nombres exactos de campos, revisiones, rutas y asociación con `CFG-01`/`CFG-02` se acordarán al revisar el [catálogo](mensajes/catalogo-mensajes.md). Esta entrega no modifica JSON Schema.
 
 #### 6. Confirmaciones, errores y recuperación
 
-- El guardado central solo confirma recepción y conservación de la propuesta.
-- La comprobación local aceptada aún no confirma aplicación; el nodo permanece con su configuración aplicada hasta activar los cambios.
-- El informe posterior identifica qué configuración quedó activa.
+- El guardado central solo confirma recepción y conservación de la propuesta; la plataforma la presenta como pendiente hasta recibir evidencia del nodo.
+- La recepción y la comprobación local aceptada aún no confirman aplicación. Las preferencias esperan el siguiente punto seguro; las propuestas técnicas esperan la intervención de 2.4.
+- El informe posterior identifica qué parámetros quedaron activos. Los cambios independientes pueden avanzar aunque otro parámetro presente conflicto según 2.6.
 - Si la API es inaccesible, no se obtiene una nueva propuesta y se conserva la última configuración válida.
 - Si hay rechazo de autorización o el destinatario no coincide, se informa el problema y no se aplica la propuesta.
 - Los cambios incompatibles con límites físicos o condiciones locales requieren corrección o revisión autorizada.
-- Las propuestas antiguas, duplicadas o en conflicto con una edición local requieren una política explícita antes de automatizar su aplicación.
-- Mientras esa política no esté acordada, un conflicto local/remoto debe quedar visible y sin aplicación automática ni sustitución silenciosa de la configuración vigente.
+- Las propuestas antiguas o repetidas no sustituyen valores activos. Un cambio local y remoto del mismo parámetro queda en conflicto visible, sin sobrescritura silenciosa, según 2.6.
 - Una pérdida de comunicación al informar el resultado puede dejar a la plataforma sin confirmación; no autoriza a mostrar el cambio como aplicado sin evidencia.
 
 Se informan identificadores y motivos sin exponer credenciales en mensajes ni registros. El agente utiliza su autorización de API, independiente de las credenciales MQTT.
 
 #### 7. Acuerdos, pendientes y ejemplos de validación
 
-##### Base acordada en otros puntos
+##### Acuerdos confirmados
 
-- Configuración inicial manual.
-- Comprobación local y aplicación mediante reinicio controlado según 2.4.
+- Configuración inicial de identidad y archivos técnicos manual, conforme a 2.2/2.4.
+- Consulta periódica automática de propuestas por HTTPS autenticado.
+- Activación automática, sin reinicio y en el siguiente punto seguro, de prioridades, horarios, reserva de batería y participación autorizadas.
+- Propuestas técnicas preparadas en la plataforma, con comprobación y aplicación local por el técnico según 2.4.
 - Conservación de la última configuración válida.
 - Identidad del nodo y acceso API separados del acceso MQTT.
-
-##### Propuestas de este punto pendientes de validación
-
-- Configurar desde E2 Infinity parámetros persistentes del nodo, con el agente como responsable de la comprobación y aplicación efectiva.
-- Consulta de configuración por HTTPS iniciada manualmente desde la Raspberry.
-- Alcance de preferencias, participación y datos económicos autorizado remotamente.
-- Propuestas técnicas de perfiles, adaptadores y supervisión reservadas al técnico autorizado y comprobadas contra las capacidades reales.
-- Límites físicos, identidad, red y credenciales reservados a verificación técnica manual; administración del sistema operativo fuera de este flujo.
-- Informe administrativo de comprobación y aplicación hacia la API central.
+- Plataforma informada por separado del cambio guardado, recibido, comprobado y efectivamente aplicado, o de su rechazo/conflicto.
+- Límites físicos, identidad, red y credenciales sujetos a verificación técnica local; el agente no administra el sistema operativo mediante este flujo.
 - Separación explícita entre configuración persistente y consignas operativas temporales.
 
 ##### Definiciones posteriores
 
-- Lista de parámetros, roles autorizados y reglas de compatibilidad local.
-- Política ante cambios locales y remotos concurrentes, revisiones antiguas y duplicados.
-- Identificación y vigencia de propuestas, interfaz de reporte y recuperación de informes pendientes.
-- Mecanismo futuro de aviso o consulta automática; condiciones para aplicación automática.
+- Valores admisibles y permisos detallados de los parámetros en 4.1/5.1/6.1.
+- Frecuencia de consulta, campos exactos de versión y mensajes del catálogo.
+- Recuperación de informes pendientes cuando la API no recibe el resultado, en 8.5.
 - Referencias energéticas y económicas operativas, conforme a 4.2, 6.3 y a la formulación del algoritmo.
 
 ##### Escenarios propuestos
 
 | Escenario | Resultado esperado |
 |---|---|
-| Cambio autorizado y coherente | Guardado central, consulta manual, comprobación y aplicación diferenciadas |
-| Propuesta válida sin intervención de aplicación | Configuración actual conservada; propuesta pendiente de aplicación |
+| Preferencia autorizada y coherente | Guardado central, consulta automática, comprobación, aplicación sin reinicio en un punto seguro y resultado informado |
+| Propuesta técnica válida sin intervención de aplicación | Configuración técnica actual conservada; propuesta pendiente del técnico |
+| Preferencia recibida durante una actuación | Valor activo conservado hasta el siguiente punto seguro; estado pendiente visible |
 | Solicitud sin permiso | Rechazo administrativo |
 | Configuración para otra instalación | Rechazo local y conservación de configuración válida |
 | Cambio incompatible con límites físicos | Informe de rechazo sin actuación |
 | Cambio técnico de perfil sin permiso | Rechazo administrativo; no aplicación en el nodo |
 | Perfil incompatible con el equipo real | Rechazo local y conservación de configuración válida |
-| Propuesta remota basada en una configuración anterior a una edición local | Conflicto visible y propuesta sin aplicar hasta revisión |
+| Propuesta remota basada en una edición anterior del mismo parámetro | Conflicto visible; valor activo conservado para ese parámetro y cambios independientes tratados en 2.6 |
 | Consigna temporal enviada como configuración persistente | No tratarla como actualización de configuración; debe utilizar su flujo operativo autorizado |
 | API desconectada | Configuración activa conservada e imposibilidad de consulta informada |
 | Reporte de aplicación no entregado | Estado central pendiente de confirmación |
@@ -925,7 +917,9 @@ Se informan identificadores y motivos sin exponer credenciales en mensajes ni re
 
 En la copia local del backend, el router de configuración permite leer y guardar valores por instalación y parámetro, comprobando acceso. No se encontró en ese recorrido la propagación automática a la Raspberry, un protocolo completo de revisiones ni un reporte de aplicación del agente. Guardar un valor en la base de datos no acredita su ejecución en el nodo.
 
-Este documento es un borrador para revisión. No se ejecutaron pruebas de servicios ni se implementó configuración remota.
+Esta validación es documental. No se ejecutaron pruebas de servicios ni se implementó configuración remota.
+
+**Referencia de validación:** confirmación explícita «Sí, validar 2.5» el **2026-10-04**, tras acordar consulta HTTPS periódica, preferencias automáticas sin reinicio y propuestas técnicas con aplicación local.
 
 ##### Referencia histórica de esta revisión (numeración anterior)
 
@@ -937,7 +931,56 @@ Este documento es un borrador para revisión. No se ejecutaron pruebas de servic
 
 **Alcance:** **Coherencia de configuraciones:** Permisos, versiones y conflictos entre cambios locales y remotos.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Regla de coherencia acordada el **2026-10-04** mediante confirmación «Sí, validar 2.6». No constituye todavía un contrato de versiones implementado.
+
+#### 1. Propósito y escenario concreto
+
+Evitar que una propuesta remota sustituya sin aviso un cambio local más reciente. Cada propuesta debe identificar la configuración de partida; el agente compara los parámetros afectados con los valores y revisiones que tiene activos. El formato y la granularidad técnica de las revisiones se definirán al acordar los mensajes.
+
+Ejemplo: si la reserva de batería se modificó localmente durante una desconexión y otra persona cambió **esa misma reserva** en E2 Infinity, el agente conserva la reserva activa e informa el conflicto. Si la propuesta remota también modifica un horario que no cambió localmente, ese horario puede validarse y aplicarse por separado.
+
+#### 2. Participantes y responsabilidades
+
+| Participante | Recibe y comprueba | Envía o conserva |
+|---|---|---|
+| E2 Infinity | Solicitudes de personas autorizadas y resultados del agente; vincula cada propuesta con su configuración de partida | Propuesta identificable y estado por parámetro: pendiente, aplicado, rechazado o en conflicto |
+| E2 Agent | Propuesta y versión de partida frente a la configuración local activa; permisos y límites vigentes | Aplica cambios independientes y válidos; conserva el valor activo de parámetros en conflicto e informa resultado |
+| Técnico o persona autorizada | Valor activo, propuesta y motivo de conflicto según su permiso | Decide explícitamente qué valor solicitar de nuevo; no se presupone que una de las dos fuentes gane |
+| Registro local | Configuración activa y referencias de propuestas recibidas | Trazabilidad de cambios, duplicados, conflictos y resoluciones |
+
+#### 3. Condiciones y resultado esperado
+
+La configuración activa local, su referencia y las propuestas remotas deben poder distinguirse. La autorización se comprueba por instalación, nodo y tipo de parámetro; el detalle de roles queda en [5.1](#flow-5-1). Los límites físicos y capacidades locales se validan aun cuando un cambio no presente conflicto de versiones.
+
+El resultado esperado es que cada parámetro tenga un desenlace explícito: aplicado, rechazado por validación o conservado en conflicto. La plataforma no muestra una propuesta como aplicada mientras no haya recibido confirmación del agente.
+
+#### 4. Secuencia de comparación y resolución
+
+1. E2 Infinity guarda una propuesta identificable con la referencia de configuración desde la que se preparó. El agente la obtiene por el flujo de [2.5](#flow-2-5).
+2. El agente reconoce propuestas ya procesadas y evita repetir su aplicación. Si una propuesta es antigua, no desplaza el valor activo.
+3. Para cada parámetro, compara la referencia de partida con su última modificación local. Los parámetros independientes continúan a la comprobación de permisos, capacidades y límites.
+4. Si un mismo parámetro cambió local y remotamente desde la referencia común, el agente conserva el valor activo, registra el conflicto e informa ambos referentes para revisión, sin sobrescribir uno con el otro.
+5. Una persona con permiso para ese parámetro resuelve el conflicto mediante una nueva solicitud explícita basada en la configuración actual. El agente vuelve a comprobarla antes de aplicar; las preferencias siguen 2.5 y los cambios técnicos, 2.4.
+
+#### 5. Información intercambiada
+
+La propuesta y el resultado deben poder relacionarse mediante su identidad, nodo destinatario, parámetros afectados y referencia de partida. El resultado indica por parámetro si se aplicó, se rechazó o permanece en conflicto, con motivo y referencia de lo efectivamente activo. Estos son requisitos de información; no fijan nombres de campos, esquema JSON ni endpoint.
+
+#### 6. Errores y recuperación
+
+| Caso | Tratamiento acordado |
+|---|---|
+| Propuesta repetida o antigua | Reconocerla sin volver a aplicarla ni alterar el valor activo; informar el resultado conocido o su obsolescencia. |
+| Cambio concurrente del mismo parámetro | Mantener el valor activo y pedir resolución explícita a una persona autorizada. |
+| Cambios sobre parámetros distintos | Validar y aplicar cada uno por separado; un conflicto no bloquea los demás. |
+| Cambio independiente que viola un límite técnico local | Rechazar ese parámetro aunque su versión sea coherente; conservar la restricción local. |
+| API inaccesible o resultado no entregado | Conservar configuración y registro locales; la sincronización posterior se define en [8.5](#flow-8-5). |
+
+#### 7. Acuerdos y pendientes
+
+Se acuerda comparar la versión de partida, resolver conflictos **por parámetro**, conservar el valor activo cuando ambos lados cambiaron el mismo parámetro y exigir una decisión autorizada para resolverlo. La automatización no utiliza «último cambio gana». Quedan para el catálogo de mensajes los campos de versión e identidad; para 5.1, los permisos exactos; y para 8.5, la entrega diferida de resultados.
+
+**Referencia de validación:** confirmación explícita «Sí, validar 2.6» el **2026-10-04**, después de acordar conservación y revisión de conflictos por parámetro.
 
 <a id="flow-2-7"></a>
 
@@ -945,7 +988,80 @@ El flujo, sus participantes, mensajes y respuestas se definirán al conversar es
 
 **Alcance:** **Arranque del nodo:** Carga de configuración, comprobación de servicios y habilitación de funciones disponibles.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Arranque por funciones disponibles acordado el **2026-10-04** mediante confirmación «Sí, validar 2.7». La definición no acredita pruebas de arranque en hardware.
+
+#### 1. Propósito y escenario concreto
+
+Tras iniciar la Raspberry, el E2 Agent recupera la última configuración válida, comprueba los recursos que necesita cada función y habilita solo las que puede ejecutar de manera verificable. El arranque local no espera a que estén disponibles la API central o los vecinos.
+
+#### 2. Participantes y responsabilidades
+
+| Participante | Función en el arranque |
+|---|---|
+| E2 Agent y registro local | Cargan y comprueban la última configuración válida, sus límites y preferencias activas; registran qué funciones quedan disponibles o pendientes. |
+| Medidores, adaptadores y equipos | Entregan disponibilidad, lecturas y capacidades necesarias para cada función; el detalle de sus interfaces se define en el corte 3. |
+| Mosquitto local y servicios del nodo | Permiten los recorridos que dependan de ellos; su ausencia limita solo las funciones afectadas. |
+| API E2 Infinity, EMQX y red privada | Se comprueban separadamente para vinculación, configuración/telemetría y coordinación; sus fallos no invalidan por sí solos la gestión local segura. |
+| Técnico | Consulta diagnóstico y corrige una configuración inválida o un recurso faltante; interviene en la primera configuración según 2.4. |
+
+#### 3. Condiciones y resultado esperado
+
+Sin una configuración local válida, se mantiene el diagnóstico y **no se habilitan actuaciones energéticas automáticas**, conforme a [2.4](#flow-2-4). Con configuración válida, una función local requiere los límites, mediciones y equipos de los que depende. Si falta una medición necesaria para respetar un límite eléctrico, esa función permanece deshabilitada; no se sustituye la lectura por un dato antiguo.
+
+Una Raspberry nueva puede habilitar funciones locales verificables **antes de completar su primera vinculación con E2 Infinity**. La consulta de preferencias remotas, el reporte central y la coordinación quedan pendientes de sus respectivas condiciones de autorización y conectividad. La coordinación exige además las condiciones de participación y vecinos que se definirán en 6.5/7.1; este punto no fija quórum ni estados de la máquina de control.
+
+#### 4. Secuencia de arranque
+
+1. Iniciar el agente y cargar la última configuración local válida. Si no existe o no pasa comprobación, ofrecer diagnóstico y dejar las actuaciones automáticas deshabilitadas.
+2. Comprobar servicios locales, adaptadores, equipos y mediciones requeridas; registrar disponibilidad y antigüedad de los datos utilizados.
+3. Evaluar cada función local frente a sus dependencias y límites. Habilitar las verificables y dejar inactivas las que carezcan de una medición o equipo indispensable.
+4. Comprobar por separado vinculación/API, mensajería central y red privada/vecinos. Habilitar configuración remota, reporte y coordinación solo cuando correspondan; mantener la gestión local ya habilitada.
+5. Registrar el resultado de las comprobaciones e informar a la plataforma cuando exista un canal autorizado. Los detalles del heartbeat y reporte se definen en 3.4/5.2.
+
+```mermaid
+sequenceDiagram
+    participant A as E2 Agent
+    participant L as Configuración y registro local
+    participant E as Medidores y equipos
+    participant S as Servicios locales y externos
+
+    A->>L: Cargar última configuración válida
+    alt Sin configuración válida
+        L-->>A: Configuración ausente o inválida
+        Note over A: Diagnóstico disponible; sin actuaciones automáticas
+    else Configuración válida
+        L-->>A: Límites y preferencias activas
+        A->>E: Comprobar mediciones y equipos requeridos
+        E-->>A: Disponibilidad y lecturas
+        A->>A: Habilitar solo funciones localmente verificables
+        A->>S: Comprobar API, broker y vecinos por separado
+        S-->>A: Disponibilidad de cada recorrido
+        A->>L: Registrar funciones activas y pendientes
+    end
+```
+
+#### 5. Información y resultados
+
+El agente conserva qué configuración cargó, qué dependencias comprobó, cuáles funciones habilitó y por qué otras quedaron pendientes. El diagnóstico local debe ser consultable aun sin plataforma. Si existe conexión autorizada, el reporte central distingue la disponibilidad del nodo de la disponibilidad de cada función. No se fijan campos, intervalos ni mensajes concretos de heartbeat en este punto.
+
+#### 6. Fallos y recuperación inicial
+
+| Situación | Resultado acordado |
+|---|---|
+| Sin configuración válida en el primer arranque | Solo diagnóstico; ninguna actuación energética automática. |
+| API o EMQX inaccesible | Gestión local verificable disponible; configuración remota y reporte central pendientes según el servicio afectado. |
+| Sin primera vinculación E2 Infinity | Operación local segura permitida con configuración y recursos válidos; sin atribuir alta central o acceso remoto. |
+| Sin vecinos o red privada | Gestión local disponible; coordinación distribuida pendiente de sus condiciones específicas. |
+| Medición indispensable ausente o inválida | Funciones dependientes deshabilitadas; las independientes pueden operar si se comprueban sus propias condiciones. |
+| Servicio local o equipo ausente | Funciones que lo requieren pendientes; registrar el diagnóstico y continuar con las funciones independientes. |
+
+La recuperación posterior de un servicio o equipo y el retorno a funciones disponibles se detallarán en [8.4](#flow-8-4); la pérdida de un servicio ya operativo, en 8.1–8.3.
+
+#### 7. Acuerdos y pendientes
+
+Se acuerda cargar la última configuración válida y habilitar funciones por dependencias comprobadas, sin bloqueo global por plataforma o vecinos. La ausencia de una medición indispensable deshabilita las funciones que la requieren. Un nodo nuevo puede operar localmente antes del alta central, con diagnóstico y sin atribuirse autorización de plataforma. El inventario y las mediciones concretas se definirán en 3.1–3.3, y las condiciones del consenso en 6.5/7.1.
+
+**Referencia de validación:** confirmación explícita «Sí, validar 2.7» el **2026-10-04**, tras acordar arranque por recursos disponibles, ausencia de actuación sin configuración válida y operación local previa al alta central.
 
 
 ## Corte 3 — Equipos, mediciones y supervisión local

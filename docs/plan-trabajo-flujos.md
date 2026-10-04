@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.7 — 4 de octubre de 2026**.
+Versión documental **0.3.8 — 4 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -55,9 +55,9 @@ Definir cómo se prepara el nodo y cómo aplica su configuración.
 | 2.2 | **Vinculación con E2 Infinity:** Incorporación, asociación y autorización del nodo. | Validado | 1.1, 1.2, 1.3 | Permisos finos de personas en 5.1; visibilidad y telemetría en 5.2/5.3; recuperación tras reemplazo en 8.4. | [Definición](definiciones-flujos.md#flow-2-2) | 2026-10-04: «me gusta tu propuesta»; precreación, credencial por nodo, acceso por instalación y reemplazo acordados documentalmente. |
 | 2.3 | **Conexiones MQTT:** Agente–Mosquitto, bridge con EMQX y brokers vecinos. | Validado | 1.2, 2.1, 2.2 | Tópicos, permisos detallados y confirmaciones por revisar en cada flujo. | [Definición](definiciones-flujos.md#flow-2-3) | 2026-09-27: «lo valido», antes 1.5; se conserva el acuerdo. |
 | 2.4 | **Configuración local:** Edición, comprobación, aplicación y resultado. | Validado | 1.1, 1.2, 1.3 | Archivos, comandos y aplicación ante operaciones en curso por definir. | [Definición](definiciones-flujos.md#flow-2-4) | 2026-09-27: «me parece bien», antes 1.6; se conserva el acuerdo. |
-| 2.5 | **Configuración remota:** Propuesta desde la plataforma, recepción, comprobación y aplicación. | Borrador | 2.2, 2.3, 2.4 | Validar alcance y etapa manual; acordar automatización posterior. | [Definición](definiciones-flujos.md#flow-2-5) | Revisión 2026-09-27, antes 1.7; sin confirmación de validación. |
-| 2.6 | **Coherencia de configuraciones:** Permisos, versiones y conflictos entre cambios locales y remotos. | Pendiente | 2.4, 2.5 | ¿Cómo se detecta y resuelve un conflicto sin sobrescribir silenciosamente? | [Definición](definiciones-flujos.md#flow-2-6) | — |
-| 2.7 | **Arranque del nodo:** Carga de configuración, comprobación de servicios y habilitación de funciones disponibles. | Pendiente | 1.1, 2.4 | ¿Qué funciones pueden habilitarse con los recursos locales disponibles? | [Definición](definiciones-flujos.md#flow-2-7) | — |
+| 2.5 | **Configuración remota:** Propuesta desde la plataforma, recepción, comprobación y aplicación. | Validado | 2.2, 2.3, 2.4 | Frecuencia y campos del intercambio pendientes; permisos y valores admisibles en 4.1/5.1/6.1. | [Definición](definiciones-flujos.md#flow-2-5) | 2026-10-04: «Sí, validar 2.5»; consulta HTTPS periódica, preferencias automáticas y cambios técnicos con aplicación local. |
+| 2.6 | **Coherencia de configuraciones:** Permisos, versiones y conflictos entre cambios locales y remotos. | Validado | 2.4, 2.5 | Campos de versión en catálogo; permisos detallados en 5.1 y sincronización de resultados en 8.5. | [Definición](definiciones-flujos.md#flow-2-6) | 2026-10-04: «Sí, validar 2.6»; comparación y conflictos por parámetro, sin reemplazo silencioso. |
+| 2.7 | **Arranque del nodo:** Carga de configuración, comprobación de servicios y habilitación de funciones disponibles. | Validado | 1.1, 2.4 | Dependencias concretas de equipos/mediciones en 3.1–3.3; recuperación en 8.4. | [Definición](definiciones-flujos.md#flow-2-7) | 2026-10-04: «Sí, validar 2.7»; arranque por recursos disponibles y operación local segura antes del alta central. |
 
 ### Corte 3 — Equipos, mediciones y supervisión local
 
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**2.5 — Configuración remota:** retomar el borrador existente y precisar el acceso de las personas autorizadas a las preferencias energéticas del nodo. 2.3 y 2.4 conservan sus validaciones anteriores; 2.1 y 2.2 se validaron el 2026-10-04.
+**3.1 — Inventario y capacidades:** identificar los equipos de cada nodo, sus funciones reales de medición y control y la evidencia necesaria para considerarlos disponibles. El corte 2 quedó validado documentalmente; los detalles físicos se trabajarán en el corte 3.

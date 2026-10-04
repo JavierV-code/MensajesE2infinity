@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## 0.3.8 — 2026-10-04
+
+- Valida documentalmente 2.5–2.7 y completa el corte 2; la siguiente subfase es 3.1.
+- Reemplaza en 2.5 la consulta manual general por consulta HTTPS periódica. Las preferencias autorizadas se activan sin reinicio en el siguiente punto seguro; las propuestas técnicas siguen la aplicación local de 2.4.
+- Define en 2.6 conflictos por parámetro, conservación del valor activo y resolución autorizada, permitiendo cambios independientes.
+- Define en 2.7 arranque por funciones disponibles: diagnóstico sin configuración válida, bloqueo de funciones sin mediciones indispensables y operación local segura aun antes del primer alta central.
+- Actualiza plan, README, índices y diagramas conceptuales; conserva los Draw.io históricos sin cambios. No implementa servicios ni fija endpoints, tópicos o esquemas nuevos.
+
 ## 0.3.7 — 2026-10-04
 
 - Valida documentalmente 2.2 — Vinculación con E2 Infinity tras la aceptación de las propuestas de alta, acceso de personas y reemplazo.
