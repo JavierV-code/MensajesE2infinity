@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## 0.3.6 — 2026-10-04
+
+- Valida documentalmente 2.1 — Registro de red privada mediante confirmación explícita.
+- Define clave temporal de un solo uso por Raspberry, alta manual por el técnico y reporte de estado del cliente por el E2 Agent.
+- Separa registro Headscale de conectividad a pares y del alta/autorización en E2 Infinity; remite la prueba tras caída de Headscale a VAL-16/corte 8.
+- Corrige la matriz 1.3 y el mapa de arquitectura; conserva intacto el Draw.io histórico con una nota de vigencia en su índice.
+- Actualiza la siguiente subfase a 2.2; no modifica APIs, mensajes, tópicos ni JSON Schema.
+
 ## 0.3.5 — 2026-10-03
 
 - Valida documentalmente 1.4 — Recorridos generales mediante confirmación explícita.

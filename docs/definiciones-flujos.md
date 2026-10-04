@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.5 — 3 de octubre de 2026**.
+Versión documental **0.3.6 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -157,7 +157,8 @@ La pertenencia a un grupo eléctrico no significa que todos sus nodos sean vecin
 | Mosquitto local ↔ brokers/agentes vecinos | Publicaciones autorizadas para disponibilidad y coordinación entre agentes participantes. | MQTT entre brokers, transportado por la red privada Tailscale. | **Acordado documentalmente** como recorrido objetivo; topología y conjunto de vecinos se resuelven en 6.5; operación física **por verificar**. |
 | Cliente Tailscale ↔ Headscale | Cliente solicita registro/coordinación de la red privada; Headscale entrega/controla la información de coordinación correspondiente. | Plano de control de la red privada. | **Acordado documentalmente** como separación de responsabilidades; alta concreta en 2.1 y estado operativo **por verificar**. Headscale no transporta consignas energéticas ni decide el consenso. |
 | Cliente Tailscale ↔ cliente Tailscale | Los clientes transportan tráfico IP privado entre nodos autorizados; MQTT de vecinos puede circular por esta red. | Plano de datos de la red privada. | **Acordado documentalmente** como diseño; conectividad efectiva **por verificar**. Headscale coordina, pero no es el broker MQTT ni necesariamente el camino de los datos. |
-| E2 Agent → cliente Tailscale | El agente puede gestionar localmente la configuración/servicio del cliente en el nodo. | Interacción interna/local de administración; no es un mensaje energético entre nodos. | **Propuesta**; procedimiento y alcance de aprovisionamiento en 2.1. |
+| Técnico → cliente Tailscale | El técnico configura manualmente el endpoint Headscale y ejecuta el alta inicial del cliente con una clave temporal de un solo uso. | Acción local manual; la clave se entrega fuera del repositorio y no es un mensaje de aplicación E2 Infinity. | **Acordado documentalmente** en 2.1. |
+| Cliente Tailscale → E2 Agent | El estado local del servicio llega al agente para que lo informe; el agente no configura el endpoint ni ejecuta el alta inicial. | Interacción local de supervisión; el mecanismo y destino del reporte se definen en 3.4/5.2. | **Acordado documentalmente** en 2.1; la ruta de reporte queda pendiente. |
 | Navegador local ↔ panel local ↔ E2 Agent | Técnico/usuario local accede al panel; el panel consulta o solicita operaciones administrativas al agente. | HTTPS / API local prevista. | **Propuesta** de evolución; el panel no se considera implementado y la configuración inicial es manual. Detalles en 2.4 y permisos en 5.1. |
 | E2 Agent ↔ adaptadores | El agente entrega solicitudes y recibe datos/estados mediante módulos locales. | Llamadas o interfaz interna del software; mecanismo concreto no fijado. | **Propuesta / por verificar**; delimitar en 3.2 y 4.5. No confundir una llamada interna con tráfico MQTT. |
 | Adaptador EVCC ↔ cargador | Adaptador y cargador intercambian datos y operaciones compatibles. | OCPP. | **Propuesta de interfaz objetivo; por verificar** para el equipo e integración concretos. Detalles en 3.2. |
@@ -175,6 +176,8 @@ La pertenencia a un grupo eléctrico no significa que todos sus nodos sean vecin
 Una flecha bidireccional en el mapa resume que la interfaz admite intercambios en ambos sentidos. No significa que cada mensaje publicado requiera respuesta, ni reemplaza la definición individual de emisor, destinatario, disparador y respuesta necesaria.
 
 **Pendientes asignados:** el alta e intercambio administrativo se concreta en 2.2/2.5; interfaces y capacidades reales de equipos en 3.2; topología y vecinos en 6.5; mensajes de supervisión, telemetría y operación en sus subfases respectivas. El bridge Mosquitto–EMQX sigue pendiente de implementación según 2.3. No se fijan endpoints, tópicos, campos ni esquemas nuevos en esta matriz.
+
+**Precisión acordada el 2026-10-04 en 2.1:** el alta inicial de Tailscale es manual por el técnico; el E2 Agent solo informa el estado local. Esto sustituye la propuesta previa de que el agente administrara el alta.
 
 **Referencia de validación:** confirmación explícita del usuario «Sí, validar 1.3» en conversación del **2026-10-03**.
 
@@ -264,7 +267,76 @@ sequenceDiagram
 
 **Alcance:** **Registro de red privada:** Cliente Tailscale y Headscale.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Flujo acordado explícitamente el **2026-10-04**. La validación no certifica conexión efectiva de una Raspberry.
+
+#### Propósito y participantes
+
+Registrar manualmente el cliente Tailscale de una Raspberry en la instancia Headscale administrada por separado, y comprobar el registro y el alcance privado como resultados distintos. Esta identidad de red no incorpora ni autoriza por sí sola el nodo en E2 Infinity; ese flujo es 2.2.
+
+| Actor o componente | Responsabilidad en este flujo |
+|---|---|
+| Administrador de infraestructura | Genera una clave temporal, de un solo uso y destinada a una Raspberry; la entrega al técnico fuera del repositorio. Administra Headscale centralmente. |
+| Técnico | Configura manualmente el cliente Tailscale en la Raspberry, indica el servidor Headscale y ejecuta el alta. Conserva la clave fuera de archivos versionados. |
+| Cliente Tailscale | Solicita el registro al plano de control Headscale y, una vez inscrito, proporciona conectividad privada de datos entre clientes autorizados. |
+| Headscale | Valida la clave y registra el cliente; coordina la información de la red privada. No procesa mensajes energéticos ni controla equipos. |
+| E2 Agent | Informa el estado local del cliente; no administra la configuración inicial ni realiza el registro. El destino y transporte del reporte se definirán en 3.4/5.2. |
+| Par autorizado | Se utiliza para comprobar el alcance de la red de datos una vez que el cliente está registrado. |
+
+#### Secuencia acordada
+
+1. El administrador de Headscale crea una clave de registro temporal de un solo uso para la Raspberry que se incorporará y la entrega al técnico por un canal externo seguro. No se registra la clave ni su valor en documentación, logs compartidos o control de versiones; la duración exacta de vigencia no se fija aquí.
+2. El técnico, actuando localmente en la Raspberry, configura el cliente Tailscale con la dirección de la instancia Headscale y la clave recibida, y solicita el alta. Esta acción manual no es una llamada de E2 Infinity.
+3. El cliente Tailscale envía la solicitud de registro a Headscale. Si la clave es válida y no fue utilizada, Headscale acepta el alta; el cliente conserva su nueva identidad de red y dirección privada.
+4. Se comprueba el registro en Headscale y el estado local del cliente por separado de la conectividad con pares. El E2 Agent informa su estado local, sin administrar el alta.
+5. El técnico prueba por separado la conectividad hacia al menos un cliente/par autorizado. El flujo no presupone comunicación total entre todos los nodos ni define su topología, que corresponde a 6.5.
+
+```mermaid
+sequenceDiagram
+    actor Admin as Administrador Headscale
+    actor Tech as Técnico
+    participant HS as Headscale
+    participant TS as Cliente Tailscale / Raspberry
+    participant Agent as E2 Agent
+    participant Peer as Par autorizado
+
+    Admin->>HS: Generar clave temporal de un solo uso
+    HS-->>Admin: Clave para una Raspberry
+    Admin-->>Tech: Entregar clave por canal externo seguro
+    Note over Admin,Tech: No guardar la clave en el repositorio
+    Tech->>TS: Configurar servidor y solicitar alta manualmente
+    TS->>HS: Solicitud de registro con la clave
+    alt Clave válida y no utilizada
+        HS-->>TS: Registro aceptado e identidad/dirección privada
+        TS-->>Agent: Estado local del servicio
+        Note over Agent: El agente informa estado; no gestiona el alta
+        Tech->>HS: Comprobar que el cliente quedó registrado
+        Tech->>Peer: Probar conectividad privada por separado
+        alt Par alcanzable
+            Peer-->>Tech: Prueba de conectividad completada
+        else Sin alcance al par
+            Note over TS,Peer: Cliente registrado; conectividad aún no verificada
+        end
+    else Clave inválida, vencida o ya utilizada
+        HS-->>TS: Registro rechazado
+        Tech->>Admin: Solicitar una clave nueva
+    end
+    opt Headscale queda inaccesible después del alta
+        Note over HS,Peer: No inferir caída de enlaces entre pares; comprobar el plano de datos (VAL-16)
+    end
+```
+
+#### Resultados, fallos y límites
+
+| Condición | Resultado y tratamiento acordado |
+|---|---|
+| Clave inválida, vencida o previamente consumida | El registro se rechaza; el técnico solicita al administrador una clave nueva. No se reutiliza la misma clave. |
+| Headscale inaccesible durante el alta inicial | La Raspberry no queda registrada; se reintenta el proceso cuando el servicio esté disponible y con una clave vigente. |
+| Registro aceptado, pero el par no es alcanzable | Se conserva el resultado «registrado» y se informa por separado que la conectividad no se verificó. No se marca la red de datos como comprobada. |
+| Headscale inaccesible luego del registro | No se asume automáticamente que se perdió conectividad ya establecida entre pares; su continuidad se comprueba en el escenario VAL-16 y en el corte 8. |
+
+Una falla del alta de red no equivale a una asociación fallida en E2 Infinity. La relación entre `node_id` y la identidad Tailscale sigue siendo independiente conforme a 1.2; el alta/autorización de plataforma queda en 2.2. La topología y los permisos de comunicación entre vecinos se definen en 6.5. El reporte continuo de salud del agente queda para 3.4/5.2. No se fijan aquí comandos, direcciones, duración concreta de la clave ni formato de mensaje.
+
+**Referencia de validación:** confirmación explícita del usuario «Sí, validar 2.1 con este flujo» el **2026-10-04**.
 
 <a id="flow-2-2"></a>
 

@@ -18,6 +18,8 @@ Esta entrega representa los recorridos de incorporación y configuración del bl
 
 Las pestañas Draw.io, PNG y SVG v01 conservan sus títulos, numeración y fecha originales. El «primer corte» de esos archivos corresponde al bloque histórico, no al corte 1 de arquitectura del plan actual.
 
+**Nota de vigencia para la pestaña 01:** el dibujo histórico representa una clave compartida reutilizable. Esa representación fue sustituida por el acuerdo vigente de [2.1 — Registro de red privada](../definiciones-flujos.md#flow-2-1): clave temporal de un solo uso por Raspberry. El archivo histórico se conserva sin cambios y no debe usarse como instrucción para la política actual de claves.
+
 | Referencia visible en v01 | Subfase actual |
 |---|---|
 | 1.1 — Actores y responsabilidades | 1.1 |

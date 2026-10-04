@@ -20,10 +20,12 @@ flowchart LR
     CORE[Backend E2 Infinity]
     EMQX[EMQX central\nBroker MQTT]
     HS[Headscale\nPlano de control de red]
+    HADMIN[Administrador Headscale]
+    TECH[Técnico instalador]
 
     subgraph NODE[Raspberry / nodo E2]
         PANEL[Panel local\nPropuesta]
-        AGENT[E2 Agent\nGestión y control local\nConsenso cuando corresponda]
+        AGENT[E2 Agent\nGestión y control local\nInforma estado de Tailscale]
         MOSQ[Mosquitto local\nBroker MQTT]
         TS[Cliente Tailscale\nPlano de datos privado]
         ADP[Adaptadores\nEVCC / OCPP y otros]
@@ -43,7 +45,9 @@ flowchart LR
     MOSQ <-->|MQTT local acordado| AGENT
     MOSQ <-->|MQTT entre brokers\nvecinos por definir en 6.5| NB
     NB <-->|Entrega MQTT local| NEIGHBOR
-    AGENT -->|Gestión local propuesta| TS
+    HADMIN -->|Emite clave temporal de un uso| HS
+    TECH -->|Configura y registra manualmente| TS
+    TS -->|Estado local del cliente| AGENT
     TS -.->|Registro / coordinación\nplano de control| HS
     TS <-->|Transporte IP privado\nHeadscale no va en la ruta de datos| NB
     AGENT <-->|Interfaz interna\nmecanismo por verificar| ADP
