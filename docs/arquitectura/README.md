@@ -20,6 +20,8 @@ El [acuerdo de 3.4 — Heartbeat y salud de servicios](../definiciones-flujos.md
 
 El [acuerdo de 3.5 — Alarmas locales](../definiciones-flujos.md#flow-3-5) completa el corte de supervisión: el agente conserva diagnóstico y alarmas localmente, informa a la plataforma cuando puede y cierra cada condición tras comprobar la recuperación. Los vecinos solo reciben cambios de participación relevantes.
 
+El [acuerdo de 4.1 — Objetivos y preferencias locales](../definiciones-flujos.md#flow-4-1) inicia la gestión energética autónoma: el técnico fija límites, el usuario selecciona objetivos y preferencias más conservadoras, y el agente solo ofrece a la coordinación la flexibilidad que reste tras proteger esas condiciones.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

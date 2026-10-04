@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.13 — 4 de octubre de 2026**.
+Versión documental **0.3.14 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1382,7 +1382,49 @@ La presentación al usuario, los permisos y el reconocimiento de lectura se prec
 
 **Alcance:** **Objetivos y preferencias locales:** Prioridades, reservas, horarios y límites.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 4.1». Define las opciones objetivo del usuario y sus límites de autoridad; no demuestra que estén implementadas ni que todos los equipos las soporten.
+
+#### 1. Propósito y autoridad
+
+El nodo gestiona sus recursos para beneficiar a la instalación aun sin nube ni consenso. La persona autorizada puede orientar la gestión hacia **ahorro económico** o **autoconsumo**, pero el cálculo concreto y los datos tarifarios se definirán en [4.2](#flow-4-2). El técnico fija las capacidades comprobadas y los **límites eléctricos máximos** de la instalación y los equipos, de acuerdo con [2.4](#flow-2-4) y el inventario de [3.1](#flow-3-1). El usuario puede imponer restricciones más conservadoras, nunca ampliar esos máximos.
+
+| Participante | Qué define o comprueba |
+|---|---|
+| Técnico autorizado | Límites y parámetros técnicos, equipos y circuitos físicamente controlables; aplica cambios técnicos por el procedimiento local de 2.4. |
+| Usuario autorizado de la instalación | Objetivo local, prioridades, protección de cargas, reserva de batería, meta y plazo de carga del vehículo, y horarios permitidos, dentro de las capacidades habilitadas. |
+| E2 Agent | Conserva preferencias activas, comprueba compatibilidad con límites y equipos, y decide localmente solo con mediciones aptas. Informa si una preferencia se rechaza o no es alcanzable. |
+
+#### 2. Preferencias locales previstas
+
+| Preferencia | Alcance acordado |
+|---|---|
+| Objetivo local | Elegir la orientación entre reducir el costo de energía y aprovechar la generación propia; esta elección no sustituye límites ni reservas. |
+| Prioridad de cargas | Indicar el orden de reducción o desconexión entre cargas que el montaje permita controlar. No se presume control individual de aparatos dentro de un circuito. |
+| Cargas protegidas | Excluir de la desconexión **automática por gestión energética** los circuitos o cargas que el usuario proteja; esto no altera las protecciones eléctricas físicas. |
+| Reserva mínima de BESS | Mantener energía reservada para el uso local; el control requiere capacidades de batería e inversor comprobadas conforme a [3.2](#flow-3-2). |
+| Meta y plazo del vehículo | Expresar el objetivo de carga y el momento deseado, sujetos a las funciones verificadas del cargador, potencia disponible y horarios. No se promete cumplir una meta físicamente imposible. |
+| Horarios permitidos | Definir ventanas para gestionar cargas o carga del vehículo localmente. Las ventanas de **participación distribuida** se precisarán en [6.1](#flow-6-1). |
+
+#### 3. Aplicación y precedencia
+
+La configuración técnica válida delimita el espacio seguro. Dentro de él se protegen las cargas esenciales y reservas elegidas por la persona; después se optimiza la utilidad local conforme a su objetivo y preferencias. **Solo la flexibilidad restante** puede ofrecerse a la coordinación distribuida. Una consigna de consenso que invada un límite, una carga protegida o la reserva local no se ejecuta por el hecho de provenir de otros nodos; la resolución detallada de solicitudes concurrentes se definirá en [4.4](#flow-4-4).
+
+Las preferencias propuestas desde E2 Infinity siguen [2.5](#flow-2-5): el agente las recibe, verifica y activa en el siguiente punto seguro, sin atribuir aplicación a una propuesta solo guardada en plataforma. Los conflictos entre cambios locales y remotos siguen [2.6](#flow-2-6). La titularidad y permisos específicos se precisarán en [5.1](#flow-5-1); la autorización y restricciones de participación, en [6.1](#flow-6-1).
+
+#### 4. Casos y límites
+
+| Situación | Resultado documental |
+|---|---|
+| El usuario solicita un límite superior al técnico | Rechazar el aumento y conservar el límite técnico vigente; permitir una restricción más conservadora. |
+| Una carga está protegida | No seleccionarla para desconexión automática por optimización o consenso; mantener las protecciones eléctricas independientes. |
+| Las cargas protegidas dejan sin solución una solicitud de reducción | Informar que la meta no es alcanzable con las actuaciones permitidas; no atribuir al software capacidad de impedir la operación de las protecciones eléctricas físicas. |
+| La descarga de BESS reduciría la reserva mínima | No utilizar esa energía para una optimización local ni como flexibilidad ofrecida. |
+| La meta de carga del vehículo no es alcanzable | Informar la limitación y no prometer ni registrar la meta como satisfecha; el tratamiento de decisiones y resultados queda en 4.3–4.7. |
+| La coordinación solicita más de la flexibilidad disponible | Validar y limitar o rechazar localmente según [4.4](#flow-4-4), preservando necesidades de la instalación. |
+
+No se fijan fórmulas de optimización, ponderaciones, valores por defecto ni nuevos campos de configuración. La disponibilidad de cada preferencia depende de equipos, mediciones e interfaces comprobados en el corte 3.
+
+**Referencia de validación:** el **2026-10-04** se acordaron ahorro/autoconsumo seleccionables, máximos técnicos no ampliables por el usuario, prioridad de la utilidad local frente al consenso, cargas protegidas y preferencias mínimas de BESS, vehículo y horarios; el usuario confirmó «Sí, validar 4.1».
 
 <a id="flow-4-2"></a>
 

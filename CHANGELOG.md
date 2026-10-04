@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.14 — 2026-10-04
+
+- Valida documentalmente 4.1 — Objetivos y preferencias locales: ahorro/autoconsumo seleccionables, límites técnicos no ampliables por el usuario, prioridades y cargas protegidas.
+- Añade reserva mínima de BESS, meta y plazo del vehículo y horarios; solo la flexibilidad restante puede participar en la coordinación distribuida.
+- Actualiza plan e índices y establece 4.2 como siguiente subfase. No fija fórmulas ni valores por defecto, y no modifica código, APIs ni esquemas.
+
 ## 0.3.13 — 2026-10-04
 
 - Valida documentalmente 3.5 — Alarmas locales y completa el corte 3: evento de diagnóstico frente a alarma por impacto o persistencia, episodio local sin duplicaciones y cierre por recuperación comprobada.
