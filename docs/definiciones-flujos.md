@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.10 — 4 de octubre de 2026**.
+Versión documental **0.3.11 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1197,7 +1197,60 @@ Ante un rechazo, falta de respuesta o pérdida de comunicación, el agente regis
 
 **Alcance:** **Lecturas locales:** Adquisición, unidades, fecha y calidad de las mediciones.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 3.3». Define el tratamiento previsto de las lecturas; no acredita precisión ni operación con equipos reales.
+
+#### 1. Propósito y participantes
+
+Las lecturas siguen el recorrido **equipo físico → adaptador o ESP32 → E2 Agent**, según la interfaz acordada en [3.2](#flow-3-2). El equipo o su pasarela obtiene el valor; el adaptador indica su procedencia, variable y unidad de origen; el agente lo relaciona con el `device_id` y el circuito inventariados en [3.1](#flow-3-1), normaliza la unidad y decide si el dato sirve para una función concreta. Esta comprobación local es independiente del envío de telemetría a E2 Infinity, que se definirá en [5.2](#flow-5-2).
+
+| Información necesaria | Tratamiento acordado |
+|---|---|
+| Procedencia | Asociar nodo, equipo físico, circuito y ruta de adquisición; no atribuir una lectura a otro equipo por compartir pasarela. |
+| Variable, valor y unidad | Identificar qué se midió y en qué unidad llegó. El agente normaliza a una representación local común y conserva la unidad y procedencia originales para diagnóstico. |
+| Tiempo de origen | Conservar cuándo se efectuó la medición en el equipo o pasarela, cuando esa hora sea confiable. |
+| Tiempo de recepción | Conservar cuándo llegó la lectura a la Raspberry, separado del tiempo de origen, para reconocer retrasos. |
+| Calidad y motivo | Registrar si el dato es utilizable para una función, está degradado o es inválido, junto con el motivo cuando no pueda utilizarse. |
+
+#### 2. Adquisición y evaluación local
+
+1. El agente recibe la lectura por el adaptador correspondiente y comprueba que pueda atribuirla a un equipo y variable conocidos. Una entrega de transporte exitosa no garantiza calidad de la medición.
+2. Conserva las horas de medición y recepción. Si falta la primera o el reloj de origen no es confiable, mantiene la hora de recepción y marca la calidad como degradada; esa lectura no se usa en funciones que exigen frescura de origen comprobada.
+3. Comprueba integridad, unidad interpretable, rango físicamente admisible y antigüedad. Normaliza la unidad sin perder el valor y la procedencia recibidos. La aptitud se evalúa **por función**: una lectura útil para diagnóstico puede no ser suficientemente reciente para proteger un límite o actuar sobre un equipo.
+4. Entrega a cada función únicamente las lecturas aptas para sus dependencias. Las incompletas, tardías, fuera de rango o con unidad desconocida se conservan con su motivo para diagnóstico, pero se excluyen de las decisiones que requieren datos válidos.
+5. Si no llega una lectura indispensable, el agente registra su ausencia; **ausencia no significa valor cero**. Se deshabilita solo la función que depende de ella, conforme al arranque y habilitación por recursos de [2.7](#flow-2-7).
+
+```mermaid
+sequenceDiagram
+    participant E as Equipo físico
+    participant P as Adaptador o ESP32
+    participant A as E2 Agent
+    participant F as Función local
+
+    E-->>P: Valor y estado disponibles
+    P-->>A: Lectura con procedencia y unidad de origen
+    A->>A: Atribuir equipo/circuito, conservar tiempos y normalizar unidad
+    A->>A: Evaluar calidad y vigencia según la función
+    alt Lectura apta
+        A-->>F: Valor normalizado y calidad
+    else Lectura no apta o ausente
+        A->>A: Conservar motivo para diagnóstico
+        A-->>F: Dato no disponible para esta función
+    end
+```
+
+#### 3. Casos y pendientes de comprobación
+
+| Caso | Resultado documental |
+|---|---|
+| Llegada tardía | Conservar ambas horas y evaluar la vigencia para cada función; no asumir que recepción reciente significa medición reciente. |
+| Reloj de origen ausente o no confiable | Marcar calidad degradada y restringir usos que exigen frescura comprobada. |
+| Unidad desconocida o lectura incompleta | Conservar el dato y motivo para diagnóstico; no normalizar por suposición ni utilizarlo en decisiones dependientes. |
+| Valor fuera de rango | Registrar el dato y la razón; no emplearlo como medición válida. |
+| Medición ausente | Informar ausencia y deshabilitar la función dependiente sin sustituir el valor por cero o por una lectura antigua. |
+
+Las frecuencias de adquisición, rangos verificables y umbrales numéricos de vigencia se establecerán al comprobar equipos y funciones del banco; esta sección no les asigna valores arbitrarios. La salud de adaptadores y pasarelas se tratará en [3.4](#flow-3-4), sus alarmas en [3.5](#flow-3-5) y los resultados visibles en plataforma en el corte 5. No se crean aquí campos de contrato, tópicos, endpoints, APIs ni esquemas.
+
+**Referencia de validación:** el **2026-10-04** se acordaron dos tiempos, restricción ante reloj no confiable, vigencia por función, conservación diagnóstica de lecturas no aptas y normalización de unidades en el agente; el usuario confirmó «Sí, validar 3.3».
 
 <a id="flow-3-4"></a>
 

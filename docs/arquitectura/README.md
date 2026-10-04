@@ -14,6 +14,8 @@ El [acuerdo de 2.5 — Configuración remota](../definiciones-flujos.md#flow-2-5
 
 El [acuerdo de 3.1 — Inventario y capacidades](../definiciones-flujos.md#flow-3-1) distingue equipos físicos de pasarelas y capacidades declaradas de comprobadas. El [acuerdo de 3.2 — Interfaces con los equipos](../definiciones-flujos.md#flow-3-2) establece las rutas objetivo de cargador, medidor, inversor, BESS y cargas controlables; el ejemplo A/B/C sigue siendo tentativo y las capacidades requieren comprobación física.
 
+El [acuerdo de 3.3 — Lecturas locales](../definiciones-flujos.md#flow-3-3) añade procedencia, tiempos de medición y recepción, normalización de unidades y evaluación de calidad por función antes de usar un dato para control. No fija todavía frecuencias ni umbrales de vigencia.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

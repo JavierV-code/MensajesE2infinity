@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.11 — 2026-10-04
+
+- Valida documentalmente 3.3 — Lecturas locales: atribución al equipo y circuito, tiempos de medición y recepción, normalización de unidades en el agente y calidad según la función que usa el dato.
+- Conserva lecturas degradadas o inválidas para diagnóstico sin usarlas en decisiones que requieren datos válidos; la ausencia de medición no equivale a cero ni autoriza a reutilizar un dato antiguo.
+- Actualiza plan e índices y establece 3.4 como siguiente subfase. Deja frecuencias y umbrales numéricos para pruebas; no modifica código, APIs, tópicos ni esquemas.
+
 ## 0.3.10 — 2026-10-04
 
 - Valida documentalmente 3.2 — Interfaces con los equipos: OCPP local en cada Raspberry, ESP32 bidireccional por MQTT y Modbus RTU, BESS inicialmente a través de Solis y actuador genérico por circuito.
