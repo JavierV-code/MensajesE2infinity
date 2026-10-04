@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.17 — 4 de octubre de 2026**.
+Versión documental **0.3.18 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1618,7 +1618,59 @@ El detalle de permisos y transporte de solicitudes directas corresponde al corte
 
 **Alcance:** **Orden y confirmación del equipo:** Adaptadores y distinción entre recepción, aceptación y actuación.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 4.5». Describe el seguimiento de una acción autorizada; no acredita que alguna interfaz o actuación física esté implementada.
+
+#### 1. Propósito y recorrido
+
+Solo una acción **aceptada o limitada** por [4.4](#flow-4-4) puede pasar al recorrido **E2 Agent → adaptador local → equipo**. El agente conserva la decisión, identifica el equipo y la acción autorizada, y sigue su resultado. El adaptador traduce el intercambio según la ruta de [3.2](#flow-3-2); no decide la consigna energética ni puede ampliar lo autorizado. Si 4.4 dejó una solicitud rechazada o en espera, 4.5 no envía una orden para ella.
+
+| Ruta acordada | Función del adaptador o pasarela |
+|---|---|
+| Cargador | Controlador EVCC/OCPP local en la Raspberry del nodo; intercambia con el cargador real según sus capacidades comprobadas. |
+| Inversor y BESS | Mosquitto local y ESP32 como pasarela bidireccional hacia Modbus RTU/RS-485; la BESS se gestiona inicialmente mediante el inversor Solis. |
+| Cargas controlables | Adaptador genérico por circuito hacia el actuador físico comprobado; CHINT sigue condicionado y no es requisito de este flujo. |
+
+El medidor de energía es fuente de lecturas, no destinatario de una orden de control energético. Los comandos específicos y la capacidad de confirmar cada etapa se verificarán por equipo.
+
+#### 2. Tres evidencias diferentes
+
+| Evidencia | Qué permite afirmar | Qué no permite afirmar |
+|---|---|---|
+| Recepción por el adaptador | La interfaz local recibió la solicitud del agente. | Que el equipo la recibió, aceptó o actuó. |
+| Aceptación por el equipo | El equipo o su interfaz comprobable aceptó la operación solicitada. | Que cambió de estado o que se obtuvo el efecto energético esperado. |
+| Estado compatible reportado por el equipo | El estado observado por la interfaz es compatible con la actuación solicitada; se informa como **actuación reportada**. | Que la medición independiente ya confirmó el efecto físico o la potencia esperada. |
+
+Cada etapa se informa **solo cuando la interfaz proporciona evidencia suficiente**. Una recepción del adaptador sin respuesta verificable del equipo permanece pendiente de aceptación; no se eleva a éxito. Una aceptación sin cambio de estado tampoco se presenta como actuación reportada. La comprobación independiente mediante mediciones aptas y la eventual corrección corresponden a [4.6](#flow-4-6); el registro íntegro, a [4.7](#flow-4-7).
+
+```mermaid
+sequenceDiagram
+    participant A as E2 Agent
+    participant D as Adaptador local
+    participant E as Equipo
+    A->>D: Acción autorizada por 4.4
+    D-->>A: Recepción, si puede confirmarla
+    D->>E: Solicitud traducida a su interfaz
+    E-->>D: Aceptación o rechazo, si es verificable
+    D-->>A: Resultado atribuible al equipo
+    E-->>D: Estado del equipo, si está disponible
+    D-->>A: Estado compatible o discrepante
+    Note over A,E: 4.6 comprueba aparte el efecto energético medido
+```
+
+#### 3. Rechazo, incertidumbre y nuevo intento
+
+| Situación | Tratamiento documental |
+|---|---|
+| El equipo rechaza la solicitud | Conservar el rechazo y su procedencia; no declarar actuación y devolver el resultado para seguimiento y eventual reevaluación. |
+| Solo el adaptador confirma recepción | Mantener pendiente la aceptación del equipo; la recepción no prueba que exista una orden efectiva en el dispositivo. |
+| El equipo acepta, pero no reporta cambio de estado | Informar aceptación sin atribuir actuación; consultar el estado disponible y remitir la comprobación energética a 4.6. |
+| Se interrumpe la comunicación o vence la espera | Tratar el resultado como **incierto**, no como éxito ni rechazo demostrado. Consultar primero estado y medición disponibles, y reevaluar con las restricciones vigentes antes de considerar otro envío. |
+| El estado consultado muestra que la acción ya se aplicó | No repetir automáticamente la solicitud; pasar a la comprobación del efecto de 4.6. |
+| El estado no permite resolver la incertidumbre | Conservarla y no efectuar un reintento ciego que pueda duplicar la actuación. Las condiciones de recuperación detalladas pertenecen a 8.3–8.4. |
+
+La resolución de la actuación pendiente alimenta la reevaluación acordada en 4.4. No se fijan aquí tiempos de espera, políticas cuantitativas de reintento, comandos OCPP, registros Modbus, tópicos MQTT, campos de mensajes, APIs ni JSON Schema.
+
+**Referencia de validación:** el **2026-10-04** se acordó que la recepción por el adaptador deja pendiente la aceptación del equipo, que la actuación reportada exige un estado compatible y que, ante una respuesta ausente, se consulta el estado antes de cualquier nuevo intento; el usuario confirmó «Sí, validar 4.5».
 
 <a id="flow-4-6"></a>
 

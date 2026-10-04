@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.18 — 2026-10-04
+
+- Valida documentalmente 4.5 — Orden y confirmación del equipo: recorrido agente–adaptador–equipo y distinción entre recepción, aceptación y estado compatible reportado.
+- Ante rechazo o respuesta ausente no atribuye éxito; un resultado incierto exige consultar el estado y reevaluar antes de considerar otro envío, sin reintento ciego.
+- Actualiza plan e índices y establece 4.6 como siguiente subfase. El efecto medido, los comandos y los contratos permanecen pendientes; no modifica código, APIs ni esquemas.
+
 ## 0.3.17 — 2026-10-04
 
 - Valida documentalmente 4.4 — Prioridades y validación: protección y límites, restricciones locales, solicitud directa válida del usuario, optimización local y flexibilidad restante para consenso.

@@ -59,9 +59,10 @@ Las definiciones canónicas están en [docs/definiciones-flujos.md](../definicio
 - [4.2 — Tarifas y datos económicos](../definiciones-flujos.md#flow-4-2): perfil inicial manual, versiones remotas verificadas y valoración económica calculada en cada Raspberry.
 - [4.3 — Ciclo de decisión local](../definiciones-flujos.md#flow-4-3): evaluación periódica y por eventos con instantánea coherente, propuesta o salida «sin acción».
 - [4.4 — Prioridades y validación](../definiciones-flujos.md#flow-4-4): precedencia de seguridad, restricciones locales, usuario, optimización y consenso; decisión motivada antes de ordenar.
+- [4.5 — Orden y confirmación del equipo](../definiciones-flujos.md#flow-4-5): recepción por adaptador, aceptación del equipo y estado compatible reportado son evidencias distintas; no se presume efecto energético.
 - [Diagramas Draw.io v01](../diagramas/README.md): vistas históricas y equivalencia de su numeración.
 - [Consenso conceptual en 7.1](../definiciones-flujos.md#flow-7-1): antecedente para el corte 7, sujeto a formulación matemática.
 - [Catálogo común de mensajes](../mensajes/catalogo-mensajes.md): propuestas que se enlazan a sus flujos.
 - [Escenarios de revisión](../validacion/escenarios.md): cobertura de gestión local, plataforma, consenso y recuperación.
 
-Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. La próxima conversación es **4.5 — Orden y confirmación del equipo**.
+Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. La próxima conversación es **4.6 — Resultado medido y corrección local**.
