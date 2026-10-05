@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.26 — 2026-10-04
+
+- Valida documentalmente 5.6 — Históricos y consultas: resúmenes y eventos centrales, consulta y exportación autorizadas con procedencia, tiempos y calidad.
+- Incorpora el contraste orientativo del consumo medido con el total facturado en kWh ingresado manualmente para el mismo período, advirtiendo cobertura incompleta o distinto alcance eléctrico.
+- Completa el corte 5 y establece 6.1 como siguiente subfase. No modifica código, APIs, tópicos ni esquemas; conservación numérica y sincronización siguen pendientes.
+
 ## 0.3.25 — 2026-10-04
 
 - Valida documentalmente 5.5 — Resultados visibles: estado breve y detalle de evidencias para configuraciones, acciones puntuales y alarmas.

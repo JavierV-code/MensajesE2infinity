@@ -67,9 +67,10 @@ Las definiciones canónicas están en [docs/definiciones-flujos.md](../definicio
 - [5.3 — Información que muestra la plataforma](../definiciones-flujos.md#flow-5-3): resumen de instalación y detalle por nodo, circuito y equipo; lecturas antiguas etiquetadas y estados por función.
 - [5.4 — Información enviada al nodo](../definiciones-flujos.md#flow-5-4): HTTPS para propuestas persistentes y MQTT para meta común y acción puntual, siempre con validación local diferenciada del efecto físico.
 - [5.5 — Resultados visibles](../definiciones-flujos.md#flow-5-5): estado breve y detalle de evidencias para configuración, acciones y alarmas; lectura personal separada de recuperación.
+- [5.6 — Históricos y consultas](../definiciones-flujos.md#flow-5-6): resúmenes y eventos centrales consultables y exportables por ámbito; comparación orientativa con factura declarada manualmente.
 - [Diagramas Draw.io v01](../diagramas/README.md): vistas históricas y equivalencia de su numeración.
 - [Consenso conceptual en 7.1](../definiciones-flujos.md#flow-7-1): antecedente para el corte 7, sujeto a formulación matemática.
 - [Catálogo común de mensajes](../mensajes/catalogo-mensajes.md): propuestas que se enlazan a sus flujos.
 - [Escenarios de revisión](../validacion/escenarios.md): cobertura de gestión local, plataforma, consenso y recuperación.
 
-Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. Los **cortes 2–4 quedan completos**; la próxima conversación es **5.6 — Históricos y consultas**.
+Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. Los **cortes 2–5 quedan completos**; la próxima conversación es **6.1 — Participación del usuario**.

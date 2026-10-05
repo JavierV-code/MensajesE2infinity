@@ -44,6 +44,8 @@ El [acuerdo de 5.4 — Información enviada al nodo](../definiciones-flujos.md#f
 
 El [acuerdo de 5.5 — Resultados visibles](../definiciones-flujos.md#flow-5-5) exige que E2 Infinity muestre la última etapa comprobada de configuraciones y acciones, con sus evidencias y motivos. Las alarmas distinguen condición activa o recuperada de lectura personal; la pérdida de contacto conserva el último resultado conocido sin atribuir nueva actuación.
 
+El [acuerdo de 5.6 — Históricos y consultas](../definiciones-flujos.md#flow-5-6) cierra el corte de plataforma: E2 Infinity conserva y expone únicamente resúmenes y eventos centrales procesados, bajo permisos por instalación. La comparación con la factura utiliza un total en kWh declarado manualmente y advierte cuando faltan mediciones o el alcance eléctrico es distinto; no sustituye el registro local del agente.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

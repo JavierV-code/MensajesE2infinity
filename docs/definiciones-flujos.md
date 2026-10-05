@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.25 — 4 de octubre de 2026**.
+Versión documental **0.3.26 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -2050,7 +2050,44 @@ No se definen aquí pantallas, plazos de conservación, notificaciones, endpoint
 
 **Alcance:** **Históricos y consultas:** Almacenamiento, consulta, exportación y trazabilidad hasta el usuario.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante la solicitud explícita de implementar este cierre. Define el historial y las consultas objetivo; no acredita almacenamiento ni exportación implementados.
+
+#### 1. Información conservada y consulta
+
+E2 Infinity conserva como historial central lo que **recibe y procesa** desde [5.2](#flow-5-2): mediciones energéticas resumidas por instalación, nodo, circuito o equipo, y eventos relevantes de configuración, solicitudes, decisiones y resultados comunicados, salud y episodios de alarma. Cada etapa posterior se vincula con su solicitud o episodio sin borrar las evidencias previas, según [4.7](#flow-4-7) y [5.5](#flow-5-5). El registro local del E2 Agent es distinto y puede contener más información; un evento guardado solo en la Raspberry **no aparece como recibido** por la plataforma.
+
+| Recorrido | Información y tratamiento documental |
+|---|---|
+| Nodo → plataforma | Enviar resúmenes y cambios relevantes por el recorrido de 5.2; no exigir cada muestra cruda, evaluación local, ciclo «sin acción» o iteración del consenso. Conservar origen, unidad, hora de medición cuando aplique, hora de recepción y calidad. |
+| Consulta humana | Comprobar identidad, permiso y alcance de instalación conforme a [5.1](#flow-5-1). Consultar por período y filtrar por instalación, nodo, circuito o equipo y tipo de evento cuando corresponda. Mantener la relación entre solicitud, validación, orden, confirmaciones disponibles y resultado medido. |
+| Exportación | Entregar mediciones resumidas y eventos del mismo ámbito autorizado, con procedencia, tiempos, unidades y calidad; no incluir credenciales, secretos ni datos individuales de otras instalaciones del grupo eléctrico. |
+
+Una medición ausente se muestra como **ausente**, nunca como cero. La recepción reciente de una lectura tardía no cambia su hora de origen ni la vuelve una medición tomada en ese momento. La consulta y exportación muestran únicamente la evidencia procesada por E2 Infinity y señalan las brechas conocidas; la selección y deduplicación tras reconexión se resolverán en [8.5](#flow-8-5). No se infiere que un período sin datos centrales haya carecido de operación local.
+
+#### 2. Comparación orientativa con la factura
+
+Como flujo objetivo, la **titular** o una persona delegada con permiso para configurar registra manualmente el **inicio y fin del período facturado** y el **consumo facturado en kWh** de su instalación. E2 Infinity conserva que ese total fue declarado por una persona autorizada, cuándo se ingresó y las correcciones posteriores; no lo presenta como una lectura propia del medidor. Una persona autorizada solo para lectura puede consultar el contraste, pero no modificar el dato declarado. Se aplican los permisos por instalación de 5.1.
+
+La plataforma calcula el consumo medido disponible para el **mismo período** y muestra ambos valores, sus fuentes, la diferencia y la cobertura de mediciones utilizada. Antes de interpretarlos como equivalentes debe identificarse si el medidor o los circuitos observados cubren el mismo consumo que la factura. Si faltan intervalos, la comparación se marca **parcial y orientativa**; si los alcances eléctricos no coinciden, se advierte expresamente y **no se afirma conciliación exacta**. No se inventan consumos para completar huecos ni se confunde falta de datos con consumo nulo.
+
+Este acuerdo no incluye lectura automática de facturas, carga o procesamiento de archivos, importes monetarios, tarifas de la factura ni conciliación de cobros. La resolución temporal de las mediciones, las condiciones numéricas de cobertura y la comprobación del alcance físico se fijarán al diseñar y ensayar la función.
+
+#### 3. Casos de revisión y límites
+
+| Caso | Tratamiento documental |
+|---|---|
+| Titular consulta o exporta su instalación | Mostrar o entregar solo resúmenes y eventos centrales de su ámbito, con procedencia y calidad. |
+| Técnico sin asignación vigente o persona de otra instalación | Denegar consulta y exportación de los datos individuales; pertenecer al mismo grupo eléctrico no da acceso. |
+| Lectura tardía o período con muestras ausentes | Respetar la hora de medición y mostrar la brecha; no reemplazar ausencia por cero ni atribuir cobertura completa. |
+| Resultado posterior de una misma acción o alarma | Añadir etapa vinculada sin sobrescribir la anterior, incluida una verificación que siga a un resultado no concluyente. |
+| Evento conservado solo localmente durante desconexión | No presentarlo como recibido por E2 Infinity; su reenvío y deduplicación quedan en 8.5. |
+| Factura y medición cubren el mismo período, pero hay datos faltantes | Mostrar diferencia solo como orientativa y declarar cobertura incompleta. |
+| Factura y medidores cubren alcances eléctricos distintos | Advertir la diferencia de alcance y no afirmar conciliación exacta aunque existan valores numéricos. |
+| Persona delegada de solo lectura intenta corregir el total facturado | Permitir consulta, pero no modificar la declaración manual. |
+
+El formato de exportación, la resolución temporal, el motor de almacenamiento y el plazo numérico de conservación quedan para la política de datos y la implementación. No se fijan endpoints, tópicos, campos de contrato ni JSON Schema. El bridge Mosquitto–EMQX permanece pendiente de implementación.
+
+**Referencia de validación:** el **2026-10-04** se acordaron históricos centrales de resúmenes y eventos, consulta y exportación por ámbito autorizado, comparación manual en kWh con la factura del mismo período, advertencia de cobertura y alcance, y conservación numérica por definir. El usuario solicitó implementar este cierre documental.
 
 
 ## Corte 6 — Preparación de la participación distribuida
