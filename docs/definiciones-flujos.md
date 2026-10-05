@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.23 — 4 de octubre de 2026**.
+Versión documental **0.3.24 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1960,7 +1960,44 @@ Los umbrales numéricos de frescura, disposición visual, permisos de cada panta
 
 **Alcance:** **Información enviada al nodo:** Recorrido de configuraciones y referencias autorizadas; enlazar sus definiciones.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+- Estado documental: **Validado** el **2026-10-04** como recorrido objetivo; no acredita implementación ni ensayo de extremo a extremo.
+- Dependencias: configuración local y remota [2.4](#flow-2-4)–[2.6](#flow-2-6), valoración [4.2](#flow-4-2), validación local [4.4](#flow-4-4), permisos [5.1](#flow-5-1) y mensajería [2.3](#flow-2-3). La referencia energética y el consenso permanecen sujetos a [6.3](#flow-6-3) y al [corte 7](#flow-7-1).
+
+#### 1. Propósito y recorridos
+
+E2 Infinity puede preparar información persistente para una Raspberry o iniciar una solicitud operativa temporal. **HTTPS administrativo** y **MQTT operativo** son recorridos distintos: el primero permite al agente consultar propuestas de configuración; el segundo entrega metas y solicitudes de operación a través de EMQX, el bridge selectivo y Mosquitto local. El bridge Mosquitto–EMQX sigue **pendiente de implementación**. Headscale/Tailscale aporta conectividad, no decide ni transforma la solicitud energética.
+
+| Información | Origen y recorrido previsto | Tratamiento en el nodo | Resultado que debe distinguirse |
+|---|---|---|---|
+| Preferencias y datos económicos persistentes | Una persona autorizada o la plataforma deja una propuesta consultable por el agente mediante HTTPS. | El agente comprueba destinatario, autorización, versión, vigencia y restricciones; aplica lo válido en el siguiente punto seguro conforme a [2.5](#flow-2-5), [2.6](#flow-2-6) y [4.2](#flow-4-2). | Propuesta guardada, recibida, aceptada y efectivamente activa; una tarifa vencida no habilita decisiones basadas en ella. |
+| Cambios técnicos, incluidos grupo eléctrico y vecinos | E2 Infinity prepara la propuesta administrativa; el técnico autorizado la revisa localmente. | La asociación y configuración se verifican y aplican mediante el procedimiento manual de [2.4](#flow-2-4)–[2.5](#flow-2-5); la consulta automática no los activa. La topología concreta corresponde a [6.5](#flow-6-5). | Pendiente de revisión, rechazada con motivo o aplicada localmente; no se informa aplicación por el solo hecho de guardarla. |
+| Meta energética común | E2 Infinity publica por MQTT para los participantes seleccionados, no una acción individual para cada Raspberry. | Cada agente comprueba destinatario y vigencia antes de considerar la coordinación; interpretación, variables y contribuciones quedan sujetas a [6.3](#flow-6-3) y [7.1–7.6](#flow-7-1). | Entrega y recepción distintas de participación efectiva, convergencia o ejecución. |
+| Acción puntual solicitada por el usuario | Tras comprobar el permiso en E2 Infinity, la solicitud se entrega por MQTT al nodo destinatario. | El agente vuelve a comprobar identidad de destino, vigencia, capacidad verificada, límites y actuaciones pendientes; [4.4](#flow-4-4) la acepta, limita, rechaza o deja en espera. | Solicitud autorizada en plataforma distinta de validación local, orden al equipo y efecto físico medido. |
+
+La configuración técnica de identidad, red, credenciales y conexión MQTT conserva la aplicación local manual acordada en 2.4–2.5. La incorporación de un nodo a un grupo eléctrico no le concede automáticamente vecindad ni participación en una meta.
+
+#### 2. Respuestas, errores y recuperación
+
+El nodo registra la recepción y su tratamiento cuando puede procesar una propuesta. **Guardada en plataforma**, **entregada por un broker**, **recibida por el agente**, **aceptada localmente**, **aplicada** y **actuación comprobada** son evidencias distintas. La aceptación por EMQX o Mosquitto no prueba procesamiento del agente. El resultado visible en plataforma se detalla en [5.5](#flow-5-5); la actuación y su medición siguen [4.5](#flow-4-5)–[4.6](#flow-4-6).
+
+Una meta o solicitud operativa vencida, duplicada o destinada a otro nodo no se ejecuta: el agente la descarta para actuación, registra el motivo e informa el resultado cuando el canal lo permita. Una acción autorizada centralmente puede quedar **limitada** o **rechazada** por seguridad, preferencias o disponibilidad local; el resultado no se presenta como cumplimiento íntegro. Si el mensaje no llegó al agente, no se le atribuye una respuesta que no emitió.
+
+Tras reconectar con E2 Infinity, el agente consulta las propuestas **persistentes y vigentes** y compara sus versiones con la configuración activa. No reactiva metas ni acciones temporales vencidas. Toda solicitud operativa que aún sea vigente vuelve a la validación local con el estado y las mediciones actuales; la sincronización de información pendiente se definirá en [8.5](#flow-8-5). Si la plataforma no está disponible, la última configuración local válida sostiene solo las funciones cuya dependencia esté satisfecha, conforme a [2.7](#flow-2-7).
+
+#### 3. Casos de revisión y límites
+
+| Caso | Tratamiento documental |
+|---|---|
+| Preferencia guardada pero aún no activada | Informar que está pendiente; no mostrarla como configuración aplicada hasta el siguiente punto seguro. |
+| Cambio técnico recibido sin revisión local | Mantenerlo pendiente, sin sobrescribir archivos técnicos ni reiniciar automáticamente. |
+| Meta común para un subconjunto del grupo | Solo los participantes seleccionados la consideran; el backend no asigna acciones individuales. |
+| Acción puntual autorizada pero superior al límite local | Limitar o rechazar con motivo mediante 4.4; la autorización central no anula protecciones. |
+| Mensaje operativo duplicado, vencido o ajeno | Registrar el descarte y no repetir ni iniciar una actuación. |
+| Reconexión después del vencimiento | Consultar configuración persistente vigente, sin reactivar la meta o acción caducada. |
+
+No se fijan endpoints, tópicos, campos de mensajes, credenciales, tiempos de expiración ni variables matemáticas. La ruta MQTT y la aplicación remota son diseño objetivo, no evidencia de funcionamiento físico.
+
+**Referencia de validación:** el **2026-10-04** el usuario solicitó implementar el cierre de 5.4 con estos cuatro recorridos y las distinciones entre propuesta, recepción, aplicación y efecto físico.
 
 <a id="flow-5-5"></a>
 

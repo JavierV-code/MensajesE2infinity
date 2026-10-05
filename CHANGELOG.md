@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.24 — 2026-10-04
+
+- Valida documentalmente 5.4 — Información enviada al nodo: propuestas persistentes y cambios técnicos por HTTPS, meta común y acción puntual por MQTT.
+- Distingue autorización, entrega, validación local, aplicación y efecto medido; descarta mensajes operativos vencidos, duplicados o ajenos y evita reactivar solicitudes caducadas al reconectar.
+- Actualiza plan e índices y establece 5.5 como siguiente subfase. El bridge central sigue pendiente; no modifica código, APIs, tópicos ni esquemas.
+
 ## 0.3.23 — 2026-10-04
 
 - Valida documentalmente 5.3 — Información que muestra la plataforma: resumen de instalación y detalle por nodo, circuito y equipo con procedencia, tiempo, unidad y calidad.
