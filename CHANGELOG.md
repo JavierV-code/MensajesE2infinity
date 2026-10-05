@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.22 — 2026-10-04
+
+- Valida documentalmente 5.2 — Telemetría hacia E2 Infinity: mediciones resumidas con procedencia y calidad, salud, inventario, alarmas y resultados operativos por etapas.
+- Separa publicación MQTT de procesamiento del backend; ante desconexión, conserva eventos y resúmenes para la futura sincronización de 8.5 sin atribuir recepción central.
+- Actualiza plan e índices y establece 5.3 como siguiente subfase. El bridge central sigue pendiente; no modifica código, APIs, tópicos ni esquemas.
+
 ## 0.3.21 — 2026-10-04
 
 - Valida documentalmente 5.1 — Funciones y permisos del usuario: acceso por instalación para titular y personas delegadas, técnico temporal, administrador de E2 Infinity y administrador de Headscale con ámbitos separados.

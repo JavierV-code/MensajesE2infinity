@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.21 — 4 de octubre de 2026**.
+Versión documental **0.3.22 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1847,7 +1847,56 @@ Quedan para los puntos siguientes las vistas concretas, permisos granulares de i
 
 **Alcance:** **Telemetría hacia E2 Infinity:** Datos enviados, destinatarios, condiciones y frecuencia por acordar.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 5.2». Define el flujo objetivo hacia la plataforma; no acredita transporte, procesamiento ni sincronización implementados.
+
+#### 1. Propósito, recorrido y destinatario
+
+El E2 Agent prepara información de su instalación a partir de lecturas aptas o diagnosticadas, inventario y resultados locales. El recorrido operativo previsto es **E2 Agent → Mosquitto local → bridge selectivo → EMQX central → backend E2 Infinity**, conforme a [2.3](#flow-2-3). El backend recibe y procesa la información del nodo autorizado; la presentación a personas con permiso corresponde a [5.3](#flow-5-3) y [5.5](#flow-5-5). Headscale/Tailscale proporciona conectividad privada cuando se requiere, pero no procesa telemetría energética ni sustituye a los brokers.
+
+| Familia de información | Origen local y propósito | Cadencia conceptual |
+|---|---|---|
+| Mediciones energéticas resumidas por circuito o equipo | Lecturas de [3.3](#flow-3-3) atribuidas al nodo, equipo y circuito; conservar variable, unidad, tiempo de origen y recepción, calidad y motivo cuando el dato no sea apto. Sirven para supervisión sin transmitir cada muestra cruda. | Periódica según función y ensayo del banco. |
+| Estado y salud del nodo y sus componentes | Diagnóstico y heartbeat de [3.4](#flow-3-4), distinguiendo presencia, componente afectado y funciones disponibles. | Resumen periódico y cambios relevantes. |
+| Inventario y capacidades | Cambios en equipos, circuitos y capacidades declaradas o comprobadas según [3.1](#flow-3-1). | Evento al cambiar o verificarse; no repetir el inventario completo con cada medición. |
+| Alarmas | Apertura, evolución relevante, recuperación y cierre de [3.5](#flow-3-5), sin confundir cierre con lectura humana del aviso. | Evento cuando cambia la condición. |
+| Resultados de control | Validación local de [4.4](#flow-4-4), confirmaciones realmente disponibles de [4.5](#flow-4-5) y efecto comprobado, discrepante o no concluyente de [4.6](#flow-4-6). Se relacionan con la solicitud y el registro de [4.7](#flow-4-7). | Evento por etapa relevante; no esperar a un supuesto éxito final único. |
+
+El flujo **no** replica cada evaluación interna de [4.3](#flow-4-3), cada lectura cruda, ni cada iteración del consenso entre vecinos. Los datos y resultados individuales pertenecen a la instalación autorizada; compartir grupo eléctrico no concede visibilidad de otras instalaciones conforme a [5.1](#flow-5-1). Las referencias exactas, campos y frecuencia se definirán al especificar los mensajes y comprobar el banco.
+
+#### 2. Calidad, recepción y confirmación
+
+1. El agente conserva la procedencia y los dos tiempos de [3.3](#flow-3-3), y transmite la calidad necesaria para que la plataforma no interprete una lectura antigua como actual. **Ausencia no significa cero**: una medición ausente, vencida o degradada se identifica con su condición; un último valor solo se conserva acompañado de su tiempo y calidad.
+2. El agente publica únicamente las familias autorizadas en Mosquitto; el bridge selectivo las encamina a EMQX y el backend consume lo que le corresponde. La aceptación por Mosquitto, el bridge o EMQX prueba solo el tramo respectivo, **no** que E2 Infinity haya procesado el dato.
+3. La recepción central se acredita cuando el **backend procesa** el mensaje y registra su resultado. El mecanismo concreto de confirmación al nodo se definirá al especificar los mensajes y la sincronización; mientras no exista esa evidencia, no se presenta la publicación como procesada.
+4. Una solicitud operativa puede producir informes sucesivos: validación local, aceptación o rechazo del equipo cuando sea verificable, estado reportado y efecto medido o no concluyente. Ninguna etapa se eleva por sí sola a ejecución física completa.
+
+```mermaid
+sequenceDiagram
+    participant A as E2 Agent
+    participant L as Mosquitto local
+    participant C as EMQX central
+    participant B as Backend E2 Infinity
+    A->>L: Publicar resumen o evento autorizado
+    L->>C: Bridge selectivo (pendiente de implementación)
+    C->>B: Entregar a suscripción del backend
+    B->>B: Validar origen y procesar información
+    Note over A,B: Aceptación por broker y procesamiento del backend son evidencias distintas
+```
+
+#### 3. Pérdida de enlace y límites
+
+| Situación | Tratamiento documental |
+|---|---|
+| Lectura válida | Enviar valor normalizado y contexto de procedencia, unidad, tiempos y calidad; la visualización se definirá en 5.3. |
+| Lectura ausente, vencida o degradada | Indicar ausencia o calidad y antigüedad del último dato; no inventar cero ni renovar artificialmente la hora de medición. |
+| Alarma o cambio de disponibilidad | Emitir evento relevante, diferenciándolo del resumen periódico de salud. |
+| Equipo acepta una orden sin efecto comprobado | Informar aceptación y estado disponible por separado del resultado medido posterior; no declarar éxito energético. |
+| Broker admite publicación, pero el backend no la procesa | No considerar la información recibida por E2 Infinity; conservar la distinción entre entrega de transporte y procesamiento de aplicación. |
+| Plataforma o enlace central inaccesible | Mantener operación y registro locales conforme al corte 4. Conservar eventos relevantes y resúmenes de mediciones para sincronizar cuando sea posible; la selección, reenvío y deduplicación se definirán en [8.5](#flow-8-5). |
+
+El bridge Mosquitto–EMQX es parte del diseño objetivo y sigue **pendiente de implementación** según la revisión de [2.3](#flow-2-3). No se fijan intervalos, umbrales, política de almacenamiento, tópicos, QoS, campos de mensaje, endpoints, APIs ni JSON Schema. Los mensajes existentes conservan su condición de borradores.
+
+**Referencia de validación:** el **2026-10-04** se acordaron resúmenes periódicos y eventos relevantes, resultados por etapas, indicación de calidad o ausencia de lecturas, procesamiento del backend como evidencia de recepción central y conservación local de eventos y resúmenes durante desconexiones. El usuario confirmó «Sí, validar 5.2».
 
 <a id="flow-5-3"></a>
 

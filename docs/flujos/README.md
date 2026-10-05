@@ -63,9 +63,10 @@ Las definiciones canónicas están en [docs/definiciones-flujos.md](../definicio
 - [4.6 — Resultado medido y corrección local](../definiciones-flujos.md#flow-4-6): comparación con el medidor del circuito afectado; efecto comprobado, discrepancia o resultado no concluyente y nueva evaluación antes de corregir.
 - [4.7 — Registro de decisiones](../definiciones-flujos.md#flow-4-7): eventos locales vinculados desde el disparador hasta la medición; registro previo obligatorio antes de órdenes normales.
 - [5.1 — Funciones y permisos del usuario](../definiciones-flujos.md#flow-5-1): acceso por instalación, titular y delegados, técnico temporal y administración de plataforma separada de Headscale.
+- [5.2 — Telemetría hacia E2 Infinity](../definiciones-flujos.md#flow-5-2): mediciones resumidas y eventos por el bridge selectivo; calidad y procesamiento del backend separados de la entrega MQTT.
 - [Diagramas Draw.io v01](../diagramas/README.md): vistas históricas y equivalencia de su numeración.
 - [Consenso conceptual en 7.1](../definiciones-flujos.md#flow-7-1): antecedente para el corte 7, sujeto a formulación matemática.
 - [Catálogo común de mensajes](../mensajes/catalogo-mensajes.md): propuestas que se enlazan a sus flujos.
 - [Escenarios de revisión](../validacion/escenarios.md): cobertura de gestión local, plataforma, consenso y recuperación.
 
-Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. Los **cortes 2–4 quedan completos**; la próxima conversación es **5.2 — Telemetría hacia E2 Infinity**.
+Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. Los **cortes 2–4 quedan completos**; la próxima conversación es **5.3 — Información que muestra la plataforma**.

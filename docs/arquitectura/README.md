@@ -36,6 +36,8 @@ El [acuerdo de 4.7 — Registro de decisiones](../definiciones-flujos.md#flow-4-
 
 El [acuerdo de 5.1 — Funciones y permisos del usuario](../definiciones-flujos.md#flow-5-1) restringe las consultas y solicitudes de E2 Infinity al ámbito de cada instalación. La administración de organizaciones y grupos es distinta de la autoridad para cambiar preferencias locales; la administración de Headscale permanece en infraestructura.
 
+El [acuerdo de 5.2 — Telemetría hacia E2 Infinity](../definiciones-flujos.md#flow-5-2) delimita el retorno operativo mediante Mosquitto local, bridge selectivo y EMQX central. El nodo envía resúmenes y eventos relevantes; la aceptación por un broker no demuestra procesamiento por el backend.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid
