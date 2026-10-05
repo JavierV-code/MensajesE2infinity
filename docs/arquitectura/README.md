@@ -38,6 +38,8 @@ El [acuerdo de 5.1 — Funciones y permisos del usuario](../definiciones-flujos.
 
 El [acuerdo de 5.2 — Telemetría hacia E2 Infinity](../definiciones-flujos.md#flow-5-2) delimita el retorno operativo mediante Mosquitto local, bridge selectivo y EMQX central. El nodo envía resúmenes y eventos relevantes; la aceptación por un broker no demuestra procesamiento por el backend.
 
+El [acuerdo de 5.3 — Información que muestra la plataforma](../definiciones-flujos.md#flow-5-3) distingue resumen de instalación, detalle por circuito y equipo, vigencia de lecturas y disponibilidad por función. El último dato conocido no se presenta como medición actual, y la visibilidad permanece limitada a instalaciones autorizadas.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

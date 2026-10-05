@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.23 — 2026-10-04
+
+- Valida documentalmente 5.3 — Información que muestra la plataforma: resumen de instalación y detalle por nodo, circuito y equipo con procedencia, tiempo, unidad y calidad.
+- Distingue último valor antiguo de lectura actual, ausencia de dato de cero, conectividad de salud y funciones disponibles, y flexibilidad de simple heartbeat.
+- Actualiza plan e índices y establece 5.4 como siguiente subfase. No diseña pantallas ni modifica código, APIs, tópicos o esquemas.
+
 ## 0.3.22 — 2026-10-04
 
 - Valida documentalmente 5.2 — Telemetría hacia E2 Infinity: mediciones resumidas con procedencia y calidad, salud, inventario, alarmas y resultados operativos por etapas.

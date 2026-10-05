@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.22 — 4 de octubre de 2026**.
+Versión documental **0.3.23 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1904,7 +1904,55 @@ El bridge Mosquitto–EMQX es parte del diseño objetivo y sigue **pendiente de 
 
 **Alcance:** **Información que muestra la plataforma:** Mediciones, equipos, disponibilidad, calidad y antigüedad de datos.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 5.3». Define la información y distinciones que debe ofrecer la plataforma, no una pantalla implementada ni umbrales de vigencia fijados.
+
+#### 1. Alcance de la consulta
+
+E2 Infinity presenta a una persona autorizada la información de **sus instalaciones** procesada desde [5.2](#flow-5-2), bajo los permisos de [5.1](#flow-5-1). La vista conceptual tiene un **resumen de la instalación** y un **detalle por nodo, circuito y equipo**. No atribuye a una vivienda valores o recursos de otro participante por compartir grupo eléctrico. Si en el futuro se muestra un indicador del grupo, debe ser agregado y no identificar instalaciones ajenas.
+
+| Nivel de consulta | Información prevista |
+|---|---|
+| Instalación | Mediciones y estado general disponibles, identificando de qué nodos y circuitos provienen; avisar si el resumen está incompleto o incluye datos antiguos. |
+| Nodo | Último estado de conectividad **observado por la plataforma**, salud de sus componentes y funciones que el agente informó como disponibles, cada uno por separado. |
+| Circuito y equipo | Variable energética disponible, valor y unidad, procedencia, hora de medición y calidad; estado reportado por el equipo cuando exista. Mostrar capacidades **declaradas** y **comprobadas** como categorías distintas conforme a [3.1](#flow-3-1). |
+| Participación distribuida | Mostrar flexibilidad energética solo si existe una evaluación válida del nodo según [6.2](#flow-6-2); ni la pertenencia al grupo ni el heartbeat demuestran por sí solos potencia ofrecible. |
+
+El estado de solicitudes, configuraciones, actuaciones y alarmas se presentará en [5.5](#flow-5-5); los históricos, exportaciones y comparación con facturas corresponden a [5.6](#flow-5-6). Aquí se define la vista de supervisión **actual o última conocida**, no el diseño de navegación ni de gráficos.
+
+#### 2. Vigencia, calidad y significado
+
+1. La plataforma conserva la diferencia de [3.3](#flow-3-3) entre **hora de medición en origen** y **hora de recepción**, y presenta la antigüedad de la lectura. La llegada reciente de un mensaje atrasado no renueva la hora en que se midió.
+2. Si la lectura es apta y vigente para la vista, muestra valor, unidad, procedencia y tiempo. Si está vencida o degradada, puede mostrar el **último valor conocido etiquetado** con su hora y calidad, sin representarlo como dato actual.
+3. Si no existe un valor utilizable, indica **ausencia** o no disponibilidad. Una lectura faltante nunca se convierte en cero ni se completa por suposición. Una capacidad declarada sin prueba no se representa como equipo habilitado para control.
+4. El estado de conectividad es una observación de la plataforma según [3.4](#flow-3-4). Dejar de recibir heartbeat significa «no alcanzable desde E2 Infinity», no demuestra que la Raspberry esté apagada ni que haya dejado de operar localmente. Un fallo parcial de equipo tampoco vuelve indisponible automáticamente todo el nodo.
+5. La vigencia concreta depende de la variable y función; sus umbrales se fijarán con el banco y el flujo de adquisición. No se usa un único tiempo arbitrario para todos los equipos.
+
+```mermaid
+flowchart LR
+    B[Datos procesados por E2 Infinity] --> P[Comprobar permiso de instalación]
+    P --> S[Resumen de instalación]
+    P --> D[Detalle de nodo, circuito y equipo]
+    D --> Q{Lectura apta y vigente}
+    Q -->|Sí| A[Valor, unidad, hora y procedencia]
+    Q -->|No, último valor disponible| U[Último dato etiquetado con calidad y antigüedad]
+    Q -->|Sin valor utilizable| N[Ausencia; nunca cero supuesto]
+```
+
+#### 3. Casos y límites
+
+| Caso | Tratamiento documental |
+|---|---|
+| Lectura reciente y apta | Presentar valor con unidad, origen, hora y calidad correspondientes. |
+| Última lectura antigua o degradada | Mantenerla solo como última conocida, claramente etiquetada; no dar impresión de medición en vivo. |
+| Medición nunca recibida o ausente | Informar «sin dato» o equivalente, no 0. |
+| Nodo no alcanzable con un último valor almacenado | Separar la pérdida de contacto del valor histórico; no inferir que cesó la operación local. |
+| Equipo con capacidad declarada sin comprobación | Mostrar el equipo y la capacidad como no comprobada, no como control ya disponible. |
+| Un equipo falla, otros siguen aptos | Mostrar salud y funciones por componente sin reducir todo el nodo a un único estado binario. |
+| Usuario consulta vecinos del mismo grupo eléctrico | No exponer equipos, consumos ni personas de otras instalaciones; solo agregados no identificables cuando corresponda. |
+
+Los umbrales numéricos de frescura, disposición visual, permisos de cada pantalla, gráficos, contenidos históricos y comparación con facturas se definirán en sus subfases y pruebas. No se modifican APIs, tópicos, campos de mensajes ni JSON Schema.
+
+**Referencia de validación:** el **2026-10-04** se acordaron resumen y detalle, último dato con hora y calidad, conectividad separada de salud y funciones, flexibilidad solo con evaluación válida y respeto del ámbito de instalación. El usuario confirmó «Sí, validar 5.3».
 
 <a id="flow-5-4"></a>
 

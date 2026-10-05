@@ -4,7 +4,7 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.3.22 — 4 de octubre de 2026.**
+**Documentación 0.3.23 — 4 de octubre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
@@ -68,7 +68,7 @@ La [equivalencia de los 34 puntos anteriores](docs/plan-trabajo-flujos.md#equiva
 
 El orden, las dependencias y los estados se mantienen únicamente en el [plan de trabajo](docs/plan-trabajo-flujos.md). Conversaremos un subpunto por vez, lo documentaremos con la [plantilla común del documento maestro](docs/definiciones-flujos.md#plantilla-comun) y registraremos su confirmación antes de marcarlo como validado.
 
-**1.1–1.4** quedaron validadas documentalmente el 3 de octubre de 2026 y los **cortes 2, 3 y 4 completos** conservan sus acuerdos. El corte 4 encadena evaluación, validación, orden, efecto medido y registro local sin depender del consenso. **5.1–5.2** definen permisos por instalación y [telemetría hacia E2 Infinity](docs/definiciones-flujos.md#flow-5-2); la siguiente conversación comenzará por **5.3 — Información que muestra la plataforma**. El banco A/B/C y los servicios reales siguen sujetos a comprobación; el bridge Mosquitto–EMQX continúa pendiente de implementación.
+**1.1–1.4** quedaron validadas documentalmente el 3 de octubre de 2026 y los **cortes 2, 3 y 4 completos** conservan sus acuerdos. El corte 4 encadena evaluación, validación, orden, efecto medido y registro local sin depender del consenso. **5.1–5.3** definen permisos, telemetría y la [información visible en E2 Infinity](docs/definiciones-flujos.md#flow-5-3); la siguiente conversación comenzará por **5.4 — Información enviada al nodo**. El banco A/B/C y los servicios reales siguen sujetos a comprobación; el bridge Mosquitto–EMQX continúa pendiente de implementación.
 
 En [2.5](docs/definiciones-flujos.md#flow-2-5), las preferencias energéticas autorizadas se consultan automáticamente por HTTPS y se activan sin reinicio en el siguiente punto seguro de decisión. Las propuestas técnicas permanecen bajo comprobación y aplicación local del técnico según 2.4. Una consigna temporal usa su propio recorrido operativo.
 
