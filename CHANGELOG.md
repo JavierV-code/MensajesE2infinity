@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.21 — 2026-10-04
+
+- Valida documentalmente 5.1 — Funciones y permisos del usuario: acceso por instalación para titular y personas delegadas, técnico temporal, administrador de E2 Infinity y administrador de Headscale con ámbitos separados.
+- Establece lectura por defecto para personas adicionales, privacidad entre instalaciones del mismo grupo y diferencia entre autorización central, aplicación local y efecto físico.
+- Actualiza plan e índices y establece 5.2 como siguiente subfase. No modifica código, APIs, tópicos ni esquemas.
+
 ## 0.3.20 — 2026-10-04
 
 - Valida documentalmente 4.7 — Registro de decisiones: historial local de eventos vinculados para evaluación, validación, orden, confirmaciones, medición y corrección, con resumen para ciclos «sin acción».

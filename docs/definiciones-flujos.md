@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.20 — 4 de octubre de 2026**.
+Versión documental **0.3.21 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1791,7 +1791,55 @@ El historial local no equivale a que E2 Infinity haya recibido sus datos. Los re
 
 **Alcance:** **Funciones y permisos del usuario:** Qué puede consultar, configurar y solicitar desde la plataforma.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante «Sí, validar 5.1». Define los permisos objetivo de E2 Infinity; no acredita que el control de acceso esté implementado.
+
+#### 1. Alcance y separación de identidades
+
+Las cuentas humanas acceden según su autorización sobre una **instalación** y sus nodos y equipos, conforme a [1.2](#flow-1-2) y [2.2](#flow-2-2). El `node_id` y la credencial técnica de la Raspberry autentican al E2 Agent ante la plataforma, pero **no permiten iniciar sesión como persona** ni conceden acceso al panel. Estar en el mismo grupo eléctrico tampoco confiere acceso a datos de otras instalaciones.
+
+| Actor | Consultar | Configurar o solicitar | Límite de autoridad |
+|---|---|---|---|
+| Persona titular de la instalación | Sus nodos, equipos, mediciones, disponibilidad, alarmas y resultados disponibles. | Preferencias energéticas de [4.1](#flow-4-1), participación según [6.1](#flow-6-1), acciones puntuales sobre equipos con control comprobado y concesión o revocación de accesos a su instalación. | No amplía límites técnicos ni elimina la validación local de [4.4](#flow-4-4). |
+| Persona adicional autorizada | Por defecto, datos y estados de la instalación a la que fue invitada. | Solo configura preferencias o solicita acciones cuando la titular le concede expresamente ese permiso. | La lectura no implica control ni acceso a otras instalaciones. |
+| Técnico instalador asignado | Diagnóstico, inventario, conectividad y los históricos estrictamente necesarios para intervenir en las instalaciones asignadas. | Incorporación y configuración técnica por los procedimientos de [2.2](#flow-2-2) y [2.4](#flow-2-4); comprobaciones seguras de equipos según [3.1](#flow-3-1). | Asignación temporal y acotada; instalar un nodo no otorga acceso permanente ni titularidad de los datos energéticos. |
+| Administrador de E2 Infinity | Registros y diagnósticos necesarios para administrar la plataforma, con acceso trazable y acotado a su función. | Crear y mantener organizaciones, instalaciones, grupos eléctricos, asociaciones y autorizaciones administrativas. | No cambia preferencias energéticas de una vivienda ni solicita actuaciones sobre sus equipos sin delegación expresa de su titular. |
+| Administrador de infraestructura | Estado de Headscale y su infraestructura. | Operación y administración de Headscale, separada del backend energético. | Ese papel no confiere acceso a la información energética ni a los controles de E2 Infinity. |
+
+El administrador autorizado de E2 Infinity precrea los registros de organización, instalación y grupo eléctrico; el técnico autorizado selecciona la instalación y el grupo existentes durante la incorporación, sin redefinir por sí mismo las relaciones eléctricas. Esto precisa el «usuario autorizado» mencionado en [1.2](#flow-1-2) sin cambiar la pertenencia ya acordada.
+
+#### 2. Recorrido de autorización y resultado
+
+1. Una persona inicia una consulta o solicitud con su **cuenta humana propia**. E2 Infinity comprueba identidad, permiso vigente y alcance de instalación **en cada operación**, no solo al iniciar sesión.
+2. Una consulta autorizada muestra únicamente los datos de las instalaciones permitidas. Si el grupo eléctrico abarca otras viviendas, pueden presentarse indicadores agregados sin identificar sus consumos, equipos ni personas; los datos individuales de vecinos no se exponen por compartir grupo.
+3. Una preferencia autorizada sigue el recorrido de configuración de [2.5](#flow-2-5). Guardarla o aceptarla en la plataforma no significa que el agente ya la aplicó.
+4. Una acción puntual autorizada en plataforma se somete además a la validación local de [4.4](#flow-4-4), al intercambio con el equipo de [4.5](#flow-4-5) y a la comprobación del efecto de [4.6](#flow-4-6). Una solicitud permitida puede ser limitada, rechazada o quedar en espera por restricciones y condiciones locales.
+5. Los cambios de autorización y las solicitudes dejan trazabilidad. Las pantallas, el contenido mostrado, los mensajes y canales concretos se precisarán en [5.2](#flow-5-2)–[5.6](#flow-5-6); el registro local de decisiones se rige por [4.7](#flow-4-7).
+
+```mermaid
+flowchart LR
+    H[Cuenta humana] --> P[E2 Infinity: identidad, permiso y alcance]
+    P -->|Consulta autorizada| D[Datos de instalación permitida]
+    P -->|Solicitud autorizada| S[Guardar o encaminar solicitud]
+    P -->|Sin permiso o fuera de alcance| R[Rechazo motivado]
+    S --> A[E2 Agent: comprobar y validar localmente]
+    A -->|Si corresponde| E[Equipo y resultado medido]
+```
+
+#### 3. Casos y pendientes
+
+| Caso | Tratamiento documental |
+|---|---|
+| Titular consulta o configura su instalación | Permitir lo que corresponda a sus equipos y capacidades, sujeto a permisos de plataforma y límites locales. |
+| Persona adicional con lectura por defecto | Puede consultar la instalación autorizada; no puede cambiar preferencias ni pedir una actuación sin concesión explícita. |
+| Persona adicional con control delegado | Puede solicitar solo las funciones concedidas para esa instalación; el nodo conserva su validación local. |
+| Técnico con asignación vencida | No conserva acceso técnico por haber realizado antes la instalación. |
+| Administrador sin delegación energética | Puede mantener identidades y asociaciones, no modificar preferencias ni operar equipos del hogar por su sola función administrativa. |
+| Persona consulta otra instalación o los nodos individuales de vecinos | Denegar la información individual; un indicador agregado de grupo no debe identificar instalaciones ajenas. |
+| Plataforma acepta una solicitud, pero el nodo no la aplica | Mostrar resultados diferenciados cuando se implementen 5.5 y 5.6; no presentar la aceptación central como ejecución física. |
+
+Quedan para los puntos siguientes las vistas concretas, permisos granulares de interfaz, mensajes, transporte detallado, históricos, plazos de conservación y evidencia de aplicación. Esta subfase no introduce roles técnicos nuevos en APIs, endpoints, tópicos ni JSON Schema, ni presume una implementación existente de autorización.
+
+**Referencia de validación:** el **2026-10-04** se acordó que titular y administrador de E2 Infinity gestionan accesos según su ámbito; personas adicionales comienzan con lectura; el técnico tiene asignación temporal; los grupos no exponen datos individuales de vecinos; la titular puede solicitar preferencias y acciones; y el administrador no altera preferencias sin delegación. El usuario confirmó «Sí, validar 5.1».
 
 <a id="flow-5-2"></a>
 

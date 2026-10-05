@@ -34,6 +34,8 @@ El [acuerdo de 4.6 — Resultado medido y corrección local](../definiciones-flu
 
 El [acuerdo de 4.7 — Registro de decisiones](../definiciones-flujos.md#flow-4-7) cierra el ciclo local con un historial de eventos vinculados en la Raspberry. Una orden normal requiere registrar antes la decisión autorizada; ese registro local no prueba que la plataforma haya recibido el resultado.
 
+El [acuerdo de 5.1 — Funciones y permisos del usuario](../definiciones-flujos.md#flow-5-1) restringe las consultas y solicitudes de E2 Infinity al ámbito de cada instalación. La administración de organizaciones y grupos es distinta de la autoridad para cambiar preferencias locales; la administración de Headscale permanece en infraestructura.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid
