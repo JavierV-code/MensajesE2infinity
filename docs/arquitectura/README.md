@@ -42,6 +42,8 @@ El [acuerdo de 5.3 — Información que muestra la plataforma](../definiciones-f
 
 El [acuerdo de 5.4 — Información enviada al nodo](../definiciones-flujos.md#flow-5-4) separa las propuestas persistentes consultadas por HTTPS de la meta común y la acción puntual entregadas por MQTT. Los cambios técnicos requieren revisión y aplicación local; toda actuación operativa sigue sujeta a validación del E2 Agent. El bridge Mosquitto–EMQX continúa pendiente de implementación.
 
+El [acuerdo de 5.5 — Resultados visibles](../definiciones-flujos.md#flow-5-5) exige que E2 Infinity muestre la última etapa comprobada de configuraciones y acciones, con sus evidencias y motivos. Las alarmas distinguen condición activa o recuperada de lectura personal; la pérdida de contacto conserva el último resultado conocido sin atribuir nueva actuación.
+
 La [vista histórica editable del primer corte en Draw.io](../diagramas/README.md) separa los recorridos de incorporación, MQTT y configuración en tres pestañas. Conserva su numeración anterior y dispone de una equivalencia con los cortes actuales.
 
 ```mermaid

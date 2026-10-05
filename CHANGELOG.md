@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.3.25 — 2026-10-04
+
+- Valida documentalmente 5.5 — Resultados visibles: estado breve y detalle de evidencias para configuraciones, acciones puntuales y alarmas.
+- Distingue solicitud, confirmación, validación local y efecto medido; conserva resultados no concluyentes para revisión y separa lectura personal de cierre de alarmas.
+- Actualiza plan e índices y establece 5.6 como siguiente subfase. No modifica código, pantallas, APIs, tópicos ni esquemas; el bridge central sigue pendiente.
+
 ## 0.3.24 — 2026-10-04
 
 - Valida documentalmente 5.4 — Información enviada al nodo: propuestas persistentes y cambios técnicos por HTTPS, meta común y acción puntual por MQTT.

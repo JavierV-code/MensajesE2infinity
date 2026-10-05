@@ -1,6 +1,6 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.24 — 4 de octubre de 2026**.
+Versión documental **0.3.25 — 4 de octubre de 2026**.
 
 Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
@@ -1835,7 +1835,7 @@ flowchart LR
 | Técnico con asignación vencida | No conserva acceso técnico por haber realizado antes la instalación. |
 | Administrador sin delegación energética | Puede mantener identidades y asociaciones, no modificar preferencias ni operar equipos del hogar por su sola función administrativa. |
 | Persona consulta otra instalación o los nodos individuales de vecinos | Denegar la información individual; un indicador agregado de grupo no debe identificar instalaciones ajenas. |
-| Plataforma acepta una solicitud, pero el nodo no la aplica | Mostrar resultados diferenciados cuando se implementen 5.5 y 5.6; no presentar la aceptación central como ejecución física. |
+| Plataforma acepta una solicitud, pero el nodo no la aplica | Mostrar los resultados diferenciados acordados en [5.5](#flow-5-5); no presentar la aceptación central como ejecución física. |
 
 Quedan para los puntos siguientes las vistas concretas, permisos granulares de interfaz, mensajes, transporte detallado, históricos, plazos de conservación y evidencia de aplicación. Esta subfase no introduce roles técnicos nuevos en APIs, endpoints, tópicos ni JSON Schema, ni presume una implementación existente de autorización.
 
@@ -2005,7 +2005,44 @@ No se fijan endpoints, tópicos, campos de mensajes, credenciales, tiempos de ex
 
 **Alcance:** **Resultados visibles:** Configuración solicitada y aplicada, aceptaciones, rechazos, actuaciones y alarmas.
 
-El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
+**Estado documental: Validado.** Acuerdo confirmado el **2026-10-04** mediante la solicitud explícita de implementar el cierre de 5.5. Define la información que debe poder distinguirse en E2 Infinity; no acredita una interfaz ni actuaciones físicas implementadas.
+
+#### 1. Estado breve y secuencia de evidencias
+
+Una persona autorizada ve un **estado breve** para cada configuración, acción puntual y alarma de su instalación. Al consultar el detalle, ve las etapas comprobadas, sus momentos conocidos y los motivos de espera, limitación, rechazo o incertidumbre. La plataforma usa la información recibida y procesada conforme a [5.2](#flow-5-2), respetando los permisos de [5.1](#flow-5-1). No eleva una etapa a la siguiente por inferencia: solicitud guardada, publicación aceptada por un broker, recepción por el agente, validación local, aplicación y efecto físico son hechos diferentes, según [5.4](#flow-5-4).
+
+| Tipo | Estado breve y detalle que deben distinguirse | Lo que no demuestra |
+|---|---|---|
+| Configuración | **Solicitada**, **pendiente de aplicación**, **aplicada**, **rechazada** o **en conflicto**, con la propuesta, el valor activo conocido y el motivo cuando corresponda. Las preferencias esperan el punto seguro de [2.5](#flow-2-5); los cambios técnicos esperan revisión y aplicación local conforme a [2.4](#flow-2-4). | Guardar o recibir la propuesta no activa el nuevo valor. Una propuesta técnica sin revisión no se presenta como vigente. |
+| Acción puntual | Mostrar si está **pendiente de confirmación del agente** y, cuando exista respuesta, la validación de [4.4](#flow-4-4): **aceptada**, **limitada**, **rechazada** o **en espera**, con motivo. Añadir por separado recepción por adaptador, aceptación o estado compatible del equipo solo si se comprobaron en [4.5](#flow-4-5). El resultado de [4.6](#flow-4-6) distingue **efecto comprobado**, **discrepancia** y **no concluyente**. | Permiso central, recepción, aceptación del equipo o estado compatible no prueban por sí solos el efecto energético. Una acción limitada no se muestra como cumplimiento íntegro. |
+| Alarma | Mostrar condición **activa** o **cerrada por recuperación comprobada**, momento de apertura y de cierre cuando corresponda, causa observada e impacto en funciones, según [3.5](#flow-3-5). Mostrar aparte si la persona actual ya la leyó. | Marcarla como leída no resuelve la condición ni cierra la alarma; la ausencia de contacto con el nodo no demuestra recuperación. |
+
+Estas expresiones describen estados **visibles conceptuales**, no fijan enumeraciones de API, campos de contrato ni diseño de pantallas. Cuando el agente no confirma una solicitud, E2 Infinity conserva **pendiente de confirmación** como última etapa demostrada; no la declara ejecutada ni fallida por el solo silencio. Si falta procesamiento central de un evento, tampoco se atribuye al backend una evidencia que no recibió.
+
+#### 2. Resultados parciales, alarmas y acceso
+
+Un resultado **no concluyente** informa por qué la medición no permite comprobar el efecto y queda sujeto a revisión. Una medición apta posterior agrega una etapa vinculada al mismo caso, sin borrar la evidencia ni el estado previo, conforme a [4.6](#flow-4-6)–[4.7](#flow-4-7). Una discrepancia tampoco se convierte automáticamente en una nueva orden: requiere la reevaluación local acordada en 4.6. Los motivos de rechazo o limitación se muestran sin confundirlos con fallos de transporte.
+
+El reconocimiento de lectura de una alarma es **personal**: la titular y cualquier persona delegada con acceso a esa instalación, incluso con permiso de solo lectura, pueden marcarla como leída para sí mismas. Ese acto no cambia la condición activa ni el estado de lectura de otras personas. El cierre de la alarma es común a la instalación y solo procede cuando el agente comprueba la recuperación. La titular y personas delegadas ven causa e impacto en lenguaje comprensible; el técnico autorizado puede consultar evidencia diagnóstica adicional únicamente durante su asignación, conforme a 5.1. El administrador de infraestructura no obtiene acceso energético por gestionar Headscale.
+
+Si se pierde contacto con el nodo, la plataforma indica la **fecha del último resultado conocido** y mantiene la conectividad separada del estado de configuración, actuación o alarma, como en [5.3](#flow-5-3). No presume que una solicitud avanzó, que el nodo dejó de operar localmente ni que una alarma se cerró. La conservación, búsqueda, exportación y comparación de periodos pertenecen a [5.6](#flow-5-6); el reenvío tras reconexión pertenece a [8.5](#flow-8-5).
+
+#### 3. Casos de revisión y límites
+
+| Caso | Presentación acordada |
+|---|---|
+| Solicitud guardada, sin confirmación del agente | Mostrar la solicitud y su última etapa comprobada como **pendiente de confirmación**; no afirmar recepción ni actuación. |
+| Preferencia recibida, aún sin punto seguro | Mostrarla **pendiente de aplicación** y conservar visible el valor activo conocido. |
+| Cambio técnico sin revisión local | Mantenerlo pendiente; no presentar como activo el grupo, vecino o parámetro propuesto. |
+| Acción localmente limitada o rechazada | Mostrar decisión y motivo; una limitación no equivale a ejecución total. |
+| Equipo acepta la orden, pero no hay medición apta | Mostrar aceptación comprobada y efecto **no concluyente**, pendiente de revisión; no cerrar como éxito ni como fallo físico. |
+| Nueva verificación del mismo efecto | Añadir la evidencia y el resultado posterior vinculados; no sustituir la etapa no concluyente anterior. |
+| Alarma activa marcada como leída | Mantenerla **activa** para todos; solo cambia el estado de lectura de esa persona. |
+| Nodo desconectado con último estado conocido | Mostrar fecha y carácter de último dato conocido; no inferir una etapa posterior. |
+
+No se definen aquí pantallas, plazos de conservación, notificaciones, endpoints, tópicos, campos de mensajes ni JSON Schema. El bridge Mosquitto–EMQX sigue pendiente de implementación.
+
+**Referencia de validación:** el **2026-10-04** se acordaron estado breve con detalle de evidencias, espera ante ausencia de confirmación, resultado no concluyente revisable, diagnóstico según permiso y lectura personal de alarmas independiente de su cierre. El usuario solicitó implementar este cierre documental.
 
 <a id="flow-5-6"></a>
 

@@ -1,6 +1,6 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.24 — 4 de octubre de 2026**.
+Versión documental **0.3.25 — 4 de octubre de 2026**.
 
 ## Propósito y alcance
 
@@ -95,7 +95,7 @@ Definir E2 Infinity desde la perspectiva del usuario y de la Raspberry.
 | 5.2 | **Telemetría hacia E2 Infinity:** Datos enviados, destinatarios, condiciones y frecuencia por acordar. | Validado | 2.3, 3.3 | Intervalos, tópicos y confirmación de procesamiento por especificar; presentación en 5.3/5.5 y reenvío en 8.5. | [Definición](definiciones-flujos.md#flow-5-2) | 2026-10-04: «Sí, validar 5.2»; resúmenes y eventos, calidad de lecturas, resultados por etapas y backend procesado distinto de entrega MQTT. |
 | 5.3 | **Información que muestra la plataforma:** Mediciones, equipos, disponibilidad, calidad y antigüedad de datos. | Validado | 3.4, 5.1, 5.2 | Umbrales de vigencia y diseño visual por comprobar; resultados en 5.5, históricos y facturas en 5.6. | [Definición](definiciones-flujos.md#flow-5-3) | 2026-10-04: «Sí, validar 5.3»; resumen y detalle, último dato etiquetado, salud por función y ámbito de instalación. |
 | 5.4 | **Información enviada al nodo:** Recorrido de configuraciones y referencias autorizadas; enlazar sus definiciones. | Validado | 2.4–2.6, 4.2, 4.4, 5.1; 6.3 y corte 7 para meta común | Bridge central pendiente; vigencias y contratos por especificar; resultados visibles en 5.5 y sincronización en 8.5. | [Definición](definiciones-flujos.md#flow-5-4) | 2026-10-04: cierre solicitado explícitamente; HTTPS para propuestas persistentes, MQTT para meta común y acción puntual, validación local antes de aplicar o actuar. |
-| 5.5 | **Resultados visibles:** Configuración solicitada y aplicada, aceptaciones, rechazos, actuaciones y alarmas. | Pendiente | 2.5, 3.5, 4.7, 5.2 | ¿Cómo se muestra el resultado efectivo sin confundir solicitud con ejecución? | [Definición](definiciones-flujos.md#flow-5-5) | — |
+| 5.5 | **Resultados visibles:** Configuración solicitada y aplicada, aceptaciones, rechazos, actuaciones y alarmas. | Validado | 2.5, 3.5, 4.4–4.7, 5.1–5.4 | Diseño de pantallas y contratos por definir; consulta histórica en 5.6 y sincronización pendiente en 8.5. | [Definición](definiciones-flujos.md#flow-5-5) | 2026-10-04: cierre solicitado explícitamente; estado breve y evidencias, última etapa comprobada, resultado no concluyente revisable y lectura personal de alarmas. |
 | 5.6 | **Históricos y consultas:** Almacenamiento, consulta, exportación y trazabilidad hasta el usuario. | Pendiente | 5.2, 5.5 | ¿Cómo consulta el usuario la información conservada y su procedencia? | [Definición](definiciones-flujos.md#flow-5-6) | — |
 
 ### Corte 6 — Preparación de la participación distribuida
@@ -220,4 +220,4 @@ Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.
 
 ## Próxima conversación
 
-**5.5 — Resultados visibles:** definir cómo se presentan al usuario las propuestas, solicitudes, validaciones, actuaciones y alarmas sin confundir lo guardado o recibido con el efecto medido.
+**5.6 — Históricos y consultas:** definir conservación, búsqueda, exportación y trazabilidad de mediciones, decisiones, resultados y alarmas hasta el usuario.
