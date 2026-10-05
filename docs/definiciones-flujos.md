@@ -1,14 +1,16 @@
 # Definiciones de flujos — E2 Infinity
 
-Versión documental **0.3.26 — 4 de octubre de 2026**.
+Versión documental **0.4.0 — 5 de octubre de 2026**.
 
-Este es el documento maestro para conversar y registrar las definiciones de las **46 subfases en 8 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
+Este es el documento maestro para conversar y registrar las definiciones de las **60 subfases en 10 cortes**. El [plan de trabajo](plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias y enlaza cada subfase a esta sección.
 
 Se incorporan las definiciones detalladas de MQTT y configuración, más el antecedente conceptual del consenso. Lo propuesto, lo acordado y lo pendiente se identifican de forma explícita. Una propuesta en este documento no queda validada hasta recibir confirmación expresa; la definición documental tampoco implica implementación o ensayo físico.
 
 En cada subfase se registrarán el escenario y propósito, los actores y responsabilidades, qué recibe y envía cada actor, el sentido y canal, las confirmaciones y respuestas, los errores y la recuperación, los acuerdos y los pendientes. Se distinguen acciones manuales, interacciones internas y mensajes entre servicios. Cada mensaje individual tiene emisor y receptor; un flujo bidireccional puede incluir varios mensajes y no exige respuesta a cada publicación.
 
 Los tópicos, identificadores y esquemas JSON mantienen sus documentos de catálogo y su condición actual. Este documento no define nuevos endpoints ni contratos.
+
+Los cortes 9 y 10 incorporan el trabajo pendiente de contratos y visualización. Se desarrollan en paralelo con los flujos disponibles: cada mensaje tendrá una única definición vinculada a sus recorridos, y cada diagrama se derivará de flujos y contratos acordados. Añadir estas secciones no valida los esquemas ni genera diagramas nuevos. La próxima conversación sigue siendo 6.1.
 
 ## Contenido
 
@@ -81,6 +83,26 @@ Los tópicos, identificadores y esquemas JSON mantienen sus documentos de catál
 - [8.4 — Reinicio y recuperación](#flow-8-4)
 - [8.5 — Sincronización pendiente](#flow-8-5)
 - [8.6 — Revisión de punta a punta](#flow-8-6)
+
+### Corte 9 — Contratos de mensajes por flujo
+
+- [9.1 — Catálogo y envolvente común](#flow-9-1)
+- [9.2 — Incorporación y configuración](#flow-9-2)
+- [9.3 — Equipos y supervisión](#flow-9-3)
+- [9.4 — Control y resultados](#flow-9-4)
+- [9.5 — Participación y flexibilidad](#flow-9-5)
+- [9.6 — Consenso](#flow-9-6)
+- [9.7 — Fallos y recuperación](#flow-9-7)
+
+### Corte 10 — Visualización y presentación
+
+- [10.1 — Mapa general](#flow-10-1)
+- [10.2 — Incorporación y configuración](#flow-10-2)
+- [10.3 — Operación local](#flow-10-3)
+- [10.4 — Plataforma](#flow-10-4)
+- [10.5 — Coordinación distribuida](#flow-10-5)
+- [10.6 — Fallos y recuperación](#flow-10-6)
+- [10.7 — Publicación y revisión visual](#flow-10-7)
 
 ## Corte 1 — Arquitectura y mapa completo de interacciones
 
@@ -2291,6 +2313,182 @@ El flujo, sus participantes, mensajes y respuestas se definirán al conversar es
 
 El flujo, sus participantes, mensajes y respuestas se definirán al conversar esta subfase. Registrar aquí los acuerdos, alternativas y preguntas pendientes; consultar su estado en el [índice del plan](plan-trabajo-flujos.md).
 
+<a id="cut-9"></a>
+
+## Corte 9 — Contratos de mensajes por flujo
+
+<a id="flow-9-1"></a>
+
+### 9.1 — Catálogo y envolvente común
+
+**Alcance:** Relacionar mensajes con flujos; revisar identidad, versión, tiempos y correlación comunes.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 1.1–1.4; catálogo y esquemas existentes.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-9-2"></a>
+
+### 9.2 — Incorporación y configuración
+
+**Alcance:** Estructuras administrativas para alta, propuestas, versiones y resultados.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 9.1; corte 2; 4.1–4.2; 5.1, 5.4.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-9-3"></a>
+
+### 9.3 — Equipos y supervisión
+
+**Alcance:** Inventario comunicado, mediciones, heartbeat, disponibilidad y alarmas.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 9.1; corte 3; 5.2; 6.2 para disponibilidad energética.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-9-4"></a>
+
+### 9.4 — Control y resultados
+
+**Alcance:** Solicitudes, validación local, órdenes entre componentes y evidencias de actuación.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 9.1; corte 4; 5.1–5.6.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-9-5"></a>
+
+### 9.5 — Participación y flexibilidad
+
+**Alcance:** Restricciones, referencias y capacidad ofrecida, tras acordar el corte 6.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 9.1; corte 6 acordado; formulación matemática.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-9-6"></a>
+
+### 9.6 — Consenso
+
+**Alcance:** Intercambio entre vecinos y convergencia, sujeto a la formulación matemática y al corte 7.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 9.1, 9.5; corte 7 acordado; formulación matemática validada.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-9-7"></a>
+
+### 9.7 — Fallos y recuperación
+
+**Alcance:** Ausencias, reenvío, duplicados y sincronización, tras acordar el corte 8.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 9.1; corte 8 acordado; contratos afectados de 9.2–9.6.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="cut-10"></a>
+
+## Corte 10 — Visualización y presentación
+
+<a id="flow-10-1"></a>
+
+### 10.1 — Mapa general
+
+**Alcance:** Componentes, límites e interfaces de la arquitectura objetivo.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** corte 1; interfaces acordadas en cortes 2–5; 9.1 cuando corresponda.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-10-2"></a>
+
+### 10.2 — Incorporación y configuración
+
+**Alcance:** Secuencias de alta y cambios locales o remotos.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** corte 2; contratos revisados en 9.2.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-10-3"></a>
+
+### 10.3 — Operación local
+
+**Alcance:** Mediciones, decisión, control de equipos y resultado.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** cortes 3–4; contratos revisados en 9.3–9.4.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-10-4"></a>
+
+### 10.4 — Plataforma
+
+**Alcance:** Telemetría, solicitudes, resultados e históricos visibles.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** corte 5; contratos revisados en 9.2–9.4.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-10-5"></a>
+
+### 10.5 — Coordinación distribuida
+
+**Alcance:** Participación e intercambio entre vecinos, después de validar sus flujos.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** cortes 6–7 acordados; 9.5–9.6; formulación matemática validada.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-10-6"></a>
+
+### 10.6 — Fallos y recuperación
+
+**Alcance:** Pérdidas de conexión o equipo y continuidad posible.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** corte 8 acordado; contratos revisados en 9.7.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
+<a id="flow-10-7"></a>
+
+### 10.7 — Publicación y revisión visual
+
+**Alcance:** Índice de vistas técnicas y resumidas; comprobar coherencia, legibilidad y exportaciones.
+
+**Estado documental: Pendiente.** La incorporación al plan el 2026-10-05 organiza el trabajo; esta subfase requiere conversación y confirmación individual.
+
+**Dependencias documentales:** 10.1–10.6 según cada vista disponible.
+
+La definición se desarrollará al abordar esta subfase, registrando acuerdos y pendientes en el [índice del plan](plan-trabajo-flujos.md). Los contratos y artefactos existentes conservan su estado de revisión.
+
 ## Modelo para documentar cada subfase
 <a id="plantilla-comun"></a>
 
@@ -2303,6 +2501,10 @@ Al conversar una sección, completar los aspectos que correspondan:
 - Confirmaciones de transporte, procesamiento y ejecución física, cuando correspondan.
 - Información que la plataforma presenta al usuario; errores, fallos y recuperación.
 - Acuerdos confirmados con fecha, decisiones abiertas y evidencia técnica pendiente.
+
+Para las subfases del corte 9, completar también emisor, receptor y canal; campos obligatorios/opcionales, tipos, unidades, vigencia, respuestas, errores y ejemplos, con referencias al catálogo y a los JSON Schema cuando corresponda. Mantener una única definición por contrato y enlazarla desde sus flujos. Una acción manual no requiere un mensaje de red.
+
+Para las subfases del corte 10, registrar las fuentes acordadas, audiencia técnica o resumida, recorridos representativos, editable Draw.io, PNG/SVG y Mermaid pertinentes, y evidencia de revisión visual. Las vistas deben conservar direcciones, responsabilidades y estado documental de sus fuentes; la publicación no crea acuerdos adicionales.
 
 Cada mensaje individual tiene un emisor y un receptor. Una flecha bidireccional en el mapa de interfaces se detalla como los mensajes de ida y vuelta pertinentes; no implica una respuesta obligatoria a cada publicación. No fijar campos JSON, endpoints, tópicos ni la lógica matemática antes de revisarlos en el punto correspondiente y con su fuente.
 

@@ -6,7 +6,13 @@ Archivo editable: [Flujos_Primer_Corte_E2_Infinity_v01.drawio](Flujos_Primer_Cor
 
 Esta entrega representa los recorridos de incorporación y configuración del bloque 1 de la numeración anterior (hasta 0.2.5). No implementa servicios, fija endpoints ni convierte los mensajes o esquemas previos en contratos aprobados. El [plan de trabajo](../plan-trabajo-flujos.md) sigue siendo el índice único de estados y dependencias.
 
-## Tres pestañas
+## Visualización prevista en el corte 10
+
+El [corte 10 — Visualización y presentación](../definiciones-flujos.md#cut-10) agrega siete subfases pendientes para arquitectura, incorporación, operación local, plataforma, coordinación, fallos y publicación visual. Sus vistas técnicas y resumidas se derivarán de flujos y contratos acordados, mediante Draw.io editables, PNG/SVG y secuencias Mermaid para recorridos representativos. Se revisarán direcciones, geometría perpendicular, etiquetas, límites y legibilidad antes de publicar cada vista.
+
+Esta ampliación documental conserva los archivos v01 y sus exportaciones; las nuevas vistas se producirán al revisar sus subfases. La versión visual histórica y su equivalencia siguen vigentes como referencias.
+
+## Tres pestañas históricas
 
 | Pestaña | Qué permite revisar | Vista PNG | Exportación SVG |
 |---|---|---|---|

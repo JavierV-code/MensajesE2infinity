@@ -1,6 +1,6 @@
 # Escenarios de validación de mensajes
 
-Estos escenarios alimentan la revisión 8.6 del [plan de 46 subfases](../plan-trabajo-flujos.md). Son criterios por desarrollar y comprobar, no ensayos ejecutados. Se revisarán también desde cada flujo, con resultados observables en el nodo y en la plataforma cuando corresponda.
+Estos escenarios alimentan la revisión 8.6 del [plan de 60 subfases](../plan-trabajo-flujos.md). Son criterios por desarrollar y comprobar, no ensayos ejecutados. Se revisarán también desde cada flujo, con resultados observables en el nodo y en la plataforma cuando corresponda.
 
 | ID | Escenario | Resultado esperado | Estado |
 |---|---|---|---|

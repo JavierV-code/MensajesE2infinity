@@ -1,16 +1,18 @@
 # Plan de documentación de flujos — E2 Infinity
 
-Versión documental **0.3.26 — 4 de octubre de 2026**.
+Versión documental **0.4.0 — 5 de octubre de 2026**.
 
 ## Propósito y alcance
 
-Organizar la conversación, revisión y documentación de **8 cortes y 46 subfases**: funcionamiento local de la Raspberry, plataforma, equipos, participación distribuida y recuperación. Este documento es el índice único de estados y dependencias y conserva la equivalencia con los 34 puntos anteriores.
+Organizar la conversación, revisión y documentación de **10 cortes y 60 subfases**: funcionamiento local de la Raspberry, plataforma, equipos, participación distribuida, recuperación, contratos de mensajes y visualización. Este documento es el índice único de estados y dependencias y conserva la equivalencia con los 34 puntos anteriores.
 
 El documento maestro [Definiciones de flujos](definiciones-flujos.md) es la fuente principal de las definiciones, recorridos, responsabilidades e información intercambiada. Los campos definitivos, reglas operativas y contratos se acordarán al desarrollar cada subfase. Cada fila se conversará individualmente; la aprobación de esta reorganización no valida automáticamente sus flujos.
 
 La configuración inicial es manual mediante archivos y herramientas locales. La automatización remota se resolverá en 2.5. Los paneles, interfaces y servicios descritos representan el diseño objetivo; su evidencia de implementación se registra por separado.
 
 El orden es una referencia de conversación, sin fechas ni duraciones comprometidas. Las dependencias de las tablas son documentales y tentativas: no obligan al nodo a disponer de nube o consenso para operar localmente.
+
+Los cortes 9 y 10 son transversales. El corte 9 puede avanzar con los flujos ya cerrados mientras continúa la conversación de los cortes 6–8; cada contrato se revisa una vez y se enlaza a sus flujos. El corte 10 representa los acuerdos disponibles en vistas técnicas y resumidas. Los contratos del consenso esperan la formulación matemática validada; sus visualizaciones esperan también los acuerdos que deben representar. Las 14 subfases nuevas comienzan pendientes.
 
 ## Recorridos y separación de responsabilidades
 
@@ -30,7 +32,7 @@ El recorrido local **3.3 → 4.3 → 4.4 → 4.5 → 4.6** funciona como escenar
 
 Cada mensaje tiene un emisor y un receptor. Un flujo bidireccional puede reunir mensajes en ambos sentidos sin exigir una respuesta a cada publicación. Las confirmaciones de transporte, procesamiento y ejecución física se distinguen cuando correspondan.
 
-## Seguimiento de las 46 subfases
+## Seguimiento de las 60 subfases
 
 Las filas mantienen los estados documentales registrados y enlazan directamente a la sección de cada subfase en el [documento maestro](definiciones-flujos.md). Los nuevos temas comienzan pendientes. Los acuerdos conversados sin documento individual se conservan como antecedentes a formalizar, sin asignarles fechas o aprobaciones no registradas. Un enlace a un antecedente no implica validación.
 
@@ -136,6 +138,34 @@ Comprobar la continuidad de los recorridos ante fallos.
 | 8.5 | **Sincronización pendiente:** Información conservada, reenviada o descartada al reconectar. | Pendiente | 4.7, 5.6, 8.1, 8.4 | ¿Cómo se sincroniza sin repetir actuaciones antiguas? | [Definición](definiciones-flujos.md#flow-8-5) | — |
 | 8.6 | **Revisión de punta a punta:** Escenarios completos y detección de mensajes faltantes o responsabilidades ambiguas. | Pendiente | Todos los cortes anteriores | ¿Cada solicitud tiene destinatario, tratamiento y resultado trazable? | [Definición](definiciones-flujos.md#flow-8-6) · [escenarios](validacion/escenarios.md) | — |
 
+### Corte 9 — Contratos de mensajes por flujo
+
+Definir una única estructura por mensaje, enlazada a todos los flujos que la utilizan. Revisar emisor, receptor, canal, campos, tipos, unidades, vigencia, respuestas, errores y ejemplos; contrastar los JSON Schema existentes. Las acciones manuales se mantienen como acciones del flujo.
+
+| ID | Subfase y objetivo | Estado | Dependencias documentales tentativas | Pregunta o pendiente | Documento | Fecha y referencia del acuerdo |
+|---|---|---|---|---|---|---|
+| 9.1 | **Catálogo y envolvente común:** Relacionar mensajes con flujos; revisar identidad, versión, tiempos y correlación comunes. | Pendiente | 1.1–1.4; catálogo y esquemas existentes | ¿Qué intercambios requieren contrato y qué datos comunes aplican a cada canal? | [Definición](definiciones-flujos.md#flow-9-1) | — |
+| 9.2 | **Incorporación y configuración:** Estructuras administrativas para alta, propuestas, versiones y resultados. | Pendiente | 9.1; corte 2; 4.1–4.2; 5.1, 5.4 | ¿Cómo se representan alta, configuración solicitada y aplicada, versiones y conflictos? | [Definición](definiciones-flujos.md#flow-9-2) | — |
+| 9.3 | **Equipos y supervisión:** Inventario comunicado, mediciones, heartbeat, disponibilidad y alarmas. | Pendiente | 9.1; corte 3; 5.2; 6.2 para disponibilidad energética | ¿Qué campos y respuestas representan equipos, lecturas, salud, disponibilidad y alarmas? | [Definición](definiciones-flujos.md#flow-9-3) | — |
+| 9.4 | **Control y resultados:** Solicitudes, validación local, órdenes entre componentes y evidencias de actuación. | Pendiente | 9.1; corte 4; 5.1–5.6 | ¿Cómo se vinculan solicitud, validación, orden, confirmaciones y efecto medido? | [Definición](definiciones-flujos.md#flow-9-4) | — |
+| 9.5 | **Participación y flexibilidad:** Restricciones, referencias y capacidad ofrecida, tras acordar el corte 6. | Pendiente | 9.1; corte 6 acordado; formulación matemática | ¿Qué estructuras expresan participación, referencia y flexibilidad compatible con límites locales? | [Definición](definiciones-flujos.md#flow-9-5) | — |
+| 9.6 | **Consenso:** Intercambio entre vecinos y convergencia, sujeto a la formulación matemática y al corte 7. | Pendiente | 9.1, 9.5; corte 7 acordado; formulación matemática validada | ¿Qué variables, iteraciones, criterios de validez y resultados exige el algoritmo? | [Definición](definiciones-flujos.md#flow-9-6) | — |
+| 9.7 | **Fallos y recuperación:** Ausencias, reenvío, duplicados y sincronización, tras acordar el corte 8. | Pendiente | 9.1; corte 8 acordado; contratos afectados de 9.2–9.6 | ¿Qué estructuras permiten informar fallos y recuperar información sin duplicar actuaciones? | [Definición](definiciones-flujos.md#flow-9-7) | — |
+
+### Corte 10 — Visualización y presentación
+
+Representar recorridos clave para el equipo técnico y para presentaciones a terceros mediante Draw.io editables, vistas PNG/SVG y secuencias Mermaid. Los flujos y contratos son la fuente de verdad; las vistas no introducen reglas nuevas ni requieren un diagrama por mensaje. No se prevén diapositivas en esta ampliación.
+
+| ID | Subfase y objetivo | Estado | Dependencias documentales tentativas | Pregunta o pendiente | Documento | Fecha y referencia del acuerdo |
+|---|---|---|---|---|---|---|
+| 10.1 | **Mapa general:** Componentes, límites e interfaces de la arquitectura objetivo. | Pendiente | corte 1; interfaces acordadas en cortes 2–5; 9.1 cuando corresponda | ¿Qué vistas técnicas y resumidas representan los componentes y sus responsabilidades? | [Definición](definiciones-flujos.md#flow-10-1) | — |
+| 10.2 | **Incorporación y configuración:** Secuencias de alta y cambios locales o remotos. | Pendiente | corte 2; contratos revisados en 9.2 | ¿Cómo se muestran acciones manuales, intercambios administrativos y resultados de configuración? | [Definición](definiciones-flujos.md#flow-10-2) | — |
+| 10.3 | **Operación local:** Mediciones, decisión, control de equipos y resultado. | Pendiente | cortes 3–4; contratos revisados en 9.3–9.4 | ¿Qué secuencias explican decisión, validación, actuación y efecto medido dentro del nodo? | [Definición](definiciones-flujos.md#flow-10-3) | — |
+| 10.4 | **Plataforma:** Telemetría, solicitudes, resultados e históricos visibles. | Pendiente | corte 5; contratos revisados en 9.2–9.4 | ¿Cómo se muestran los envíos, recepciones y resultados visibles para una persona autorizada? | [Definición](definiciones-flujos.md#flow-10-4) | — |
+| 10.5 | **Coordinación distribuida:** Participación e intercambio entre vecinos, después de validar sus flujos. | Pendiente | cortes 6–7 acordados; 9.5–9.6; formulación matemática validada | ¿Qué recorridos representativos explican participación, consenso y realimentación? | [Definición](definiciones-flujos.md#flow-10-5) | — |
+| 10.6 | **Fallos y recuperación:** Pérdidas de conexión o equipo y continuidad posible. | Pendiente | corte 8 acordado; contratos revisados en 9.7 | ¿Qué ramas de fallo y recuperación muestran la continuidad y sus dependencias? | [Definición](definiciones-flujos.md#flow-10-6) | — |
+| 10.7 | **Publicación y revisión visual:** Índice de vistas técnicas y resumidas; comprobar coherencia, legibilidad y exportaciones. | Pendiente | 10.1–10.6 según cada vista disponible | ¿Cada vista coincide con sus fuentes y dispone de editable y exportaciones revisadas? | [Definición](definiciones-flujos.md#flow-10-7) | — |
+
 ## Equivalencias de la numeración anterior
 
 La columna «Anterior» corresponde al plan de seis bloques (hasta 0.2.5). La columna «Actual» corresponde exclusivamente a esta versión. Cada punto anterior tiene una ubicación principal; las ampliaciones pueden compartir referencias sin duplicar la definición del flujo.
@@ -192,6 +222,10 @@ Las definiciones completas de MQTT y configuración están en el documento maest
 
 Cada documento registra propósito y disparador; participantes y qué reciben, procesan y envían; acciones manuales e internas; mensajes, sentido y canal; contenido mínimo y respuesta necesaria; confirmaciones de transporte, procesamiento y ejecución; información visible al usuario; errores, recuperación, dependencias y evidencia del acuerdo.
 
+En el corte 9 se añade el contrato de cada intercambio: campos obligatorios y opcionales, tipos, unidades, vigencia, respuestas, errores y ejemplos, con enlace al flujo y al esquema correspondiente cuando aplique. El catálogo conserva una definición común por mensaje; aprobar un flujo no aprueba automáticamente su contrato.
+
+En el corte 10 se registra la fuente documental de cada vista, su audiencia técnica o de presentación, el editable Draw.io, las exportaciones PNG/SVG y las secuencias Mermaid pertinentes. Se comprueban flechas horizontales y verticales, entradas perpendiculares, recorridos sin cruces ni solapamientos y etiquetas legibles. Los diagramas se derivan de los acuerdos, sin fijar reglas adicionales.
+
 Las secciones del documento maestro se completan al abordar cada subfase; no se generan archivos individuales duplicados. Un borrador puede publicarse antes de su aprobación si conserva su estado documental. La máquina de estados sigue siendo un componente por definir, sin fijar sus estados en esta reorganización.
 
 ### Estados documentales
@@ -208,12 +242,13 @@ La aprobación documental no equivale a software implementado ni a ensayo físic
 
 ## Criterios transversales y comprobación
 
-- Mantener 46 identificadores únicos en las filas de seguimiento y correspondencia para los 34 anteriores.
+- Mantener 60 identificadores y anclas únicas; conservar los 46 anteriores y la correspondencia para los 34 puntos históricos.
 - Cubrir gestión local sin consenso, configuración remota, supervisión, coordinación y recuperación.
 - Identificar en cada caso los envíos, recepciones y resultados visibles de la plataforma y la Raspberry.
 - Revisar autorización, identidad, vigencia, duplicados, orden y trazabilidad según el flujo.
 - Conservar el alcance y las fechas de los acuerdos, las rutas antiguas como referencias y los diagramas históricos.
 - Verificar enlaces y evitar mensajes duplicados con definiciones divergentes.
+- Mantener pendientes las nuevas subfases hasta su revisión; enlazar contratos y vistas con sus fuentes sin aprobar automáticamente artefactos previos.
 - Resolver las variables, activación, pesos y convergencia del consenso contra la formulación matemática y su validación offline.
 
 Los [tópicos MQTT](mensajes/topicos-mqtt.md), el antecedente de consenso en [7.1](definiciones-flujos.md#flow-7-1) y los [JSON Schema](../schemas/README.md) conservan su condición de propuestas previas. Esta versión no establece nuevos endpoints ni modifica esquemas. La revisión de escenarios se desarrolla en 8.6 y en sus [antecedentes](validacion/escenarios.md).

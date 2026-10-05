@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## 0.4.0 — 2026-10-05
+
+- Amplía el plan a diez cortes y 60 subfases: añade siete puntos de contratos de mensajes por flujo y siete de visualización y presentación, todos pendientes de revisión individual.
+- Enlaza catálogo y esquemas existentes con el corte 9, y prevé Draw.io, PNG/SVG y Mermaid derivados de los acuerdos en el corte 10; el consenso espera su formulación matemática validada.
+- Conserva las 46 subfases anteriores, sus estados, la equivalencia histórica y los artefactos v01. Mantiene 6.1 como próxima conversación; no aprueba contratos ni crea o modifica esquemas y diagramas.
+
 ## 0.3.26 — 2026-10-04
 
 - Valida documentalmente 5.6 — Históricos y consultas: resúmenes y eventos centrales, consulta y exportación autorizadas con procedencia, tiempos y calidad.

@@ -4,11 +4,11 @@ Repositorio de trabajo para definir, revisar y versionar los flujos de comunicac
 
 ## Estado
 
-**Documentación 0.3.26 — 4 de octubre de 2026.**
+**Documentación 0.4.0 — 5 de octubre de 2026.**
 
 El contenido describe una propuesta de diseño. No constituye todavía un contrato definitivo de integración ni una especificación lista para producción. Las variables matemáticas del consenso deben conciliarse con la formulación y validación offline del algoritmo.
 
-El [plan de trabajo](docs/plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias de 46 subfases en ocho cortes. El [documento maestro de definiciones](docs/definiciones-flujos.md) es la fuente principal; el corte 2 incluye [conexiones MQTT](docs/definiciones-flujos.md#flow-2-3), [configuración local](docs/definiciones-flujos.md#flow-2-4), [configuración remota](docs/definiciones-flujos.md#flow-2-5), [coherencia](docs/definiciones-flujos.md#flow-2-6) y [arranque](docs/definiciones-flujos.md#flow-2-7). La incorporación inicial de identidad y archivos técnicos será manual; las preferencias autorizadas se consultarán periódicamente por HTTPS y se aplicarán localmente tras validación.
+El [plan de trabajo](docs/plan-trabajo-flujos.md) conserva el seguimiento único de estados y dependencias de 60 subfases en diez cortes. El [documento maestro de definiciones](docs/definiciones-flujos.md) es la fuente principal; el corte 2 incluye [conexiones MQTT](docs/definiciones-flujos.md#flow-2-3), [configuración local](docs/definiciones-flujos.md#flow-2-4), [configuración remota](docs/definiciones-flujos.md#flow-2-5), [coherencia](docs/definiciones-flujos.md#flow-2-6) y [arranque](docs/definiciones-flujos.md#flow-2-7). La incorporación inicial de identidad y archivos técnicos será manual; las preferencias autorizadas se consultarán periódicamente por HTTPS y se aplicarán localmente tras validación.
 
 Los [diagramas editables del primer corte histórico](docs/diagramas/README.md) reúnen incorporación e identidad, conexiones MQTT y configuración local/remota en tres pestañas de Draw.io, con vistas PNG para revisión. Conservan la numeración de la versión anterior y disponen de una tabla de equivalencias.
 
@@ -39,7 +39,7 @@ Los [diagramas editables del primer corte histórico](docs/diagramas/README.md) 
 
 ```text
 docs/
-├── definiciones-flujos.md  Fuente principal de las 46 subfases
+├── definiciones-flujos.md  Fuente principal de las 60 subfases
 ├── arquitectura/       Mapa general y responsabilidades
 ├── decisiones/         Registros de decisiones de arquitectura (ADR)
 ├── diagramas/          Draw.io editable y vistas de revisión
@@ -61,6 +61,8 @@ schemas/                 Contratos JSON preliminares
 | 6. Preparación de la participación distribuida | 5 | Participación, disponibilidad, referencias y flexibilidad |
 | 7. Consenso y coordinación entre vecinos | 6 | Iteraciones, convergencia y realimentación |
 | 8. Fallos, recuperación y revisión completa | 6 | Continuidad y revisión de punta a punta |
+| 9. Contratos de mensajes por flujo | 7 | Estructuras, respuestas, errores y ejemplos vinculados a sus flujos |
+| 10. Visualización y presentación | 7 | Vistas técnicas y resumidas, secuencias y exportaciones revisadas |
 
 La [equivalencia de los 34 puntos anteriores](docs/plan-trabajo-flujos.md#equivalencias-de-la-numeración-anterior) permite seguir usando las referencias históricas.
 
@@ -73,6 +75,8 @@ El orden, las dependencias y los estados se mantienen únicamente en el [plan de
 En [2.5](docs/definiciones-flujos.md#flow-2-5), las preferencias energéticas autorizadas se consultan automáticamente por HTTPS y se activan sin reinicio en el siguiente punto seguro de decisión. Las propuestas técnicas permanecen bajo comprobación y aplicación local del técnico según 2.4. Una consigna temporal usa su propio recorrido operativo.
 
 Los mensajes, tópicos, diagramas y [JSON Schema existentes](schemas/README.md) son propuestas previas que se revisarán durante este proceso.
+
+Las 14 subfases de los [cortes 9 y 10](docs/plan-trabajo-flujos.md#corte-9--contratos-de-mensajes-por-flujo) comienzan pendientes. Son transversales: los contratos pueden avanzar con los flujos ya acordados y las visualizaciones se derivan de esas fuentes. Los contratos del consenso esperan la formulación matemática validada. Se prevén Draw.io editables, PNG/SVG y Mermaid para recorridos representativos y presentaciones a terceros.
 
 ## Decisiones abiertas principales
 

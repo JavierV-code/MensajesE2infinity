@@ -2,7 +2,9 @@
 
 **Propuestas previas, no contratos aprobados.** Los identificadores se conservan como referencias del borrador; los nombres, campos, rutas y aplicabilidad pueden cambiar durante la revisión.
 
-El [plan de trabajo](../plan-trabajo-flujos.md) mantiene el estado de las 46 subfases de los ocho cortes y enlaza sus documentos. Al revisar un mensaje, se añadirá aquí la referencia a su flujo detallado en el [documento maestro de definiciones](../definiciones-flujos.md), evitando duplicar su definición. La incorporación inicial será manual; los mensajes de registro y las referencias al panel son antecedentes por revisar, no requisitos ya aprobados para esa etapa.
+El [plan de trabajo](../plan-trabajo-flujos.md) mantiene el estado de las 60 subfases de los diez cortes y enlaza sus documentos. Al revisar un mensaje, se añadirá aquí la referencia a su flujo detallado en el [documento maestro de definiciones](../definiciones-flujos.md), evitando duplicar su definición. La incorporación inicial será manual; los mensajes de registro y las referencias al panel son antecedentes por revisar, no requisitos ya aprobados para esa etapa.
+
+El [corte 9](../definiciones-flujos.md#cut-9) organiza la revisión pendiente de cada contrato: emisor, receptor, canal, campos, tipos, unidades, vigencia, respuestas, errores y ejemplos. Se mantendrá una definición única por mensaje enlazada a sus flujos. Las estructuras del consenso dependen de la formulación matemática validada; esta ampliación del plan no aprueba los contratos existentes ni altera sus filas.
 
 | ID | Mensaje | Emisor | Receptor | Canal | Dependencia | Estado |
 |---|---|---|---|---|---|---|

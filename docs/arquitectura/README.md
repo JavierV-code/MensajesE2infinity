@@ -2,6 +2,8 @@
 
 Esta vista resume las interfaces y sentidos de comunicación acordados documentalmente en 1.3 (versión 0.3.4). Separa aplicación, interacciones internas y transporte; no constituye evidencia de implementación.
 
+La revisión de nuevas vistas técnicas y resumidas se planifica en [10.1 — Mapa general](../definiciones-flujos.md#flow-10-1) y su publicación en [10.7](../definiciones-flujos.md#flow-10-7). Ambas subfases están pendientes; las vistas seguirán los flujos y contratos acordados.
+
 El [recorrido general 1.4](../definiciones-flujos.md#flow-1-4) conecta el ciclo local independiente, la configuración administrativa por HTTPS, la meta energética común por MQTT a participantes seleccionados, la coordinación entre vecinos y los retornos hacia la plataforma y el consenso. El bridge Mosquitto–EMQX permanece pendiente de implementación.
 
 **Estado del mapa:** diseño documental validado en sus responsabilidades y direcciones generales. Las etiquetas «propuesta», «pendiente de implementación» y «por verificar» indican que no se afirma implementación donde no existe evidencia. El [plan de trabajo](../plan-trabajo-flujos.md) mantiene los estados y las [definiciones detalladas](../definiciones-flujos.md) las decisiones por subfase. La configuración inicial será manual mediante archivos.

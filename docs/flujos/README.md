@@ -1,6 +1,6 @@
 # Flujos de extremo a extremo
 
-El [plan de trabajo](../plan-trabajo-flujos.md) es el índice único de las **46 subfases en ocho cortes**, sus dependencias y estados. La configuración inicial es manual. Las definiciones residen en el [documento maestro](../definiciones-flujos.md); su [plantilla común](../definiciones-flujos.md#plantilla-comun) se aplica a cada subfase.
+El [plan de trabajo](../plan-trabajo-flujos.md) es el índice único de las **60 subfases en diez cortes**, sus dependencias y estados. La configuración inicial es manual. Las definiciones residen en el [documento maestro](../definiciones-flujos.md); su [plantilla común](../definiciones-flujos.md#plantilla-comun) se aplica a cada subfase.
 
 ## Recorridos de operación
 
@@ -71,6 +71,8 @@ Las definiciones canónicas están en [docs/definiciones-flujos.md](../definicio
 - [Diagramas Draw.io v01](../diagramas/README.md): vistas históricas y equivalencia de su numeración.
 - [Consenso conceptual en 7.1](../definiciones-flujos.md#flow-7-1): antecedente para el corte 7, sujeto a formulación matemática.
 - [Catálogo común de mensajes](../mensajes/catalogo-mensajes.md): propuestas que se enlazan a sus flujos.
+- [Corte 9 — Contratos de mensajes por flujo](../definiciones-flujos.md#cut-9): siete subfases pendientes para revisar estructuras y ejemplos por familia de intercambios.
+- [Corte 10 — Visualización y presentación](../definiciones-flujos.md#cut-10): siete subfases pendientes para representar acuerdos en Draw.io, PNG/SVG y Mermaid.
 - [Escenarios de revisión](../validacion/escenarios.md): cobertura de gestión local, plataforma, consenso y recuperación.
 
 Las rutas individuales anteriores se conservan como referencias compatibles al documento maestro. Los **cortes 2–5 quedan completos**; la próxima conversación es **6.1 — Participación del usuario**.
